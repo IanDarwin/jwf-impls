@@ -1,4 +1,4 @@
-<%@page errorPage="/oops.jsp"%>
+<%@page errorPage="/errors/oops.jsp"%>
 <%@taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
@@ -17,7 +17,7 @@
 
 <body>
 
-<img src="struts-power.gif" alt="<bean:message key="image.struts-power"/>" 
+<img src="/images/struts-power.gif" alt="<bean:message key="image.struts-power"/>" 
 	align="right" width="95" height="37"/>
 
 <h1><bean:message key="insert.title"/></h1>
