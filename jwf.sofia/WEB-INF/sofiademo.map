@@ -10,14 +10,14 @@
 	
   	<entry>
 		<name>index</name>
-		<uri>/index.jsp</uri>
+		<uri>/jwf.sofia/index.jsp</uri>
 		<useForward>false</useForward>
 		<secure>false</secure>
 	</entry>
 	
 	<entry>
 		<name>details</name>
-		<uri>/details.jsp</uri>
+		<uri>/jwf.sofia/details.jsp</uri>
 		<useForward>true</useForward>
 		<secure>false</secure>
 	</entry>
