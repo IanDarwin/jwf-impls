@@ -10,7 +10,7 @@ import org.oreodata.metadata.StringField;
  * <pre>
  * &lt;tr&gt;&lt;td&gt;Country:&lt;/td&gt;&lt;td&gt;
  *	&lt;select name="country"&gt;
- *		&lt;option selected="true" value="--"&gt;--Choose your country--
+ *		&lt;option selected="true"&gt;--Choose your country--
  *		&lt;option value="ca"&gt;Canada
  *		&lt;option value="us"&gt;U.S.A.
  *		&lt;option value="uk"&gt;U.K.
