@@ -33,8 +33,8 @@
 		<servlet-class>servletdispatcher.ServletDispatcher</servlet-class>
 	</servlet>
     <servlet>
-        <servlet-name>HelloNiggle</servlet-name>
-        <servlet-class>HelloNiggleServlet</servlet-class>
+        <servlet-name>Niggle</servlet-name>
+        <servlet-class>NiggleServlet</servlet-class>
         <init-param>
             <param-name>PAGE_FACTORY_CLASS</param-name>
             <param-value>freemarker</param-value>
@@ -63,8 +63,8 @@
 		<url-pattern>/servletdispatcher/Servlet</url-pattern>
 	</servlet-mapping>
     <servlet-mapping>
-        <servlet-name>HelloNiggle</servlet-name>
-		<url-pattern>/niggle/HelloNiggleServlet</url-pattern>
+        <servlet-name>Niggle</servlet-name>
+		<url-pattern>/niggle/Servlet</url-pattern>
     </servlet-mapping>
 
 	<!-- Struts -->
