@@ -9,6 +9,8 @@ import javax.naming.*;
 
 /*
  * Servlet-only implementation for the JavaWebFramework project
+ * THIS IS NOT INTENDED TO BE GOOD STYLE; I know it should be MVC
+ * and all that; this is a "worst case" example for the Frameworks Catalog.
  * @author  Ian F. Darwin
  * @version $Id$
  */
@@ -35,7 +37,7 @@ public class ServletOnly extends HttpServlet
 
 			st = con.prepareStatement(
 				"insert into people (firstName, lastName, address1, address2," +
-				"city, province, zipcode, country)" +
+				"city, province, postcode, country)" +
 				"values(?,?,?,?,?,?,?,?)");
 
 			// con.close();	// put back into connection pool
