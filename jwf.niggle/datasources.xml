@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE DATASOURCES SYSTEM "classpath:/org/oreodata/metadata/datasources.dtd">
+<!--
+ *** Specify the external SQL database for persistence.
+ *** XXX TODO find out how to tie in a javax.sql.DataSource if already set up.
+ -->
+<DATASOURCES>
+	<DATASOURCE CLASS="&DEFAULT_JDBC;" NAME="people">
+		<PROPERTY KEY="DEFAULT_RECORD_TYPE" VALUE="person"/>
+		<PROPERTY KEY="JDBC_DRIVER_CLASS" VALUE="org.hsqldb.jdbcDriver"/>
+		<PROPERTY KEY="JDBC_URL" VALUE="jdbc:hsqldb:/www/javawebframeworks/WEB-INF/javawebframeworks?user=jwfsurvey&amp;password=itsasecret" />
+		<PROPERTY KEY="MAX_CACHE_SIZE" VALUE="1000" />
+		<PROPERTY KEY="DOUBLE_QUOTE_LITERAL" VALUE="Y" />
+	</DATASOURCE>
+</DATASOURCES>
