@@ -12,18 +12,17 @@
 		>
 
 <html>
-<head><title>Servlet Output</title></head>
+<head>
+	<title><bean:message key="success.title"/></title>
+</head>
+
 <body>
-<h1><bean:message key="label.title"/></h1>
-<p>Thank you,
+<h1><bean:message key="success.title"/></h1>
+<p><bean:message key="success.text.thankyou"/>
 <!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="firstName"/ -->
-<!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="lastName"/ -->,
-for registering with us using the ServletDispatcher implementation!
-If this were a real service, you would now be
-receiving a confirming email at 
+<!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="lastName"/ -->
 <!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="email"/ -->
-with more instructions.
 </p>
-<p>See the <a href="../list/">list of people</a>.</p>
+<p><a href="../list/"><bean:message key="success.text.next"/></a>.</p>
 </body>
 </html>
