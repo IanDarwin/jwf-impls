@@ -1,4 +1,4 @@
-package struts;
+package strutsdemo;
 
 import beans.Person;
 import beans.PersonDAO;
