@@ -1,5 +1,5 @@
 <!DOCTYPE struts-config PUBLIC
-          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"> 
 
 <!--
@@ -25,24 +25,19 @@
 	</form-bean>
 
 	<global-forwards type="org.apache.struts.action.ActionForward">
-	<forward name="thankyou" 
-		path="/thankyou.jsp"
-		redirect="false" />
+		<forward name="success" path="/thankyou.jsp" redirect="false"/>
 	</global-forwards>
 
 	<action-mappings>
-		<action path="index.jsp"
+		<action path="process"
 			input="index.jsp"
 			name="insertDynaForm"
 			type="struts.InsertAction"
 			scope="request"
 			validate="true">
-			<forward name="success" path="thankyou.jsp"/>
 		</action>
 	</action-mappings>
 
-	<!--
 	<message-resources parameter="struts.ApplicationResources"/>
-	-->
 
 </struts-config>
