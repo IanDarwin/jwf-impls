@@ -102,6 +102,7 @@ public class ServletOnly extends HttpServlet
 
 			ret = st.executeUpdate();
 
+			// st.close();	// Do NOT close this PS!
 			con.close();	// put back into connection pool
 
 		} catch (SQLException ex) {
