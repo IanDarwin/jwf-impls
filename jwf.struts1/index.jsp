@@ -1,14 +1,28 @@
 <%@page errorPage="/oops.jsp"%>
 <%@taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 
+<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
+	<font color="red">
+    <h1>ERROR:  Application resources not loaded -- check servlet container
+    logs for error messages.</h1>
+  </font>
+</logic:notPresent>
+
+<html:html locale="true">
+<head>
+	<title><bean:message key="insert.title"/></title>
+</head>
+
+<body>
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
 
-<h1><bean:message key="label.title"/></h1>
+<h1><bean:message key="insert.title"/></h1>
 <p>
 <html:errors/>
 <hr />
-<html:form action="/process" focus="firstName">
+<html:form action="process.do" focus="firstName">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
 		<td><bean:message key="insert.label.firstName"/><html:text name="insertDynaForm" property="firstName" size="10"/>
@@ -34,3 +48,5 @@
 </html:form>
 
 <!-- END ORIGINAL HTML FRAGMENT basicform.html -->
+</body>
+</html:html>
