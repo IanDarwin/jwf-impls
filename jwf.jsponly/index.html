@@ -1,13 +1,17 @@
-<title>Servlet Only</title>
+<title>JSP Only</title>
 
-<h1>Servlet Only</h1>
+<h1>JSP Only</h1>
+
+<p>This Implementation is another "worst case"; it does everything in
+the JSP, resulting in an unmaintainable melange of Java and HTML code
+in a single long file.
 
 <!-- START HTML FRAGMENT basicform.html -->
 
 <h1>Sign Up With Us</h1>
 <p>
 <hr />
-<form method="post" action="Servlet">
+<form method="get" action="process.jsp">
 	<table>
 	<tr><td>Name:&nbsp;</td>
 		<td><input type="text" name="firstName" size="10">
