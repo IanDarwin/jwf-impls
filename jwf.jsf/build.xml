@@ -1,0 +1,128 @@
+<project name="jsfdemo" default="build" basedir=".">
+
+  <target name="init" depends="verify">
+      <tstamp/>
+  </target>
+
+  <property file="build.properties"/>               <!-- Component local   -->
+  <property name="build"   value="${basedir}/build" />
+
+  <!-- Required jobs for making this self-contained -->
+  <property name="servletapi.jar"
+            value="extralib/servletapi.jar"/>
+  <property name="jsp.jar" value="" />
+
+  <path id="project.classpath">
+    <pathelement location="${jsf-api.jar}"/>
+    <pathelement location="${jsf-ri.jar}"/>
+    <pathelement location="${jstl.jar}"/>
+    <pathelement location="${build}/WEB-INF/classes"/>
+    <pathelement location="${servletapi.jar}"/>
+  </path>
+
+  <target name="clean" >
+    <delete dir="${build}" />
+  </target>
+
+  <target name="verify">
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${servlet.jar}"/>
+       <param name="fail.message" value="A jar file containing the Servlet 2.3 and JSP1.2 classes is required to compile guessNumber.  Please define the property servlet.jar in your build.properties file and ensure that the file exists."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${commons-beanutils.jar}"/>
+       <param name="fail.message" value="${commons-beanutils.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${commons-digester.jar}"/>
+       <param name="fail.message" value="${commons-digester.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${commons-logging.jar}"/>
+       <param name="fail.message" value="${commons-logging.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${commons-collections.jar}"/>
+       <param name="fail.message" value="${commons-collections.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${jsf-api.jar}"/>
+       <param name="fail.message" value="${jsf-api.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${jsf-ri.jar}"/>
+       <param name="fail.message" value="${jsf-ri.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${standard.jar}"/>
+       <param name="fail.message" value="${standard.jar} must exist."/>
+    </antcall>
+
+    <antcall target="checkRequiredFile">
+       <param name="file" value="${jstl.jar}"/>
+       <param name="fail.message" value="${jstl.jar} must exist."/>
+    </antcall>
+
+  </target>
+
+  <target name="prepare" depends="init"
+        description="Create build directories.">
+    <mkdir dir="${build}/" />
+    <mkdir dir="${build}/WEB-INF" />
+    <mkdir dir="${build}/WEB-INF/classes" />
+    <mkdir dir="${build}/WEB-INF/lib" />
+  </target>
+
+  <target name="copyJars" depends="prepare">
+    <copy todir="${build}/WEB-INF/lib">
+		<fileset dir="lib" file="**.jar"/>
+	</copy>
+  </target>
+ 
+  <target name="build" depends="copyJars">
+    <javac srcdir="src" destdir="${build}/${example}/WEB-INF/classes">
+    	<include name="**/*.java" />
+     <classpath refid="project.classpath"/>
+    </javac>
+    <copy todir="${build}/${example}/WEB-INF">
+        <fileset dir="web/WEB-INF">
+        <include name="*.xml" />
+      </fileset>
+    </copy>
+
+     <copy todir="${build}">
+      <fileset dir="pages">
+        <include name="*.jsp" />
+        <include name="*.xml" />
+      </fileset>
+    </copy>
+    <copy todir="${build}/${example}/WEB-INF/classes/${example}" >
+      <fileset dir="web" >
+         <include name="*properties"/>
+      </fileset>
+    </copy>
+
+    <jar jarfile="${example}.war" basedir="${build}/${example}"/>
+    <copy todir=".." file="${example}.war" />
+    <delete file="${example}.war" />
+  </target>	 
+
+  <target name="checkRequiredFile">
+    <available file="${file}" property="requirement.satisfied"/>
+    <antcall target="checkRequired.fail"/>
+  </target>
+
+  <target name="checkRequired.fail" unless="requirement.satisfied">
+    <fail message="${fail.message}"/>
+  </target>
+
+</project>
+
