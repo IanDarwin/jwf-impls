@@ -28,16 +28,7 @@
 
 		<!-- For entering a new Framework into the Catalog -->
 		<form-bean name="entryDynaForm"
-			type="org.apache.struts.action.DynaActionForm">
-			<form-property name="id" type="java.lang.Integer"/>
-			<form-property name="name" type="java.lang.String"/>
-			<form-property name="year" type="java.lang.Integer"/>
-			<form-property name="url" type="java.lang.String"/>
-			<form-property name="sponsor" type="java.lang.String"/>
-			<form-property name="shortDesc" type="java.lang.String"/>
-			<form-property name="longDesc" type="java.lang.String"/>
-			<form-property name="licenceType" type="java.lang.String"/>
-			<form-property name="implSubdir" type="java.lang.String"/>
+			type="beans.Framework">
 		</form-bean>
 	</form-beans>
 
