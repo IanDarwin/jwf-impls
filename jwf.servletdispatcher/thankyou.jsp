@@ -12,20 +12,14 @@
 <html>
 <head><title>Servlet Output</title></head>
 <body>
-<%
-	// Get the Person object from the request, put in PageContext
-	// so that jsp:getProperty will find it.
-	Person p = (Person)request.getAttribute("NEWLY_REGISTERED_PERSON");
-	pageContext.setAttribute("person", p);
- %>
 <h1>Thank you!</h1>
 Thank you,
-<jsp:getProperty name="person" property="firstName"/>
-<jsp:getProperty name="person" property="lastName"/>,
-for registering with us using the JSP+JavaBean implementation!
+<jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="firstName"/>
+<jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="lastName"/>,
+for registering with us using the ServletDispatcher implementation!
 If this were a real service, you would now be
 receiving a confirming email at 
-<jsp:getProperty name="person" property="email"/>
+<jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="email"/>
 with more instructions.
 </body>
 </html>
