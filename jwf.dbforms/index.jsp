@@ -1,7 +1,7 @@
 <html xmlns:db="http://www.wap-force.com/dbforms">
 
 <!-- Hide these from XML parser checking; JSP will still see them. -->
-<!-- <%@page errorPage="/oops.jsp"%> -->
+<!-- <%@page errorPage="/errors/oops.jsp"%> -->
 <!-- <%@taglib uri="/WEB-INF/dbforms.tld" prefix="db" %> -->
 
 <head>
