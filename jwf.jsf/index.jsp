@@ -1,4 +1,4 @@
-<!-- Simple index.jsp to redirect to faces; needed ebecause of how
+<!-- Simple index.jsp to redirect to faces; needed because of how
  *** JSF naming convention works
  -->
-<jsp:forward page="/form.jsp"/>
+<jsp:forward page="/form.face"/>

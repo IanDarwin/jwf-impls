@@ -4,18 +4,22 @@
   "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
   "http://java.sun.com/dtd/web-app_2_3.dtd">
 
-<web-app>
-    <description>JavaWebFrameworks JSF Implementation</description>
-    <display-name>JavaWebFrameworks JSF Implementation</display-name>
+<!-- Ian's handy summary (courtesy of the XML parser :-) )
+ The content of element type "web-app" must match "(icon?,
+ display-name?, description?, distributable?, context-param*,
+ filter*, filter-mapping*, listener*, servlet*, servlet-mapping*,
+ session-config?, mime-mapping*, welcome-file-list?, error-page*,
+ taglib*, resource-env-ref*, resource-ref*, security-constraint*,
+ login-config?, security-role*, env-entry*, ejb-ref*, ejb-local-ref*)".
+ -->
 
-    <context-param>
-        <param-name>saveStateInClient</param-name>
-        <param-value>false</param-value>
-    </context-param>
+<web-app>
+    <display-name>JavaWebFrameworks JSF Implementation</display-name>
+    <description>JavaWebFrameworks JSF Implementation</description>
 
     <context-param>
         <param-name>com.sun.faces.validateXml</param-name>
-        <param-value>true</param-value>
+        <param-value>false</param-value>
     </context-param>
 
     <!-- Faces Servlet -->
@@ -30,5 +34,16 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.face</url-pattern>
     </servlet-mapping>
+
+  <taglib>
+    <taglib-uri>http://java.sun.com/jsf/core</taglib-uri>
+    <taglib-location>jsf_core.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>http://java.sun.com/jsf/html</taglib-uri>
+    <taglib-location>html_basic.tld</taglib-location>
+  </taglib>
+
 
 </web-app>
