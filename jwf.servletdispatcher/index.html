@@ -1,12 +1,14 @@
-<title>Servlet Only</title>
+<title>Servlet Dispatcher</title>
 
-<h1>Servlet Only</h1>
+<h1>Servlet Dispatcher</h1>
 
 <p>This version represents largely "best practice" as of around 2002.
 It uses a Servlet to process the data (including using the DAO from
-the previous Implementation), then attaches a result indicator 
+the previous Implementation), attaches a result indicator 
 (in this case the Person JavaBean) to the Request objecct, and
-passes control the a JSP for formatting the results.
+finally passes control to a JSP for formatting the results.
+This is Sun's initial recommendation on how to implement
+"Model View Controller" using Servlets and JSP.
 
 <!-- START HTML FRAGMENT basicform.html -->
 
