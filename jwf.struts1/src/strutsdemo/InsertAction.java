@@ -12,6 +12,10 @@ import org.apache.struts.action.ActionErrors;
 import java.util.List;
 import javax.servlet.http.*;
 
+/** The Struts "Action" to do the insert of a Person into the Database.
+ * @author Ian F. Darwin
+ * @version $Id$
+ */
 public class InsertAction extends Action {
 	public ActionForward execute( 
 		ActionMapping mapping, ActionForm form,
