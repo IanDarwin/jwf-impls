@@ -21,4 +21,24 @@
 		servlets and JSP, Struts, Velocity, and so on.
     </description>
 
+	<!-- SERVLET DEFINITIONS -->
+	<servlet>
+		<servlet-name>ServletOnly</servlet-name>
+		<servlet-class>javawebframeworks.ServletOnly</servlet-class>
+	</servlet>
+
+	<!-- SERVLET MAPPINGS -->
+
+	<servlet-mapping>
+		<servlet-name>ServletOnly</servlet-name>
+		<url-pattern>/servletonly/Servlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- The JDBC datasource -->
+	<resource-ref>
+		<res-ref-name>jdbc/javawebframeworks</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Servlet</res-auth>
+	</resource-ref>
+
 </web-app>
