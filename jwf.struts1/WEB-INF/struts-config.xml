@@ -1,10 +1,48 @@
 <!DOCTYPE struts-config PUBLIC
           "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd"> 
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"> 
 
+<!--
+ *** The top-level ordering imposed by the DTD.
+<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, 
+	global-forwards?, action-mappings?, controller?, 
+	message-resources*, plug-in*)>
+ -->
 
 <struts-config>
 
-	<!-- Initially just a placeholder to ensure we have Struts installed -->
+	<form-bean name="insertDynaForm"
+		type="org.apache.struts.action.DynaActionForm">
+		<form-property name="firstName" type="java.lang.String"/>
+		<form-property name="lastName" type="java.lang.String"/>
+		<form-property name="address1" type="java.lang.String"/>
+		<form-property name="address2" type="java.lang.String"/>
+		<form-property name="city" type="java.lang.String"/>
+		<form-property name="province" type="java.lang.String"/>
+		<form-property name="postcode" type="java.lang.String"/>
+		<form-property name="country" type="java.lang.String"/>
+		<form-property name="email" type="java.lang.String"/>
+	</form-bean>
+
+	<global-forwards type="org.apache.struts.action.ActionForward">
+	<forward name="thankyou" 
+		path="/thankyou.jsp"
+		redirect="false" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="index.jsp"
+			input="index.jsp"
+			name="insertDynaForm"
+			type="struts.InsertAction"
+			scope="request"
+			validate="true">
+			<forward name="success" path="thankyou.jsp"/>
+		</action>
+	</action-mappings>
+
+	<!--
+	<message-resources parameter="struts.ApplicationResources"/>
+	-->
 
 </struts-config>

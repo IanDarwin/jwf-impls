@@ -1,4 +1,4 @@
-package javawebframeworks;
+package servletonly;
 
 import java.io.*;
 import javax.servlet.*;

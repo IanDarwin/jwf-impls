@@ -1,4 +1,4 @@
-package javawebframeworks;
+package servletdispatcher;
 
 import beans.Person;
 import beans.PersonDAO;
