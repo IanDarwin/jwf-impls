@@ -23,6 +23,6 @@
 <!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="lastName"/ -->
 <!-- jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="email"/ -->
 </p>
-<p><a href="../list/"><bean:message key="success.text.next"/></a>.</p>
+<p><a href="../list/"><bean:message key="success.text.next"/></a></p>
 </body>
 </html>
