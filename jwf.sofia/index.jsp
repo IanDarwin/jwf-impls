@@ -64,6 +64,10 @@
 	                <td><salmon:text name="capAddress2" text="(continued)" font="ColumnCaptionFont"/></td>
 	                <td><salmon:input type="text" name="address2" size="40" maxlength="255"></salmon:input></td>
 	              </tr>
+	               <tr>
+	                <td><salmon:text name="capCity" text="City" font="ColumnCaptionFont"/></td>
+	                <td><salmon:input type="text" name="city" size="40" maxlength="255"></salmon:input></td>
+	              </tr>    
 	              <tr>
 	                <td><salmon:text name="capProvince" text="Prov/State" font="ColumnCaptionFont"/></td>
 	                <td><salmon:input type="text" name="province" size="40" maxlength="255"></salmon:input></td>
