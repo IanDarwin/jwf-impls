@@ -30,17 +30,17 @@
 <html:form action="/struts/process" focus="firstName">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
-		<td><bean:message key="insert.label.firstName"/><html:text name="insertDynaForm" property="firstName" size="10"/>
-		<bean:message key="insert.label.lastName"/><html:text name="insertDynaForm" property="lastName" size="18"/>
+		<td><bean:message key="insert.label.firstName"/><html:text name="addPersonDynaForm" property="firstName" size="10"/>
+		<bean:message key="insert.label.lastName"/><html:text name="addPersonDynaForm" property="lastName" size="18"/>
 		</td></tr>
-	<tr><td><bean:message key="insert.label.email"/>: *</td><td><html:text name="insertDynaForm" property="email" size="30"/></td></tr>
-	<tr><td><bean:message key="insert.label.address1"/>:</td><td><html:text name="insertDynaForm" property="address1" size="30"/></td></tr>
-	<tr><td><bean:message key="insert.label.address2"/>:</td><td><html:text name="insertDynaForm" property="address2" size="30"/></td></tr>
-	<tr><td><bean:message key="insert.label.city"/>:</td><td><html:text name="insertDynaForm" property="city" size="30"/></td></tr>
-	<tr><td><bean:message key="insert.label.province"/>:</td><td><html:text name="insertDynaForm" property="province" size="30"/></td></tr>
-	<tr><td><bean:message key="insert.label.postcode"/>:</td><td><html:text name="insertDynaForm" property="postcode" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.email"/>: *</td><td><html:text name="addPersonDynaForm" property="email" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.address1"/>:</td><td><html:text name="addPersonDynaForm" property="address1" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.address2"/>:</td><td><html:text name="addPersonDynaForm" property="address2" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.city"/>:</td><td><html:text name="addPersonDynaForm" property="city" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.province"/>:</td><td><html:text name="addPersonDynaForm" property="province" size="30"/></td></tr>
+	<tr><td><bean:message key="insert.label.postcode"/>:</td><td><html:text name="addPersonDynaForm" property="postcode" size="30"/></td></tr>
 	<tr><td><bean:message key="insert.label.country"/> *:</td>	
-		<td><html:select name="insertDynaForm" property="country">
+		<td><html:select name="addPersonDynaForm" property="country">
 			<html:option value="--">--Choose your country--</html:option>
 			<html:option value="ca">Canada</html:option>
 			<html:option value="us">U.S.A.</html:option>

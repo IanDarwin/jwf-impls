@@ -13,7 +13,7 @@
 
 	<form-beans>
 		<!-- Used in the Demo, for inserting a Person -->
-		<form-bean name="insertDynaForm"
+		<form-bean name="addPersonDynaForm"
 			type="org.apache.struts.action.DynaActionForm">
 			<form-property name="firstName" type="java.lang.String"/>
 			<form-property name="lastName" type="java.lang.String"/>
@@ -27,7 +27,7 @@
 		</form-bean>
 
 		<!-- For entering a new Framework into the Catalog -->
-		<form-bean name="entryDynaForm"
+		<form-bean name="addFrameworkDynaForm"
 			type="beans.Framework">
 		</form-bean>
 	</form-beans>
@@ -42,7 +42,7 @@
 		<!-- the mapping for inserting a Person -->
 		<action path="/struts/process"
 			input="/struts/index.jsp"
-			name="insertDynaForm"
+			name="addPersonDynaForm"
 			type="struts.InsertAction"
 			scope="request"
 			validate="true">
@@ -51,7 +51,7 @@
 		<!-- the mapping for inserting a new Framework in the catalog -->
 		<action path="/editing/insert"
 			input="/editing/addframework.jsp"
-			name="entryDynaForm"
+			name="addFrameworkDynaForm"
 			type="actions.InsertFrameworkAction"
 			scope="request"
 			validate="false">	<!-- until you hook in DynaValidator -->
@@ -59,7 +59,7 @@
 		</action>
 		<!-- the mapping for listing the Frameworks in the catalog -->
 		<action path="/listframeworks"
-			name="entryDynaForm"
+			name="addFrameworkDynaForm"
 			type="actions.ListFrameworksAction"
 			scope="request"
 			>
