@@ -5,5 +5,5 @@ import org.niggle.servlet.NiggleServlet;
  * define any methods here; the work is delegated
  * to the action class, which extends NiggleServletInteraction
  */
-public class NiggleServlet extends NiggleServlet {
+public class MyNiggleServlet extends NiggleServlet {
 }

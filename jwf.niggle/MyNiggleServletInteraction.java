@@ -7,11 +7,11 @@ import java.io.IOException;
 
 /** The "action" class for the Person Entry implementation.
  */
-public class NiggleServletInteraction extends ServletInteraction {
+public class MyNiggleServletInteraction extends ServletInteraction {
     /**
      * Construct a ServletInteraction; just delegate to super.
      */
-    public HelloNiggleServletInteraction(HttpServletRequest request, 
+    public MyNiggleServletInteraction(HttpServletRequest request, 
         HttpServletResponse response, NiggleConfig config)
 		throws IOException {
 

@@ -34,7 +34,7 @@
 	</servlet>
     <servlet>
         <servlet-name>Niggle</servlet-name>
-        <servlet-class>NiggleServlet</servlet-class>
+        <servlet-class>MyNiggleServlet</servlet-class>
         <init-param>
             <param-name>PAGE_FACTORY_CLASS</param-name>
             <param-value>freemarker</param-value>
