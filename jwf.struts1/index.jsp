@@ -24,6 +24,8 @@
 <p>
 <html:errors/>
 
+<p><bean.message key="struts.i18n"/></p>
+
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
 <html:form action="/process" focus="firstName">
 	<table>
