@@ -41,8 +41,22 @@
 
 	<!-- ========== Connection =================================== -->
 	<dbconnection
-		name="java:comp/env/jdbc/javawebframeworks"
+	    id                      = "jakarta-commons-dbcp"
+	    isJndi                  = "false"
+	    isPow2                  = "true"
+	    default                 = "false"
+	    connectionProviderClass = "org.dbforms.conprovider.JakartaConnectionProvider"
+	    connectionPoolURL       = ""
+	    conClass                = "org.postgresql.Driver"
+	    name                    = "jdbc:postgresql://dos-vpn/javawebframeworks"
+	    username                = "jwf"
+	    password                = "jwfSecret"
+	/>
+	<!--
+	<dbconnection
+		name="jdbc/javawebframeworks"
 		isJndi="true"
 	/>
+	-->
 
 </dbforms-config>
