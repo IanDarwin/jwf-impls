@@ -64,6 +64,15 @@
 			scope="request"
 			validate="false">	<!-- until you hook in DynaValidator -->
 		</action>
+		<!-- the mapping for listing the Frameworks in the catalog -->
+		<action path="/listframeworks"
+			name="entryDynaForm"
+			type="actions.ListFrameworksAction"
+			scope="request"
+			>
+			<forward name="next" path="listframeworks.jsp" redirect="false"/>
+		</action>
+
 	</action-mappings>
 
 	<message-resources parameter="struts.ApplicationResources"/>
