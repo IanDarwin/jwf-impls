@@ -28,6 +28,6 @@
 		<FIELD NAME="city" CLASS="&STRING;"/>
 		<FIELD NAME="province" CLASS="&STRING;"/>
 		<FIELD NAME="postcode" CLASS="&STRING;"/>
-		<FIELD NAME="country" CLASS="&STRING;"/>
+		<FIELD NAME="country" CLASS="niggle.CountryCodeField"/>
 	</RECORD>
 </RECORDDEFS>
