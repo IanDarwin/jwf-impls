@@ -18,8 +18,9 @@ import beans.PersonDAO;
  * @author  Ian F. Darwin
  * @version $Id$
  */
-public class ServletDispatcher extends HttpServlet
-{
+public class ServletDispatcher extends HttpServlet {
+
+	private static final long serialVersionUID = 3618985581057422640L;
 	PersonDAO dao;
 
 	/** Constructor, to catch DAO constructor errors */
