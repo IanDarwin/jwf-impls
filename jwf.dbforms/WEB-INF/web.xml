@@ -37,8 +37,8 @@
 	
 	  <!--  ========= DbForms Configuration Servlet =========  -->
 	  <servlet>
-	    <servlet-name>org.dbforms.ConfigServlet</servlet-name>
-	    <servlet-class>org.dbforms.ConfigServlet</servlet-class>
+	    <servlet-name>org.dbforms.servlets.ConfigServlet</servlet-name>
+	    <servlet-class>org.dbforms.servlets.ConfigServlet</servlet-class>
 	
 		<init-param>
 	      <param-name>dbformsConfig</param-name>
@@ -83,7 +83,7 @@
   <!--=========== DbForms Controller Servlet ==============--> 
   <servlet>
     <servlet-name>control</servlet-name>
-    <servlet-class>org.dbforms.Controller</servlet-class>
+    <servlet-class>org.dbforms.servlets.Controller</servlet-class>
   </servlet>
   
   <!--=========== DbForms FileServlet =====================
@@ -94,7 +94,7 @@
   -->   
   <servlet>
     <servlet-name>file</servlet-name>
-    <servlet-class>org.dbforms.util.FileServlet</servlet-class>
+    <servlet-class>org.dbforms.servlets.FileServlet</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
   
