@@ -22,7 +22,7 @@
 <p>
 <html:errors/>
 <hr />
-<html:form action="process.do" focus="firstName">
+<html:form action="/struts/thankyou.do" focus="firstName">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
 		<td><bean:message key="insert.label.firstName"/><html:text name="insertDynaForm" property="firstName" size="10"/>

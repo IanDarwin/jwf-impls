@@ -29,8 +29,8 @@
 	</global-forwards>
 
 	<action-mappings>
-		<action path="process.do"
-			input="index.jsp"
+		<action path="/struts/thankyou.do"
+			input="/struts/index.jsp"
 			name="insertDynaForm"
 			type="struts.InsertAction"
 			scope="request"
