@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="/Users/ian/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/postgresql.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/salmon.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/darwinsys.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
