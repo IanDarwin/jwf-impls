@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sitemap PUBLIC "SOFIA Site Map" "http://www.salmonllc.com/sofiaExamples/sitemap.dtd">
+<siteMap>
+	<entry>
+     <name>SiteEmail</name>
+     <uri>mailto:fwf@darwinsys.com</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+	</entry>
+	
+  	<entry>
+		<name>index</name>
+		<uri>/javawebframeworks/sofia/index.jsp</uri>
+		<useForward>false</useForward>
+		<secure>false</secure>
+		<popupFeatures>false</popupFeatures>
+	</entry>
+	
+	<entry>
+		<name>details</name>
+		<uri>/javawebframeworks/sofia/details.jsp</uri>
+		<useForward>true</useForward>
+		<secure>false</secure>
+		<popupFeatures>false</popupFeatures>
+	</entry>
+
+</sitemap>

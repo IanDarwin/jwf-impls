@@ -1,4 +1,4 @@
-<project name="JavaWebFrameworks" default="copy" basedir=".">
+<project name="JavaWebFrameworks" default="reload" basedir=".">
 
 	<!-- $Id$ -->
 
