@@ -3,7 +3,7 @@
 <siteMap>
 	<entry>
      <name>SiteEmail</name>
-     <uri>mailto:fwf@darwinsys.com</uri>
+     <uri>mailto:jwf@darwinsys.com</uri>
      <useForward>false</useForward>
      <secure>false</secure>
 	</entry>
@@ -13,7 +13,6 @@
 		<uri>/javawebframeworks/sofia/index.jsp</uri>
 		<useForward>false</useForward>
 		<secure>false</secure>
-		<popupFeatures>false</popupFeatures>
 	</entry>
 	
 	<entry>
@@ -21,7 +20,6 @@
 		<uri>/javawebframeworks/sofia/details.jsp</uri>
 		<useForward>true</useForward>
 		<secure>false</secure>
-		<popupFeatures>false</popupFeatures>
 	</entry>
 
 </sitemap>

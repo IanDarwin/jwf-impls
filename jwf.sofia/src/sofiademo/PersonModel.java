@@ -144,7 +144,7 @@ public class PersonModel extends DataStore implements Remotable {
 
         int nextID = 1;
         try {
-            String selectID = "select max(id) from person";
+            String selectID = "select max(id) from people";
 
             Statement st = conn.createStatement();
 

@@ -63,6 +63,12 @@ public class PersonListController extends JspController implements SubmitListene
             addSearchCriteria(criteria, _firstname, PersonModel.PERSON_FIRSTNAME);
 			addSearchCriteria(criteria, _lastname, PersonModel.PERSON_LASTNAME);
 			addSearchCriteria(criteria, _eMail, PersonModel.PERSON_EMAIL);
+			addSearchCriteria(criteria, _address1, PersonModel.PERSON_ADDRESS1);
+			addSearchCriteria(criteria, _address2, PersonModel.PERSON_ADDRESS2);
+			addSearchCriteria(criteria, _city, PersonModel.PERSON_CITY);
+			addSearchCriteria(criteria, _province, PersonModel.PERSON_PROVINCE);
+			addSearchCriteria(criteria, _postcode, PersonModel.PERSON_POSTCODE);
+			addSearchCriteria(criteria, _country, PersonModel.PERSON_COUNTRY);
  
 			// If nothing has been entered, pass null, else "retrieve" 
 			// generates incorrect SQL like

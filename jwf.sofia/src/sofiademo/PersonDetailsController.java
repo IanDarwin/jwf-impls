@@ -90,14 +90,13 @@ public class PersonDetailsController extends JspController implements SubmitList
         //check the contact_id parameter
         //if the parameter is not passed in, just put the page in "add mode"
         //else retrieve the row
-
         if (!isReferredByCurrentPage()) {
             String id = getParameter("id");
             if (id == null) {
                 _jwf.reset();
                 _jwf.insertRow();
             } else {
-                _jwf.retrieve("id=" + id);
+                _jwf.retrieve(PersonModel.PERSON_ID + "=" + id);
                 if (_jwf.getRowCount() == 0) {
                     _jwf.reset();
                     _jwf.insertRow();
