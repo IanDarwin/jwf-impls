@@ -62,7 +62,7 @@
 			name="entryDynaForm"
 			type="actions.InsertFrameworkAction"
 			scope="request"
-			validate="true">
+			validate="false">	<!-- until you hook in DynaValidator -->
 		</action>
 	</action-mappings>
 
