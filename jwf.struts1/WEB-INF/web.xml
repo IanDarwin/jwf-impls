@@ -34,11 +34,21 @@
 	</servlet>
     <servlet>
         <servlet-name>Niggle</servlet-name>
-        <servlet-class>MyNiggleServlet</servlet-class>
+        <servlet-class>niggle.MyNiggleServlet</servlet-class>
         <init-param>
             <param-name>PAGE_FACTORY_CLASS</param-name>
             <param-value>freemarker</param-value>
         </init-param>
+	<!--
+        <init-param>
+            <param-name>RECORD_METADATA</param-name>
+            <param-value>recorddefs.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>DATA_SOURCES</param-name>
+            <param-value>datasources.xml</param-value>
+        </init-param>
+	-->
     </servlet>
 
 	<!-- Struts -->

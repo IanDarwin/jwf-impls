@@ -1,3 +1,5 @@
+package niggle;
+
 import org.niggle.servlet.NiggleServlet;
 
 /**

@@ -1,3 +1,5 @@
+package niggle;
+
 import org.niggle.servlet.NiggleConfig;
 import org.niggle.servlet.ServletInteraction;
 import org.oreodata.OreoDataSource;
