@@ -118,6 +118,9 @@ public class ServletOnly extends HttpServlet
 		out.println("If this were a real service, you would now be");
 		out.println("receiving a confirming email with more instructions.");
 
+		out.println("<hr/>");
+		out.println("<a href='http://localhost/javawebframeworks/list/'>List of People who've registered</a>");
+
 		// BOILERPLATE ending
 		out.println("</body>");
 		out.println("</html>");
