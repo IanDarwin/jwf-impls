@@ -52,4 +52,8 @@
 
 <!-- END ORIGINAL HTML FRAGMENT basicform.html -->
 </body>
+<hr/>
+View Source Code:
+<a href="index.txt">index.jsp</a>;
+<a href="InsertAction.java">Struts "Action" for Database Insertion</a>;
 </html:html>
