@@ -36,6 +36,7 @@
 			<form-property name="sponsor" type="java.lang.String"/>
 			<form-property name="shortDesc" type="java.lang.String"/>
 			<form-property name="longDesc" type="java.lang.String"/>
+			<form-property name="licenceType" type="java.lang.String"/>
 			<form-property name="implSubdir" type="java.lang.String"/>
 		</form-bean>
 	</form-beans>
