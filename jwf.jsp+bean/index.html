@@ -1,6 +1,6 @@
 <title>JSP and JavaBean</title>
 
-<h1>JSP and JavaBean</h1>
+<h1>Sign up - using JSP and JavaBean</h1>
 
 <p>This Implementation uses a JSP, a JavaBean, and a Data Accessor.
 The Bean is used to gather the properties from the HTML form,
@@ -19,6 +19,7 @@ from the JSP.
 <p>
 <hr />
 <form method="get" action="process.jsp">
+	<input type="hidden" name="impl" value="jsp+bean">
 	<table>
 	<tr><td>Name: *</td>
 		<td><input type="text" name="firstName" size="10">

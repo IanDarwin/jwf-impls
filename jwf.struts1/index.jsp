@@ -28,6 +28,7 @@
 
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
 <html:form action="/struts/process" focus="firstName">
+	<input type="hidden" name="impl" value="struts">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
 		<td><bean:message key="insert.label.firstName"/><html:text name="addPersonDynaForm" property="firstName" size="10"/>

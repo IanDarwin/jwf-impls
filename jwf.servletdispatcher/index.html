@@ -1,6 +1,6 @@
 <title>Servlet Dispatcher</title>
 
-<h1>Servlet Dispatcher</h1>
+<h1>Sign up - using Servlet Dispatcher</h1>
 
 <p>This version represents largely "best practice" as of around 2002.
 It uses a Servlet to process the data (including using the DAO from
@@ -17,6 +17,7 @@ This is Sun's initial recommendation on how to implement
 <p>
 <hr />
 <form method="post" action="Servlet">
+	<input type="hidden" name="impl" value="servletdispatcher">
 	<table>
 	<tr><td>Name: *</td>
 		<td><input type="text" name="firstName" size="10">

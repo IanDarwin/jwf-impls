@@ -1,6 +1,6 @@
 <title>JSP Only</title>
 
-<h1>JSP Only</h1>
+<h1>Sign up - using JSP Only</h1>
 
 <p>This Implementation is another "worst case"; it does everything in
 the JSP, resulting in an unmaintainable melange of Java and HTML code
@@ -13,6 +13,7 @@ in a single long file.
 <p>
 <hr />
 <form method="get" action="process.jsp">
+	<input type="hidden" name="impl" value="jsponly">
 	<table>
 	<tr><td>Name: *</td>
 		<td><input type="text" name="firstName" size="10">

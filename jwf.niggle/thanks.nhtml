@@ -9,19 +9,17 @@
 		>
 
 <html>
-<head><title>Servlet Output</title>
+<head><title>${title}</title>
 </head>
 
 <body>
 <h1>Thank you!</h1>
-<p>Thank you, ${user},
+<p>Thank you, ${firstname} ${lastname},
 for registering with us using the Niggle implementation!
 If this were a real service, you would now be
 receiving a confirming email at 
 ${email} with more instructions.
 </p>
-<p>Here is your confirmation: <br/>
-${person}
 <p>See the <a href="../list/">list of people</a>.</p>
 </body>
 </html>

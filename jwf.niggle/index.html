@@ -1,13 +1,14 @@
 <!-- START HTML FRAGMENT basicform.html -->
 
-<h1>Sign Up With Us</h1>
+<h1>Sign Up With Us - Using Niggle</h1>
 <p>
 <hr />
 <form method="post" action="Servlet?action=addPerson">
+	<input type="hidden" name="impl" value="niggle">
 	<table>
 	<tr><td>Name:*</td>
-		<td><input type="text" name="firstName" size="10"/>
-		<input type="text" name="lastName" size="18"/>
+		<td><input type="text" name="firstname" size="10"/>
+			<input type="text" name="lastname" size="18"/>
 		</td></tr>
 	<tr><td>Email: *</td><td><input type="text" name="email" size="30"/></td></tr>
 	<tr><td>Address:</td><td><input type="text" name="address1" size="30"/></td></tr>
