@@ -22,6 +22,8 @@
     </description>
 
 	<!-- SERVLET DEFINITIONS -->
+
+	<!-- Implementations -->
 	<servlet>
 		<servlet-name>ServletOnly</servlet-name>
 		<servlet-class>servletonly.ServletOnly</servlet-class>
@@ -30,6 +32,14 @@
 		<servlet-name>ServletDispatcher</servlet-name>
 		<servlet-class>servletdispatcher.ServletDispatcher</servlet-class>
 	</servlet>
+    <servlet>
+        <servlet-name>HelloNiggle</servlet-name>
+        <servlet-class>HelloNiggleServlet</servlet-class>
+        <init-param>
+            <param-name>PAGE_FACTORY_CLASS</param-name>
+            <param-value>freemarker</param-value>
+        </init-param>
+    </servlet>
 
 	<!-- Struts -->
 	<servlet>
@@ -52,6 +62,10 @@
 		<servlet-name>ServletDispatcher</servlet-name>
 		<url-pattern>/servletdispatcher/Servlet</url-pattern>
 	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HelloNiggle</servlet-name>
+		<url-pattern>/niggle/HelloNiggleServlet</url-pattern>
+    </servlet-mapping>
 
 	<!-- Struts -->
 	<servlet-mapping>
