@@ -1,4 +1,4 @@
-<%@page import="beans.Person,java.io.*,javax.servlet.*,javax.servlet.http.*,java.util.List" %>
+<%@page import="beans.Person,beans.PersonDAO,java.io.*,javax.servlet.*,javax.servlet.http.*,java.util.List" %>
 
 <!--
  *** JSP + JavaBean implementation for the JavaWebFramework project
