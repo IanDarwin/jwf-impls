@@ -81,13 +81,6 @@ public class ServletOnly extends HttpServlet
 
 		int ret = 0;
 		try {
-			Connection con = ds.getConnection();
-			if (con == null) {
-				out.println("<h2>Error</h2>");
-				out.println("<p>Database connection not made. Aborting.</p>");
-				return;
-			}
-			out.println("Debug: DB connection = " + con);
 
 			int i = 1;
 			st.setString(i++, firstName);
@@ -103,7 +96,6 @@ public class ServletOnly extends HttpServlet
 			ret = st.executeUpdate();
 
 			// st.close();	// Do NOT close this PS!
-			con.close();	// put back into connection pool
 
 		} catch (SQLException ex) {
 			out.println("<h1>Error</h1>");
