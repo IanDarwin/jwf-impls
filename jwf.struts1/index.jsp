@@ -29,7 +29,7 @@
 <html:javascript formName="addPersonDynaForm"/>
 
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
-<html:form action="/jwf.struts/process" 
+<html:form action="/process" 
 	focus="firstName" onsubmit="return validateAddPersonDynaForm(this)">
 
 	<input type="hidden" name="impl" value="struts">
@@ -60,7 +60,4 @@
 <!-- END ORIGINAL HTML FRAGMENT basicform.html -->
 </body>
 <hr/>
-View Source Code:
-<a href="index.txt">index.jsp</a>;
-<a href="InsertAction.java">Struts "Action" for Database Insertion</a>;
 </html:html>
