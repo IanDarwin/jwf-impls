@@ -70,7 +70,7 @@
 			type="actions.ListFrameworksAction"
 			scope="request"
 			>
-			<forward name="next" path="listframeworks.jsp" redirect="false"/>
+			<forward name="next" path="/listframeworks.jsp" redirect="false"/>
 		</action>
 
 	</action-mappings>
