@@ -1,14 +1,17 @@
 package servletdispatcher;
 
+import java.io.IOException;
+
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import beans.Person;
 import beans.PersonDAO;
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.sql.*;
-import javax.sql.*;
-import javax.naming.*;
-import java.util.*;
 
 /*
  * Servlet Dispatcher Implementation for the JavaWebFramework project
