@@ -1,4 +1,4 @@
-<%@page import="beans.Person, java.util.List" %>
+<%@page import="java.util.List" %>
 <!--
  *** JSP for ServletDispatcher implementation for the JavaWebFramework project
  *** Copyright Ian F. Darwin
