@@ -63,6 +63,7 @@
 			type="actions.InsertFrameworkAction"
 			scope="request"
 			validate="false">	<!-- until you hook in DynaValidator -->
+			<forward name="next" path="/listframeworks.do" redirect="false"/>
 		</action>
 		<!-- the mapping for listing the Frameworks in the catalog -->
 		<action path="/listframeworks"
