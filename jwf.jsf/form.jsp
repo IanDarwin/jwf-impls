@@ -14,7 +14,6 @@
 <hr />
 <f:view>
 <h:form id="personForm">
-	<h:inputHidden id="impl" value="NOTUSED{PersonBean.impl}">jsf</h:inputHidden>
 	<table>
 	<tr><td>Name: *</td>
 		<td><h:inputText id="firstName" value="#{PersonBean.firstName}" size="10"/>
