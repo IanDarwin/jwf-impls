@@ -11,6 +11,19 @@ public class InsertAction extends Action {
 		ActionMapping mapping, ActionForm form,
 		HttpServletRequest request, HttpServletResponse response) {
 
+		// Get the ActionForm
+		// DynaActionForm f = (DynaActionForm)form;
+
+		// Extract the values
+
+		// Populate a Person bean
+		// Person person = new Person();
+		// person.setFirstName(...);
+		// ...
+
+		// Store it
+		// new PersonDAO().insert(person);
+
 		return mapping.findForward("success");
 	}
 }
