@@ -50,7 +50,7 @@
 
 		<!-- the mapping for inserting a new Framework in the catalog -->
 		<action path="/editing/insert"
-			input="/editing/insert.jsp"
+			input="/editing/addframework.jsp"
 			name="entryDynaForm"
 			type="actions.InsertFrameworkAction"
 			scope="request"
@@ -68,6 +68,6 @@
 
 	</action-mappings>
 
-	<message-resources parameter="struts.ApplicationResources"/>
+	<message-resources parameter="metadata.ApplicationResources"/>
 
 </struts-config>
