@@ -13,7 +13,7 @@
 <head><title>Servlet Output</title></head>
 <body>
 <h1>Thank you!</h1>
-Thank you,
+<p>Thank you,
 <jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="firstName"/>
 <jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="lastName"/>,
 for registering with us using the ServletDispatcher implementation!
@@ -21,5 +21,7 @@ If this were a real service, you would now be
 receiving a confirming email at 
 <jsp:getProperty name="NEWLY_REGISTERED_PERSON" property="email"/>
 with more instructions.
+</p>
+<p>See the <a href="../list/">list of people</a>.</p>
 </body>
 </html>
