@@ -61,7 +61,7 @@ public class ServletDispatcher extends HttpServlet
 				"/servletdispatcher/thankyou.jsp");
 		}
 
-		// Forward either to the thanks page or to the erro page.
+		// Forward either to the thanks page or to the error page.
 		rd.forward(request, response);
 	}
 }
