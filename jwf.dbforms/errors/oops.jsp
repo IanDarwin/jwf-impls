@@ -1,4 +1,4 @@
-<%@page isErrorPage="true" import="beans.*" %>
+<%@page isErrorPage="true" %>
 <!-- 
   -- $Id$
   -->
@@ -11,15 +11,13 @@
 Somehow, your interactions with this software have led to an error.
 <p>It would be helpful if you could please
 report via email what you were doing when this error occurred</a>.
-<% String badPage = (String)request.getAttribute("sourcePage");
-	if (badPage != null) {
- %>
-  <p>The page that blew is
-  <%= (String)request.getAttribute("sourcePage") %>
-<% } %>
-<p>The exception is:
+<p>
+The error is <%= exception %>. More precisely:
+</p>
+<p>
 <pre>
 <% exception.printStackTrace(new java.io.PrintWriter(out)); %>
 </pre>
+</p>
 </body>
 </html>
