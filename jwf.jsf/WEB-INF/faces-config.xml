@@ -40,5 +40,16 @@
 		<managed-property><property-name>country</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
 		<managed-property><property-name>postcode</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
 	</managed-bean> 
+	
+	<managed-bean> 
+		<managed-bean-name>SaveHandlerBean</managed-bean-name> 
+		<managed-bean-class>jwfdemo.SaveHandler</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> 
+		<managed-property>
+		  <property-name>person</property-name>
+		  <property-class>beans.Person</property-class>
+		<value>#{PersonBean}</value>
+		</managed-property>
+	</managed-bean>
 
 </faces-config>

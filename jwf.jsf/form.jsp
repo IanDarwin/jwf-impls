@@ -33,7 +33,7 @@
 			<option value="uk">U.K.</option>
 		</select></td>
 	<tr><td colspan="2" align="center">
-		<h:commandButton id="submit" action="signup" value="Register!"/>
+		<h:commandButton id="submit" action="#{SaveHandlerBean.doSave}" value="Register!"/>
 		</td></tr>
 	</table>
 </h:form>
