@@ -17,6 +17,9 @@
 
 <body>
 
+<img src="struts-power.gif" alt="<bean:message key="image.struts-power"/>" 
+	align="right" width="95" height="37"/>
+
 <h1><bean:message key="insert.title"/></h1>
 <p>
 <html:errors/>
