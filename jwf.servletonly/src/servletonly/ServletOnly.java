@@ -1,9 +1,10 @@
 package javawebframeworks;
 
 import java.io.*;
-import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.sql.*;
+import javax.sql.*;
 import javax.naming.*;
 
 /*
@@ -13,7 +14,7 @@ import javax.naming.*;
  */
 public class ServletOnly extends HttpServlet
 {
-	private Connection con;
+	private DataSource ds;
 
 	private PreparedStatement st;
 
@@ -25,10 +26,11 @@ public class ServletOnly extends HttpServlet
 			String dsn = "java:comp/env/jdbc/javawebframeworks";
 			System.out.println("Looking up " + dsn);
 			Object o = ctx.lookup(dsn);
-			javax.sql.DataSource d = (javax.sql.DataSource)o;
+			ds = (javax.sql.DataSource)o;
+			System.out.println("DataSource is " + ds);
 
 			System.out.println("Getting connection ");
-			con = d.getConnection();
+			Connection con = ds.getConnection();
 			System.out.println("Got it!");
 
 			st = con.prepareStatement(
@@ -36,10 +38,13 @@ public class ServletOnly extends HttpServlet
 				"city, province, zipcode, country)" +
 				"values(?,?,?,?,?,?,?,?)");
 
+			// con.close();	// put back into connection pool
 		} catch (NamingException ex) {
 			ex.printStackTrace();
+			return;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			return;
 		}
 	}
 
@@ -63,12 +68,6 @@ public class ServletOnly extends HttpServlet
 		out.println("<body>");
 
 		// Servlet logic code and main HTML goes here.
-		if (con == null) {
-			out.println("<h2>Error</h2>");
-			out.println("<p>Database connection not made. Aborting.</p>");
-			return;
-		}
-		out.println("Debug: DB connection = " + con);
 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -82,6 +81,14 @@ public class ServletOnly extends HttpServlet
 
 		int ret = 0;
 		try {
+			Connection con = ds.getConnection();
+			if (con == null) {
+				out.println("<h2>Error</h2>");
+				out.println("<p>Database connection not made. Aborting.</p>");
+				return;
+			}
+			out.println("Debug: DB connection = " + con);
+
 			int i = 1;
 			st.setString(i++, firstName);
 			st.setString(i++, lastName);
@@ -94,11 +101,15 @@ public class ServletOnly extends HttpServlet
 			st.setString(i++, country);
 
 			ret = st.executeUpdate();
+
+			con.close();	// put back into connection pool
+
 		} catch (SQLException ex) {
 			out.println("<h1>Error</h1>");
 			out.println("<pre>");
 			ex.printStackTrace(out);
 			out.println("</pre>");
+			return;
 		}
 
 		if (ret != 1) {
