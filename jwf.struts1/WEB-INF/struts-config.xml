@@ -31,7 +31,7 @@
 	</global-forwards>
 
 	<action-mappings>
-		<action path="/process"
+		<action path="/struts/process"
 			input="/struts/index.jsp"
 			name="insertDynaForm"
 			type="struts.InsertAction"

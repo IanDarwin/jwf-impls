@@ -27,7 +27,7 @@
 <p><bean.message key="struts.i18n"/></p>
 
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
-<html:form action="/process" focus="firstName">
+<html:form action="/struts/process" focus="firstName">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
 		<td><bean:message key="insert.label.firstName"/><html:text name="insertDynaForm" property="firstName" size="10"/>
