@@ -103,4 +103,29 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+  <!-- Define the Members-only area, by defining
+   *** a "Security Constraint" on this Application,
+   *** mapping it to the subdirectory (URL) that we want to restrict.
+   -->
+  <security-constraint>
+	<display-name>Editors-Only Area</display-name>
+    <web-resource-collection>
+      <web-resource-name>Editors-Only Area</web-resource-name>
+      <url-pattern>/editing/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+       <role-name>editor</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Define the Login Configuration for this Application -->
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>Editors-Only Area</realm-name>
+	<form-login-config>
+		<form-login-page>/editing/login.jsp</form-login-page>
+		<form-error-page>/editing/loginfailure.jsp</form-error-page>
+	</form-login-config>
+  </login-config>
+
 </web-app>
