@@ -76,7 +76,7 @@ public class PersonListController extends JspController implements SubmitListene
 			// If nothing has been entered, pass null criteria, else "retrieve" 
 			// will generate incorrect SQL like
 			// "SELECT bleah  FROM people  WHERE  ORDER BY people.lastname ASC"
-			System.out.println("Criteria = " + criteria);
+			// System.out.println("Criteria = " + criteria);
             _jwf.retrieve(criteria.length() != 0 ? criteria.toString() : null);
             
         } catch (Exception e) {
