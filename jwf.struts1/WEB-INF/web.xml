@@ -14,23 +14,12 @@
  -->
 
 <web-app>
-		<display-name>Ian Darwin's Java Web Frameworks Catalog</display-name>
+		<display-name>Ian Darwin's JWF: Struts Impl</display-name>
 		<description>
-		This is Ian Darwin's Java Web Frameworks Catalog site.
+		This is the Struts impl for Ian Darwin's Java Web Frameworks Catalog site.
 		</description>
 
 	<!-- SERVLET DEFINITIONS -->
-
-
-	<!-- Smaller Implementations -->
-	<servlet>
-		<servlet-name>ServletOnly</servlet-name>
-		<servlet-class>servletonly.ServletOnly</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ServletDispatcher</servlet-name>
-		<servlet-class>servletdispatcher.ServletDispatcher</servlet-class>
-	</servlet>
 
 	<!-- Struts -->
 	<servlet>
@@ -44,15 +33,6 @@
 	</servlet>
 
 	<!-- SERVLET MAPPINGS -->
-
-	<servlet-mapping>
-		<servlet-name>ServletOnly</servlet-name>
-		<url-pattern>/servletonly/Servlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ServletDispatcher</servlet-name>
-		<url-pattern>/servletdispatcher/Servlet</url-pattern>
-	</servlet-mapping>
 
 	<!-- Struts -->
 	<servlet-mapping>
@@ -81,30 +61,5 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-
-	<!-- Define the Members-only area, by defining
-   *** a "Security Constraint" on this Application,
-   *** mapping it to the subdirectory (URL) that we want to restrict.
-   -->
-	<security-constraint>
-	<display-name>Editors-Only Area</display-name>
-		<web-resource-collection>
-			<web-resource-name>Editors-Only Area</web-resource-name>
-			<url-pattern>/editing/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			 <role-name>editor</role-name>
-		</auth-constraint>
-	</security-constraint>
-
-	<!-- Define the Login Configuration for this Application -->
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<realm-name>Editors-Only Area</realm-name>
-	<form-login-config>
-		<form-login-page>/editing/login.jsp</form-login-page>
-		<form-error-page>/editing/loginfailure.jsp</form-error-page>
-	</form-login-config>
-	</login-config>
 
 </web-app>
