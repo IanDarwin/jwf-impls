@@ -4,13 +4,15 @@
 	
 		<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
 <taglib>
-<tlib-version>2.0</tlib-version>
-<jsp-version>2.1</jsp-version>
+<tlib-version>2.4</tlib-version>
+<jsp-version>1.2</jsp-version>
 <short-name>dbforms</short-name>
 <uri>dbforms.tld</uri>
 <display-name>DbForm Construction Tags</display-name>
-<description>version 2.1</description>
+<description>version 2.4</description>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>dbform</name>
@@ -62,8 +64,8 @@
 <rtexprvalue>true</rtexprvalue>
 <description>
 							Allows a user to specify a list of tables to select from 
-							Used in conjuction with the whereClause attribute 
-							 The value specified in the tableList attribute is used to specify the 'from'  
+							Used in conjuction with the whereClause attribute
+							 The value specified in the tableList attribute is used to specify the 'from'
 							 part of the Select query. Hence the name: table list.
 							The conditions used to define the table associations 
 							  are specified in the whereClause attribute.( along with other conditions and 
@@ -189,7 +191,7 @@
 </attribute>
 <attribute>
 <name>followUp</name>
-<required>true</required>
+<required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>site to be invoked after actionNote that buttons can override followUp (and followUpOnError) settings defined  in the dbform tag</description>
 </attribute>
@@ -205,13 +207,31 @@
 <rtexprvalue>true</rtexprvalue>
 <description>
 							if "true", at every action (navigation, insert, update, etc.) all 
-							  input fields of ALL currentlyrendered rowsets are parsed and updated. many rows 
+							  input fields of ALL currently rendered rowsets are parsed and updated. many rows 
 							  may be affected. This can be very useful if people need to change lots 
 							  of data, even multiple datarows, at once
-						
 							if "false", updates are only performed if an explicite "update"- 
-							  action is launched(normally by hitting the updateAction-button). Up to 1 row may be affected.
-						</description>
+							  action is launched (normally by hitting the updateAction-button). Only the current row is affected.
+							if "OnUpdateOnly", updates are only performed if an explicite "update" - 
+							  action is launched (normally by hitting the updateAction-button), all 
+							  input fields of ALL currently rendered rowsets are parsed and updated. Many rows 
+							  may be affected. This can be very useful if people need to change lots 
+							  of data, even multiple datarows, at once.  
+                                                
+					</description>
+</attribute>
+<attribute>
+<name>overrideFieldCheck</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>
+						If set to true the field values will not be checked if they are changed.
+						The database update will be done always
+						This could be usefull if you want to call your interceptor always to check fields which are
+						not part of the table.
+						In your interceptor you can use return DbEventInterceptor.IGNORE_OPERATION if you do not want
+						the database update
+					</description>
 </attribute>
 <attribute>
 <name>parentField</name>
@@ -292,6 +312,7 @@
 <name>gotoHt</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.util.Hashtable</type>
 <description>
 							allows to define a hashtable containing fieldName / fieldValue combinations 
 					              which represent the valueof a key(which can consist of more than one field, of course!)example:
@@ -326,9 +347,22 @@
 <description>JavaScript event handler executed before the form is submited. If the event handler returns FALSE,
                            the form will not be submitted. When the result is TRUE, the form will be submitted</description>
 </attribute>
+<attribute>
+<name>autocomplete</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>if the autocomplete value is specified then the attribute is inserted in the form tag. 
+						if the value is "off" and if the browser has  autocompletion ability, it can be disabled 
+						with this tag.
+						Any value will be accepted for autocomplete. e.g. autocomplete="any", 
+						the generated HTML code is:
+						&lt;form name="dbforms" ... autocomplete="any" ... &gt;</description>
+</attribute>
 <example>this is the root element of a data manipulation form</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>header</name>
@@ -342,7 +376,9 @@ nested within a dbform-tag</description>
   getsevaluated,
    but it gets only rendered at the FIRST evalation-loop.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>body</name>
@@ -367,7 +403,9 @@ insert a new data row.
   AND it gets rendered in every evalation-loop (if there exists 
   data to be rendered)</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>footer</name>
@@ -379,7 +417,9 @@ be nested within a dbform-tag</description>
   this tag is nested within a dbform-tag it is invoked every time the parent dbform-tag 
   getsevaluated, but it gets only rendered at the end of the last evaluation-loop.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>label</name>
@@ -433,9 +473,10 @@ etc)</description>
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>java.text.Format object used to format the tag value</description>
 </attribute>
 <attribute>
@@ -444,9 +485,17 @@ etc)</description>
 <rtexprvalue>true</rtexprvalue>
 <description>CSS stylesheet class to be applied. This is done adding a SPAN element that contains the text.</description>
 </attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
 <example>label - can never be used as input field</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>dateLabel</name>
@@ -481,9 +530,10 @@ etc)</description>
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>
 							an instance of java.text.Format or any subclass of it. This instance is used 
 							  to force DbForms to print out the field's value using a certain formatting style. 
@@ -534,8 +584,16 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 <rtexprvalue>true</rtexprvalue>
 <description>CSS stylesheet class to be applied. This is done adding a SPAN element that contains the text.</description>
 </attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>dataLabel</name>
@@ -582,6 +640,12 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 <rtexprvalue>true</rtexprvalue>
 <description>CSS stylesheet class to be applied. This is done adding a SPAN element that contains the text.</description>
 </attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
 <example>
 				            this tag renders a dabase-datadriven LABEL, which is a passive element (it 
 				              can't be changed bythe user) - it is predestinated for use with read-only data 
@@ -605,7 +669,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				              &lt;/db:dataLabel&gt;
 			            </example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>textField</name>
@@ -655,9 +721,10 @@ interaction with JavaScriptIdentification which can be used to 'pinpoint'
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>an instance of java.text.Format or any subclass of it. This instanceis used 
   to force DbForms to print out the field's value using a certain formatting style.this 
   is done internally by invoking method "format(Object)" of the providedFormat 
@@ -827,6 +894,12 @@ of the input field</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -834,15 +907,17 @@ of the input field</description>
 </attribute>
 <example>i/o text field</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>dateField</name>
 <tag-class>org.dbforms.taglib.DbDateFieldTag</tag-class>
 <body-content>empty</body-content>
 <description>this tag renders a dabase-datadriven DATE-FIELD, 
-which is an active element - the usercan change data. it is very similar to TextField, 
-but this class providesan extension to TextField: the additional attribute "dateFormat".</description>
+which is an active element - the usercan change data. it is very similar to TextField, especially since they now both support global setting for 
+each type and language.</description>
 <attribute>
 <name>id</name>
 <required>false</required>
@@ -876,9 +951,10 @@ but this class providesan extension to TextField: the additional attribute "date
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>an instance of java.text.Format or any subclass of it. This instanceis used  
   to force DbForms to print out the field's value using a certain formatting style.this  
   is done internally by invoking method "format(Object)" of the providedFormat  
@@ -913,6 +989,16 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>Determines if the text field should be hidden or displayed.</description>
+</attribute>
+<attribute>
+<name>nullFieldValue</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>
+                                        if the value (retrieved from the database) is null,
+					allow the user to replace the text to display by a custom value. 
+					May be used inconjunction with dbForm's I18N support.
+                                        </description>
 </attribute>
 <attribute>
 <name>overrideValue</name>
@@ -1065,6 +1151,12 @@ of the input field</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -1091,9 +1183,15 @@ of the input field</description>
        date format to the calendar that corresponds to the used date format inside dbforms
        application. See dbforms manual for details.</description>
 </attribute>
-<example>i/o text fieldTo set the format that a date value is sent to the database in, add it to dbforms-config.xml file as follows (for example):&lt;date-format&gt;yyyy-MM-dd&lt;/date-format&gt;</example>
+<example>Example:
+&lt;dateField pattern="date"
+                                        To set the pattern which data is displayed in use a resource bundle (See the UsersGuide chapter on Internationalization).Example of ApplicationResources.properties:
+dbforms.pattern.date=yyyy-MM-dd
+dbforms.pattern.timestamp=yyyy-MM-dd HH:mm</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>textArea</name>
@@ -1144,9 +1242,10 @@ of the input field</description>
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>an instance of java.text.Format or any subclass of it. This instanceis used 
   to force DbForms to print out the field's value using a certain formatting style.this 
   is done internally by invoking method "format(Object)" of the providedFormat 
@@ -1313,6 +1412,12 @@ hanlder executed when the user selects some text</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -1320,7 +1425,9 @@ hanlder executed when the user selects some text</description>
 </attribute>
 <example>i/o textarea</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>textAreaForBlobs</name>
@@ -1363,9 +1470,10 @@ hanlder executed when the user selects some text</description>
 					</description>
 </attribute>
 <attribute>
-<name>format</name>
+<name>formatter</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
+<type>java.text.Format</type>
 <description>an instance of java.text.Format or any subclass of it. This instanceis used 
   to force DbForms to print out the field's value using a certain formatting style.this 
   is done internally by invoking method "format(Object)" of the providedFormat 
@@ -1539,6 +1647,12 @@ hanlder executed when the user selects some text</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -1547,7 +1661,9 @@ hanlder executed when the user selects some text</description>
 <example>i/o textarea for character diskblobs. use it if you want users to edit files 
 using textareas</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>tableData</name>
@@ -1634,7 +1750,9 @@ clause for the query</description>
 <example>this tag provides data to radio, checkbox or select - tags. It may be 
                   used for cross references to other tables.Example:&lt;We want to display a drop down list with data from the Cities table,use the city_reference value for the default list selection--&gt;&lt;db:select fieldName="city_reference"&gt;&lt;db:tableData name="aQuery"foreignTable="Cities"visibleFields="city_name, city_state"storeField="city_id"/&gt;&lt;/db:select&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>confTableData</name>
@@ -1743,7 +1861,9 @@ clause for the query</description>
 						storeField="city_id"/&gt;&lt;/db:select&gt;
 					</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>queryData</name>
@@ -1832,7 +1952,9 @@ clause for the query</description>
                   query="Select city_id, city_name, city_state from Cities"/&gt;
                   &lt;/db:select&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>staticData</name>
@@ -1866,7 +1988,9 @@ is able to chache the data</description>
           &lt;/db:staticData&gt;
         &lt;/db:select&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>staticDataItem</name>
@@ -1885,7 +2009,9 @@ is able to chache the data</description>
 <rtexprvalue>true</rtexprvalue>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>getConnection</name>
@@ -1893,24 +2019,26 @@ is able to chache the data</description>
 <body-content>JSP</body-content>
 <description>
 					Allows other tags (or scriptlets) to 
-					obtain a DataSource using the same settings found in dbForms-config.xml</description>
+					obtain a database connection object using the same settings found in dbForms-config.xml
+				</description>
 <attribute>
 <name>id</name>
 <required>true</required>
 <rtexprvalue>true</rtexprvalue>
 <description>
 						Attribute in page that will be used to reference the connection object
-						Allows other tags (and/or java scriptlets) 
-        					to obtain a connection via the same settings as defined in dbForms
-        				Example:(using Jakarta dbTags)
-								&lt;db:getConnection id="myDataSource" /&gt;
-								&lt;sql:query var="qry" dataSource="${myDataSource}"&gt;Select * from Table&lt;/sql:query&gt;
-							
-								&lt;c:forEach var="row" items="${qry.rows}" &gt;
-								Value: &lt;c:out value="{row.field}" /&gt;
-							
-								&lt;/c:forEach&gt;
-							</description>
+						Allows other tags (and/or java scriptlets) to obtain a connection via the same settings as defined in dbForms
+						Example:
+						&lt;db:getConnection id="myConnection"&gt;
+					        &lt;!-- Open connection --&gt;
+							&lt;sql: statement id="stmt" conn="myConnection"&gt;
+							&lt;sql:query&gt;Select * from Table&lt;/sql:query&gt;
+							&lt;sql:resultSet id="rs"&gt;
+							Value: &lt;sql:getColumn position="1"/&gt;
+							&lt;/sql:resultSet&gt;
+							&lt;/sql:statement&gt;
+							&lt;/db:getConnection&gt;
+							&lt;!-- close connection --&gt;</description>
 </attribute>
 <attribute>
 <name>dbConnectionName</name>
@@ -1919,7 +2047,42 @@ is able to chache the data</description>
 <description>indicate which dbconnection object to user.</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
+
+<tag>
+<name>setDataSource</name>
+<tag-class>org.dbforms.taglib.DbSetDataSource</tag-class>
+<body-content>JSP</body-content>
+<description>
+					Allows other tags (or scriptlets) to 
+					obtain a DataSource using the same settings found in dbForms-config.xml</description>
+<attribute>
+<name>dataSource</name>
+<required>true</required>
+<rtexprvalue>true</rtexprvalue>
+<description>
+						Attribute in page that will be used to reference the connection object
+						Allows other tags (and/or java scriptlets) 
+        					to obtain a connection via the same settings as defined in dbForms
+	       				Example: (using Jakarta dbTags)
+								&lt;db:setDataSource dataSource="myDataSource" /&gt;
+								&lt;sql:query var="qry" dataSource="${myDataSource}"&gt;Select * from Table&lt;/sql:query&gt;
+								&lt;c:forEach var="row" items="${qry.rows}" &gt;
+								Value: &lt;c:out value="{row.field}" /&gt;
+								&lt;/c:forEach&gt;</description>
+</attribute>
+<attribute>
+<name>dbConnectionName</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>indicate which dbconnection object to user.</description>
+</attribute>
+</tag>
+
+<!--*******************************************************************-->
+
 
 <tag>
 <name>file</name>
@@ -2091,6 +2254,12 @@ of the input field</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -2100,7 +2269,9 @@ of the input field</description>
   far from being completed. Improvementsin functionality and performance can be 
   expected.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>radio</name>
@@ -2269,6 +2440,12 @@ hanlder executed when the user selects some text</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -2289,7 +2466,9 @@ hanlder executed when the user selects some text</description>
          &lt;/db:staticData&gt;
         &lt;/db:radio&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>checkbox</name>
@@ -2467,6 +2646,12 @@ hanlder executed when the user selects some text</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -2477,14 +2662,15 @@ hanlder executed when the user selects some text</description>
         is set to "yes" --&gt;
         &lt;db:checkbox fieldName="yesNo" value="yes" checked="true"/&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>select</name>
 <tag-class>org.dbforms.taglib.DbSelectTag</tag-class>
 <body-content>JSP</body-content>
-<description>This tag renders a html SELECT element including 
-embedded OPTION elements.</description>
+<description>This tag renders a html SELECT element including embedded OPTION elements.</description>
 <attribute>
 <name>id</name>
 <required>false</required>
@@ -2531,6 +2717,19 @@ character used to move focus immediately to thiselement.</description>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>Rendering of read-only html widgets</description>
+</attribute>
+<attribute>
+<name>pattern</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>
+						When dealing with numeric or date/time values, you could use the Java API to format the
+						output of the text field expressions yourself using the format attribute. 
+						But there is a more convenient way to do it: by using the
+						pattern attribute.
+						Useful in select if you have a 4 digit lookup value and want to avoid it being reformatted
+						with the default locale as #,###. Use pattern="#" to avoid this. 
+					</description>
 </attribute>
 <attribute>
 <name>onBlur</name>
@@ -2649,6 +2848,12 @@ hanlder executed when the user selects an item</description>
 <description>CSS stylesheet class to be applied to this HTML element (read-only mode).</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -2665,7 +2870,9 @@ hanlder executed when the user selects an item</description>
          query="Select city_id, city_name, city_state from Cities"/&gt;
         &lt;/db:select&gt;info"dboption"- tags are expected for the next release</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>linkURL</name>
@@ -2786,7 +2993,9 @@ hanlder executed when the user selects an item</description>
           &lt;/linkURL&gt;
           </example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>position</name>
@@ -2813,7 +3022,9 @@ hanlder executed when the user selects an item</description>
              &lt;/linkURL&gt;
           Attention: field to reference must be a key field in the target table!</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>insertButton</name>
@@ -3006,6 +3217,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -3013,7 +3230,9 @@ is released.</description>
 </attribute>
 <example>this tag renders an insert-buttonthe button is hidden if embedding form is not in insert mode</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>deleteButton</name>
@@ -3215,6 +3434,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -3222,7 +3447,9 @@ is released.</description>
 </attribute>
 <example>delete buttonthe button is hidden if embedding form is in insert mode</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>updateButton</name>
@@ -3423,6 +3650,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -3430,7 +3663,9 @@ is released.</description>
 </attribute>
 <example>update buttonthe button is hidden if embedding form is in insert mode</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navPrevButton</name>
@@ -3624,14 +3859,61 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>The tab order (ascending positive integers) for this element.</description>
 </attribute>
+<attribute>
+<name>disabledBehaviour</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Describes the behaviour of this button if it is on the first page.
+possible values:
+nohtml: no HTML outputaltimage: only an image with no functionality is displayed. The src for that image
+can be specified in the attribute disabledImageSrc which can have an alt attribute
+specified in disabledImageAlt and width and height specified by disabledImageWidth
+and disabledImageHeight.disabled (default): The image specified in scr is used but disabled.example: 
+&lt;db:navPrevButton src="images/ico_prev.gif" flavor="image" disabledBehaviour="altimage" disabledImageSrc="images/transparent.gif" disabledImageAlt="my alt text" disabledImageWidth="50" disabledImageHeight="1" onMouseOver="javascript: self.status='previous'; return true;" onMouseOut="javascript: self.status=''; return true;"/&gt;
+
+If on first page, HTML result is:
+&lt;img src="images/transparent.gif" alt="my alt text" width="50" height="1" /&gt;</description>
+</attribute>
+<attribute>
+<name>disabledImageSrc</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageAlt</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageWidth</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageHeight</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
 <example>navigation button to scroll back</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navNextButton</name>
@@ -3824,14 +4106,61 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>The tab order (ascending positive integers) for this element.</description>
 </attribute>
+<attribute>
+<name>disabledBehaviour</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Describes the behaviour of this button if it is on the last page.
+possible values:
+nohtml: no HTML outputaltimage: only an image with no functionality is displayed. The src for that image
+can be specified in the attribute disabledImageSrc which can have an alt attribute
+specified in disabledImageAlt and width and height specified by disabledImageWidth
+and disabledImageHeight.disabled (default): The image specified in scr is used but disabled.example: 
+&lt;db:navNextButton src="images/ico_next.gif" flavor="image" disabledBehaviour="altimage" disabledImageSrc="images/transparent.gif" disabledImageAlt="my alt text" disabledImageWidth="50" disabledImageHeight="1" onMouseOver="javascript: self.status='next'; return true;" onMouseOut="javascript: self.status=''; return true;"/&gt;
+
+If on last page, HTML result is:
+&lt;img src="images/transparent.gif" alt="my alt text" width="50" height="1" /&gt;</description>
+</attribute>
+<attribute>
+<name>disabledImageSrc</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageAlt</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageWidth</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageHeight</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
 <example>navigation button to scroll to next dataset(s)</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navFirstButton</name>
@@ -4018,14 +4347,61 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>The tab order (ascending positive integers) for this element.</description>
 </attribute>
+<attribute>
+<name>disabledBehaviour</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Describes the behaviour of this button if it is on the first page.
+possible values: 
+nohtml: no HTML outputaltimage: only an image with no functionality is displayed. The src for that image
+can be specified in the attribute disabledImageSrc which can have an alt attribute
+specified in disabledImageAlt and width and height specified by disabledImageWidth
+and disabledImageHeight.disabled (default): The image specified in scr is used but disabled.example: 
+&lt;db:navFirstButton src="images/ico_first.gif" flavor="image" disabledBehaviour="altimage" disabledImageSrc="images/transparent.gif" disabledImageAlt="my alt text" disabledImageWidth="50" disabledImageHeight="1" onMouseOver="javascript: self.status='first'; return true;" onMouseOut="javascript: self.status=''; return true;"/&gt;
+
+If on first page, HTML result is:
+&lt;img src="images/transparent.gif" alt="my alt text" width="50" height="1" /&gt;</description>
+</attribute>
+<attribute>
+<name>disabledImageSrc</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageAlt</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageWidth</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageHeight</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
 <example>navigation button to scroll to first dataset</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navLastButton</name>
@@ -4212,14 +4588,61 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>The tab order (ascending positive integers) for this element.</description>
 </attribute>
+<attribute>
+<name>disabledBehaviour</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Describes the behaviour of this button if it is on the last page.
+possible values: 
+nohtml: no HTML outputaltimage: only an image with no functionality is displayed. The src for that image
+can be specified in the attribute disabledImageSrc which can have an alt attribute
+specified in disabledImageAlt and width and height specified by disabledImageWidth
+and disabledImageHeight.disabled (default): The image specified in scr is used but disabled.example: 
+&lt;db:navLastButton src="images/ico_last.gif" flavor="image" disabledBehaviour="altimage" disabledImageSrc="images/transparent.gif" disabledImageAlt="my alt text" disabledImageWidth="50" disabledImageHeight="1" onMouseOver="javascript: self.status='last'; return true;" onMouseOut="javascript: self.status=''; return true;"/&gt;
+
+If on last page, HTML result is:
+&lt;img src="images/transparent.gif" alt="my alt text" width="50" height="1" /&gt;</description>
+</attribute>
+<attribute>
+<name>disabledImageSrc</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageAlt</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageWidth</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
+<attribute>
+<name>disabledImageHeight</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>see disabledBehaviour</description>
+</attribute>
 <example>navigation button to scroll to last dataset</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navNewButton</name>
@@ -4426,6 +4849,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -4434,7 +4863,9 @@ is released.</description>
 <example>navigation button to scroll to new, empty datasetthe "allowNew"-attribute of the parten "body"-tag MUEST NOT set to "false" 
   in order to get this to work.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navCopyButton</name>
@@ -4614,6 +5045,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -4621,7 +5058,9 @@ is released.</description>
 </attribute>
 <example>navigation button to scroll to a copy of an existent dataset</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>navReloadButton</name>
@@ -4808,6 +5247,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -4815,7 +5260,9 @@ is released.</description>
 </attribute>
 <example>navigation button for reloading and moving to the first dataset</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>gotoButton</name>
@@ -5083,6 +5530,12 @@ is released.</description>
 <description>CSS stylesheet class to be applied to this HTML element.</description>
 </attribute>
 <attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
+</attribute>
+<attribute>
 <name>tabIndex</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -5096,7 +5549,9 @@ is released.</description>
       &lt;! Jump to another JSP, no positionning --&gt;
         &lt;db:gotoButton caption="menu" destination="/menu.jsp"/&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>base</name>
@@ -5109,7 +5564,9 @@ is released.</description>
   resources in a manner independent of the URLused to call the ControllerServlet. 
   You should use this tag in all your JSP-views (seeexamples in distribution)There are no attributes associated withthis tag.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>errors</name>
@@ -5143,7 +5600,9 @@ If the error tag does not contain a value formessagePrefix, the tag works as nor
 </attribute>
 <example>renders errors stored in request</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>xmlErrors</name>
@@ -5183,7 +5642,9 @@ error manager</description>
         throws the following message: ORA-0001: blah blah blah&lt;dbforms-errors&gt;&lt;error id="0001" type="WARN"&gt;&lt;message language="ORA"&gt;Oracle message: % 
        &lt;/message&gt;&lt;/error&gt;&lt;/dbforms-errors&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>hasMoreRecords</name>
@@ -5218,7 +5679,9 @@ error manager</description>
 <description>Message to display (see xml error manager)</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>hasNoRecords</name>
@@ -5232,7 +5695,25 @@ error manager</description>
 <description>Message to display (see xml error manager)</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
+
+<tag>
+<name>hasRecords</name>
+<tag-class>org.dbforms.taglib.HasRecordsTag</tag-class>
+<body-content>JSP</body-content>
+<description>Verifies if the number of records in the result set is not equal 0</description>
+<attribute>
+<name>message</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Message to display (see xml error manager)</description>
+</attribute>
+</tag>
+
+<!--*******************************************************************-->
+
 
 <tag>
 <name>associatedRadio</name>
@@ -5259,7 +5740,9 @@ error manager</description>
   be applied to, by defining the "associatedRadio"attribute of that 
   respective button.</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>blobURL</name>
@@ -5281,12 +5764,30 @@ error manager</description>
 
                       "Filesystem blob" example:
                         &lt;img src="&lt;db:blobURL fieldName="THUMBNAIL" defaultValue="myImage.jpg"/&gt;" border="0" width="xx" height="yy"&gt;Developers Note: this attribute (up to now) is not used for "database blob" data,
-                      works only for "Disk Blob" data.</description>
+                      works only for "Disk Blob" data.
+							Update 03/2004: works now for BLOB data as well (if BLOB is not in classic mode
+							and nameField is used)</description>
+</attribute>
+<attribute>
+<name>nameField</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this optional attribute may be used to tell the fileservlet 
+							in which table column (field) the name of the file is stored.
+						
+							This is (only) needed if you use the new (default) BLOB model which 
+							does not rely on FileHolder anymore to associate files and their
+							names. Hence, the association between file and name must be captured by other means: During
+							upload we use the BlobInterceptor, and during download we use this
+							"nameField" argument.
+						</description>
 </attribute>
 <example>use cases:rendering an image: &lt;img src="&lt;db:diskblob fieldName="pic""/&gt;" 
     alt="a picture"&gt;rendering a (download-)hyperlink: &lt;a href="&lt;db:diskblob fieldName="pic""/&gt;"&gt;download!&lt;/a&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>blobContent</name>
@@ -5306,7 +5807,9 @@ error manager</description>
 <description>indicate which dbconnection object to user.</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>sort</name>
@@ -5321,7 +5824,9 @@ error manager</description>
 <description>name of the field this tag references to</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>style</name>
@@ -5347,7 +5852,9 @@ error manager</description>
 <description>parameter list used to specify rendering properties for the template</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>templateParam</name>
@@ -5388,7 +5895,9 @@ error manager</description>
 								</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>templateBasedir</name>
@@ -5397,7 +5906,9 @@ error manager</description>
 <description>writes out base dir of the current template</description>
 <example>only used in template (_begin.jsp / _end.jsp) - definition files!</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>message</name>
@@ -5427,7 +5938,9 @@ error manager</description>
 						This is a testmessage with param0, param1, param2 params!
 					</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>javascriptArray</name>
@@ -5444,7 +5957,9 @@ error manager</description>
 <description>name of the array.</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>isWebEvent</name>
@@ -5469,7 +5984,9 @@ error manager</description>
 <description>Condition in which to evaluate body. Default is set to true.</description>
 </attribute>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>pos</name>
@@ -5478,7 +5995,9 @@ error manager</description>
 <description>Renders a position to use with keyToDestPos.
         This is the same string wich would be used as value in the DbassociatedRadioTag.</description>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>search</name>
@@ -5491,6 +6010,12 @@ error manager</description>
 <required>true</required>
 <rtexprvalue>true</rtexprvalue>
 <description>Name of the field in the table for which the searching should be done</description>
+</attribute>
+<attribute>
+<name>id</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>expose id, enables interaction with JavaScript (not supported by all browsers!)</description>
 </attribute>
 <attribute>
 <name>searchAlgo</name>
@@ -5593,7 +6118,9 @@ error manager</description>
 </attribute>
 <example>example of result:&lt;input type="hidden" name="searchalgo_0_1" value="weakEnd"/&gt;&lt;input type="hidden" name="searchmode_0_1" value="AND"/&gt;&lt;input type="input" name="search_0_1"/&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>searchCombo</name>
@@ -5607,6 +6134,12 @@ error manager</description>
 <required>true</required>
 <rtexprvalue>true</rtexprvalue>
 <description>Name of the field in the table for which the searching should be done</description>
+</attribute>
+<attribute>
+<name>id</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>expose id, enables interaction with JavaScript (not supported by all browsers!)</description>
 </attribute>
 <attribute>
 <name>searchAlgo</name>
@@ -5635,6 +6168,18 @@ error manager</description>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>Index that should be selected as default when form redered the first time</description>
+</attribute>
+<attribute>
+<name>compareWith</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>
+					      if set to "index" the index value will be used to compare against the selected value.
+					      if set to "value" the value value will be used to compare against the selected value.
+					      if set to "list" the index of the list will be used to compare against the selected value
+					      default is "index".
+					      
+					</description>
 </attribute>
 <attribute>
 <name>size</name>
@@ -5724,14 +6269,142 @@ error manager</description>
                                    &lt;option&gt;from datatag&lt;/option&gt;
         &lt;/select&gt;</example>
 </tag>
+
 <!--*******************************************************************-->
+
+
+<tag>
+<name>searchCheckBox</name>
+<tag-class>org.dbforms.taglib.DbSearchCheckBoxTag</tag-class>
+<body-content>empty</body-content>
+<description>Renders a CheckBox for searching. The field value wich is searched for is the value of the 
+					   value attribute.
+						Renders all the needed fields for searching. 
+					   Hides the searchfieldName stuff from the 
+                  			 JSP developer.</description>
+<attribute>
+<name>fieldName</name>
+<required>true</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Name of the field in the table for which the searching should be done</description>
+</attribute>
+<attribute>
+<name>searchAlgo</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>The search algorithm. Default: sharp</description>
+</attribute>
+<attribute>
+<name>searchMode</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>The search mode. Default: and</description>
+</attribute>
+<attribute>
+<name>value</name>
+<required>true</required>
+<rtexprvalue>true</rtexprvalue>
+<description>The value to search for</description>
+</attribute>
+<attribute>
+<name>checked</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>If set to true the ceckbox will be checked during rendering</description>
+</attribute>
+<attribute>
+<name>id</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>Renders HTML id field</description>
+</attribute>
+<attribute>
+<name>onBlur</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onChange</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onClick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onDblClick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onFocus</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onKeyDown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onKeyPress</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onKeyUp</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onMouseDown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onMouseMove</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onMouseOut</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onMouseOver</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onMouseUp</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onSelect</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>style</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<example>example of result:&lt;input type="hidden" name="searchalgo_0_1" value="weakEnd"/&gt;&lt;input type="hidden" name="searchmode_0_1" value="AND"/&gt;&lt;input type="input" name="search_0_1"/&gt;</example>
+</tag>
+
+<!--*******************************************************************-->
+
 
 <tag>
 <name>filter</name>
 <tag-class>org.dbforms.taglib.DbFilterTag</tag-class>
 <body-content>JSP</body-content>
 <description>
-Create a set of sql filter conditions, letting user select which one will be applied. 
+					Create a set of sql filter conditions, letting user select which one will be applied. 
 				</description>
 <attribute>
 <name>disabledCaption</name>
@@ -5756,6 +6429,12 @@ Create a set of sql filter conditions, letting user select which one will be app
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>CSS stylesheet class to be applied. This is done adding a SPAN element that contains the text.</description>
+</attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
 </attribute>
 <attribute>
 <name>size</name>
@@ -5796,7 +6475,9 @@ An example is like this:
 This structure will be rendered as a html select element to select the condition the you want to apply. On the onchange event there is a submit, so the page reload with the input elements of the condition that you have selected. After all input elements, there are two buttons, one to apply the condition, one to unset the current applied condition.				
 				</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>filterCondition</name>
@@ -5818,7 +6499,9 @@ This structure will be rendered as a html select element to select the condition
 				corresponding filterValue tag nested. So there must be as ? as filterValue tags.				
 				</example>
 </tag>
+
 <!--*******************************************************************-->
+
 
 <tag>
 <name>filterValue</name>
@@ -5901,6 +6584,12 @@ This structure will be rendered as a html select element to select the condition
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 <description>CSS stylesheet class to be applied. This is done adding a SPAN element that contains the text.</description>
+</attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+<description>this defines the "title" attribute for the HTML4 tag.</description>
 </attribute>
 <example/>
 </tag>
