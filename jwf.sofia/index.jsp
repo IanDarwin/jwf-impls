@@ -82,7 +82,7 @@
           </salmon:box>
           </td>
     </tr>
-	<!-- This tr is the Listing... -->
+	<!-- This tr is the Listing Box... -->
     <tr>
       <td><a name="scrollToMe"></a>
       <salmon:box name="box2" width="500">
