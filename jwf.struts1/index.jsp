@@ -26,8 +26,12 @@
 
 <p><bean.message key="struts.i18n"/></p>
 
+<html:javascript formName="addPersonDynaForm"/>
+
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
-<html:form action="/struts/process" focus="firstName">
+<html:form action="/struts/process" 
+	focus="firstName" onsubmit="return validateAddPersonDynaForm(this)">
+
 	<input type="hidden" name="impl" value="struts">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>

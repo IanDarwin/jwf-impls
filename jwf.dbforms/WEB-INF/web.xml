@@ -1,0 +1,111 @@
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<!-- Ian's handy summary (courtesy of the XML parser :-) )
+ The content of element type "web-app" must match "(icon?,
+ display-name?, description?, distributable?, context-param*,
+ filter*, filter-mapping*, listener*, servlet*, servlet-mapping*,
+ session-config?, mime-mapping*, welcome-file-list?, error-page*,
+ taglib*, resource-env-ref*, resource-ref*, security-constraint*,
+ login-config?, security-role*, env-entry*, ejb-ref*, ejb-local-ref*)".
+ -->
+
+<web-app>
+        <display-name>Ian Darwin's Java Web Frameworks - dbforms</display-name>
+        <description>
+        Ian Darwin's Java Web Frameworks Catalog site, dbforms demo.
+        </description>
+
+    <!-- SERVLET DEFINITIONS -->
+
+  <!-- *************************************************  --> 	
+  <!-- **======= DbForms Standard web Config =========**  --> 
+  <!-- *************************************************  --> 	
+
+
+  <!--==*************************************************==--> 	
+  <!--==**=======  DBFORMS STYLING TEMPLATES  =========**==--> 
+  <!--==*************************************************==--> 	
+	
+	   <!-- uncomment this if you want your template directory 
+	  	different to "/templates" (default)    -->          
+	   <context-param>
+	      <param-name>templateBase</param-name>
+	      <param-value>templates</param-value>
+	   </context-param>	   
+	
+	  <!--  ========= DbForms Configuration Servlet =========  -->
+	  <servlet>
+	    <servlet-name>org.dbforms.ConfigServlet</servlet-name>
+	    <servlet-class>org.dbforms.ConfigServlet</servlet-class>
+	
+		<init-param>
+	      <param-name>dbformsConfig</param-name>
+	      <param-value>/WEB-INF/dbforms-config.xml</param-value>
+      	</init-param>  
+
+		<init-param>
+	      <param-name>dbformsErrors</param-name>
+	      <param-value>/WEB-INF/dbforms-errors.xml</param-value>
+      	</init-param>  
+	
+		<init-param>
+		      <param-name>validation</param-name>
+		      <param-value>/WEB-INF/validation.xml</param-value>
+	    </init-param>  
+	 
+		<init-param>
+		      <param-name>validator-rules</param-name>
+		      <param-value>/WEB-INF/validator-rules.xml</param-value>
+	    </init-param>  
+	     
+		<init-param>
+		      <param-name>resourceBundle</param-name>
+		      <param-value>ApplicationResources</param-value>
+	    </init-param>  
+	     
+	    <init-param>
+	      <param-name>log4j.configuration</param-name>
+	      <param-value>/WEB-INF/log4j.properties</param-value>
+	    </init-param>      
+
+		<!-- optional -->
+	    <init-param>
+	      <param-name>digesterDebugLevel</param-name>
+	      <param-value>1</param-value>
+	    </init-param>      
+	   
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
+	 
+	 
+  <!--=========== DbForms Controller Servlet ==============--> 
+  <servlet>
+    <servlet-name>control</servlet-name>
+    <servlet-class>org.dbforms.Controller</servlet-class>
+  </servlet>
+  
+  <!--=========== DbForms FileServlet =====================
+  ensure that "load-on-startup" is less than "load-on-startup" 
+  element of Configuration Servlet! because we need to access
+  information from Configuration Servlet and therefore we must 
+  start up AFTER Configuration Servlet..!
+  -->   
+  <servlet>
+    <servlet-name>file</servlet-name>
+    <servlet-class>org.dbforms.util.FileServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>control</servlet-name>
+    <url-pattern>/servlet/control</url-pattern>
+  </servlet-mapping>  
+
+  <servlet-mapping>
+    <servlet-name>file</servlet-name>
+    <url-pattern>/servlet/file</url-pattern>
+  </servlet-mapping>  
+
+</web-app>

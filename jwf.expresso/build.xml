@@ -1,0 +1,111 @@
+<project name="ExpressoDemo" default="reload" basedir=".">
+
+	<!-- $Id$ -->
+
+	<property name="src" value="src"/>
+	<property name="build" value="build"/>
+	<property name="warfile" value="expressodemo.war"/>
+
+	<!-- Jars needed for compilation -->
+	<property name="struts.jar" value="lib/struts.jar"/>
+	<property name="expresso.jar" value="lib/expresso-core.jar/"/>
+	<property name="expresso-kernel.jar" value="lib/expresso-kernel.jar"/>
+	<property name="expresso-services.jar" value="lib/expresso-services.jar"/>
+
+	<!-- Settings for Ant-Tomcat Deployment -->
+	<property name="managerappURL" value="http://localhost/mangler/"/>
+	<property name="deploy.dir" value="/home/ian/tomcat/webapps/"/>
+	<property name="contextpath" value="/"/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"
+		classpath="lib/catalina-ant.jar"/>
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"
+			classpath="lib/catalina-ant.jar"/>
+
+	<!-- An Expresso application is NOT the same as a normal web-app,
+	 *** which is one of my criticisms: you can't make them look like
+	 *** "normal" web apps by hiding all the Expresso cruft. For example:
+	 *** The web pages go in components/appName, not in the top level.
+	 *** Some metadata goes in config/, e.g., the logging file if you have one.
+	 -->
+	<property name="components" value="${build}/components/expressodemo"/>
+
+	<!-- This property must refer to a Java "properties" file with the
+	 *** "user" and "pass" properties for the Tomcat "Manager"
+	 *** application, so that we can use Ant to "reload" after changing
+	 *** the Web Application
+	 -->
+	<property file="admin.properties"/>
+
+	<target name="init">
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build}/images"/>
+		<mkdir dir="${build}/WEB-INF/classes"/>
+		<mkdir dir="${build}/WEB-INF/lib"/>
+		<mkdir dir="${components}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}/WEB-INF/classes"
+			classpath="${expresso.jar}:${expresso-kernel.jar}:${expresso-services.jar}:${struts.jar}"
+			debug="true" deprecation="true"
+			/>
+	</target>
+
+
+	<target name="copy" depends="compile">
+		<copy todir="${components}">
+			<fileset dir="pages">
+				<include name="*.jsp"/>
+				<include name="**/*.jsp"/>
+				<include name="**/*.html"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.png"/>
+				<include name="**/*.txt"/>
+			</fileset>
+		</copy>
+		<copy todir="${build}/WEB-INF">
+			<fileset dir="metadata">
+				<include name="*.xml"/>
+				<include name="*.tld"/>
+			</fileset>
+		</copy>
+		<!-- Put Application*.properties under classes; Struts will instantiate -->
+		<copy todir="${build}/WEB-INF/classes">
+			<fileset dir=".">
+				<include name="metadata/*.properties"/>
+			</fileset>
+		</copy>
+		<copy todir="${build}/WEB-INF/lib">
+			<fileset dir="lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="war" depends="copy">
+		<!-- Suppress chatter from war task -->
+		<delete file="${build}/WEB-INF/web.xml"/>
+		
+		<war destfile="${warfile}" webxml="metadata/web.xml" update="no">
+			<fileset dir="build"/>
+		</war>
+	</target>
+
+	<target name="deploy" depends="war">
+		<echo message="NOT WRITTEN YET"/>
+	</target>
+
+	<target name="reload" depends="war">
+		<reload url="${managerappURL}" path="${contextpath}"
+			username="${user}" password="${pass}"
+			/>
+	</target>
+
+	<target name="dist" depends="war"/>
+
+	<target name="clean">
+		<delete dir="${build}"/>
+		<delete file="${warfile}"/>
+	</target>
+</project>

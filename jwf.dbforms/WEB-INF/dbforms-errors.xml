@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dbforms-errors>
+ 
+     <error id="range" type="WARN">
+        <message language="Priority.id">Id - must be in range of % and %</message>
+    </error>
+
+    <error id="required" type="WARN">
+        <message language="Priority.id">Id - is mandatory</message>
+        <message language="Priority.title">Title - is mandatory</message>
+     </error>
+
+    <error id="mask" type="WARN">
+        <message language="Priority.title">Title must begin with Capital letter and allow only alphanumeric characters (max: 10 cars)</message>
+
+    </error>
+
+
+    <error id="maxlength" type="WARN">
+        <message language="Priority.description">Description can't exceed % characters.</message>
+    </error>
+
+
+    <error id="001" type="WARN">
+        <message language="Fran‡ais">% - Champ est obligatoire %</message>
+        <message language="English">% - is mandatory %</message>
+    </error>
+
+    <error id="002" type="WARN">
+        <message language="Fran‡ais">Le r‰sultat de votre requŠte contient trop d'‰l‰ments! Voici les % premiers</message>
+
+    </error>
+
+    <error id="003" type="WARN">
+        <message language="English">% - is mandatory %</message>
+    </error>
+
+    <error id="00001" type="WARN">
+        <message language="ORA">Oracle error: %</message>
+    </error>
+    
+</dbforms-errors>

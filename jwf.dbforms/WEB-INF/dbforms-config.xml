@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<dbforms-config>
+
+	<date-format>yyyy-MM-dd</date-format>
+
+	<!-- tables -->
+
+	<table name="people" defaultVisibleFields="ID" >
+		<field name="ID" fieldType="integer" size="0" isKey="true"/>
+		<field name="firstName" fieldType="varchar" size="40"/>
+		<field name="lastName" fieldType="varchar" size="40"/>
+		<field name="email" fieldType="varchar" size="40"/>
+		<field name="address1" fieldType="varchar" size="40"/>
+		<field name="address2" fieldType="varchar" size="40"/>
+		<field name="city" fieldType="varchar" size="40"/>
+		<field name="province" fieldType="varchar" size="40"/>
+		<field name="postCode" fieldType="varchar" size="20"/>
+		<field name="country" fieldType="varchar" size="40"/>
+
+		<!-- add "granted-privileges" element for security constraints -->
+
+	</table>
+
+	<table name="frameworks" defaultVisibleFields="ID" >
+		<field name="ID" fieldType="integer" size="0" isKey="true"/>
+		<field name="NAME" fieldType="varchar" size="20"/>
+		<field name="URL" fieldType="varchar" size="100"/>
+		<field name="YEAR" fieldType="integer" size="0"/>
+		<field name="SPONSOR" fieldType="varchar" size="40"/>
+		<field name="SHORTDESC" fieldType="varchar" size="80"/>
+		<field name="LONGDESC" fieldType="varchar" size="4096"/>
+		<field name="IMPLSUBDIR" fieldType="varchar" size="10"/>
+		<field name="LICENCETYPE" fieldType="varchar" size="10"/>
+
+		<granted-privileges
+			select="*" insert="editors" update="editors" delete="editors"
+		/>
+
+	</table>
+
+	<!-- ========== Connection =================================== -->
+	<dbconnection
+		name="java:comp/env/jdbc/javawebframeworks"
+		isJndi="true"
+	/>
+
+</dbforms-config>

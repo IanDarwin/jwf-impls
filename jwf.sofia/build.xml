@@ -1,0 +1,74 @@
+<project name="JavaWebFrameworks" default="copy" basedir=".">
+
+	<!-- $Id$ -->
+
+	<property name="src" value="src"/>
+	<property name="pages" value="pages"/>
+	<property name="lib" value="lib"/>
+	<property name="build" value="build"/>
+
+	<!-- Jars needed for compilation -->
+	<property name="salmon.jar" value="lib/salmon.jar"/>
+	<property name="servlet.jar" value="${user.home}/lib/servletapi.jar"/>
+
+	<!-- Settings for Ant-Tomcat Deployment -->
+	<property name="managerappURL" value="http://127.0.0.1/manager/"/>
+	<property name="contextpath" value="/javawebframeworks/sofia"/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"/>
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+
+	<!-- This file must be a Java "properties" file with the
+	 *** "user" and "pass" properties for the Tomcat "Manager"
+	 *** application, so that we can use Ant to "reload" after changing
+	 *** the Web Application
+	 -->
+	<property file="../admin.properties"/>
+
+	<target name="init">
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build}/WEB-INF/classes"/>
+	</target>
+
+	<target name="build" depends="copy">
+		<javac srcdir="${src}" destdir="${build}/WEB-INF/classes"
+			classpath="${servlet.jar}:${salmon.jar}"
+			debug="true" deprecation="true"
+			/>
+	</target>
+
+	<target name="copy" depends="init">
+		<copy todir="${build}">
+			<fileset dir="${pages}">
+				<include name="**/*.jsp"/>
+				<include name="**/*.java"/>
+				<include name="**/*.html"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.png"/>
+				<include name="**/*.txt"/>
+			</fileset>
+		</copy>
+		<copy todir="${build}/WEB-INF">
+			<fileset dir="metadata">
+				<include name="*.xml"/>
+				<include name="*.tld"/>
+				<include name="log4j.properties"/>
+			</fileset>
+		</copy>
+		<copy todir="${build}/WEB-INF/lib">
+			<fileset dir="${lib}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="reload" depends="build">
+		<reload url="${managerappURL}" path="${contextpath}"
+			username="${user}" password="${pass}"
+			/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}"/>
+	</target>
+</project>

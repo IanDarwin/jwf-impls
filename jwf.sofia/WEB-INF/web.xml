@@ -1,0 +1,146 @@
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN" "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+<web-app>
+
+  <servlet>
+    <servlet-name>AppServer</servlet-name>
+    <servlet-class>com.salmonllc.servlets.AppServer</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>Scheduler</servlet-name>
+    <servlet-class>com.salmonllc.servlets.Scheduler</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ConnectionMonitor</servlet-name>
+    <display-name>ConnectionMonitor</display-name>
+    <servlet-class>com.salmonllc.servlets.ConnectionMonitor</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>Translator</servlet-name>
+    <servlet-class>com.salmonllc.servlets.Translator</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DwInfoTranslator</servlet-name>
+    <servlet-class>com.salmonllc.servlets.DwInfoTranslator</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DataServer</servlet-name>
+    <servlet-class>com.salmonllc.servlets.DataServer</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>Objectstore</servlet-name>
+    <servlet-class>com.salmonllc.servlets.Objectstore</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>PersonalizationServer</servlet-name>
+    <servlet-class>com.salmonllc.servlets.PersonalizationServer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AppServer</servlet-name>
+    <url-pattern>/fw/AppServer</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AppServer</servlet-name>
+    <url-pattern>/fw/AppServer/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Scheduler</servlet-name>
+    <url-pattern>/fw/Scheduler</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Objectstore</servlet-name>
+    <url-pattern>/fw/Objectstore</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Objectstore</servlet-name>
+    <url-pattern>/fw/Objectstore/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Translator</servlet-name>
+    <url-pattern>/fw/Translator</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DwInfoTranslator</servlet-name>
+    <url-pattern>/DwInfoTranslator</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Translator</servlet-name>
+    <url-pattern>/Translator</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ConnectionMonitor</servlet-name>
+    <url-pattern>/fw/ConnectionMonitor</url-pattern>
+  </servlet-mapping>
+
+ <servlet-mapping>
+    <servlet-name>ConnectionMonitor</servlet-name>
+    <url-pattern>/ConnectionMonitor</url-pattern>
+  </servlet-mapping>
+
+ <servlet-mapping>
+    <servlet-name>DataServer</servlet-name>
+    <url-pattern>/DataServer/*</url-pattern>
+  </servlet-mapping>
+
+ <servlet-mapping>
+    <servlet-name>DataServer</servlet-name>
+    <url-pattern>/fw/DataServer/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+     <servlet-name>PersonalizationServer</servlet-name>
+     <url-pattern>/PersonalizationServer/*</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>mov</extension>
+    <mime-type>video/quicktime</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>swf</extension>
+    <mime-type>application/x-shockwave-flash</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>rm</extension>
+    <mime-type>audio/x-pn-realaudio</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>mpeg</extension>
+    <mime-type>video/mpeg</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>jar</extension>
+   <mime-type>application/java-archive</mime-type>
+  </mime-mapping>
+
+  <taglib>
+    <taglib-uri>/taglib.tld</taglib-uri>
+    <taglib-location>taglib.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/wmltaglib.tld</taglib-uri>
+    <taglib-location>wmltaglib.tld</taglib-location>
+  </taglib>
+
+</web-app>

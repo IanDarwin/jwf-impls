@@ -36,9 +36,9 @@ public class ServletOnly extends HttpServlet
 			System.out.println("Got it!");
 
 			st = con.prepareStatement(
-				"insert into people (firstName, lastName, address1, address2," +
+				"insert into people (firstName, lastName, email, address1, address2," +
 				"city, province, postcode, country)" +
-				"values(?,?,?,?,?,?,?,?)");
+				"values(?,?,?,?,?,?,?,?,?)");
 
 			// con.close();	// put back into connection pool
 		} catch (NamingException ex) {
