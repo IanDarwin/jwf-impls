@@ -26,12 +26,20 @@
 		<servlet-name>ServletOnly</servlet-name>
 		<servlet-class>javawebframeworks.ServletOnly</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ServletDispatcher</servlet-name>
+		<servlet-class>javawebframeworks.ServletDispatcher</servlet-class>
+	</servlet>
 
 	<!-- SERVLET MAPPINGS -->
 
 	<servlet-mapping>
 		<servlet-name>ServletOnly</servlet-name>
 		<url-pattern>/servletonly/Servlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletDispatcher</servlet-name>
+		<url-pattern>/servletdispatcher/Servlet</url-pattern>
 	</servlet-mapping>
 
 	<!-- The JDBC datasource -->
