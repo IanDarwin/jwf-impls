@@ -29,7 +29,7 @@
 <html:javascript formName="addPersonDynaForm"/>
 
 <!-- START ORIGINAL HTML FRAGMENT basicform.html -->
-<html:form action="/struts/process" 
+<html:form action="/jwf.struts/process" 
 	focus="firstName" onsubmit="return validateAddPersonDynaForm(this)">
 
 	<input type="hidden" name="impl" value="struts">

@@ -31,24 +31,24 @@
 	</form-beans>
 
 	<global-forwards type="org.apache.struts.action.ActionForward">
-		<forward name="success" path="/struts/thankyou.jsp" redirect="false"/>
-		<forward name="insert.success" path="/thankyou.jsp" redirect="false"/>
+		<forward name="success" path="/jwf.struts/thankyou.jsp" redirect="false"/>
+		<forward name="insert.success" path="/jwf.struts/thankyou.jsp" redirect="false"/>
 	</global-forwards>
 
 	<action-mappings>
 
 		<!-- the mapping for inserting a Person -->
-		<action path="/struts/process"
-			input="/struts/index.jsp"
+		<action path="/jwf.struts/process"
+			input="/index.jsp"
 			name="addPersonDynaForm"
-			type="struts.InsertAction"
+			type="strutsdemo.InsertAction"
 			scope="request"
 			validate="true">
 		</action>
 
 	</action-mappings>
 
-	<message-resources parameter="metadata.ApplicationResources"/>
+	<message-resources parameter="strutsdemo.ApplicationResources"/>
 
 	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
 		<set-property property="pathnames"
