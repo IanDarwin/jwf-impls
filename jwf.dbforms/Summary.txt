@@ -1,0 +1,21 @@
+dbforms provides a relatively light-weight interface to a database.
+It is fairly easy to use, but is limited to fairly straightforward
+data-related applications (hence the name).
+
+To add dbforms support to an existing Web Application, 
+you must perform the following steps:
+
+- add dbforms_config.xml to WEB-INF, and tailor it for your web app;
+- add dbforms_errors.xml to WEB-INF, (may not need tailoring initially);
+- add validation.xml to WEB-INF: note that this conflicts with Struts'
+  validation.xml, so either merge them and hope for the best :-) or
+  pick a new name, like dbforms-validation.jar;
+- add the dbforms servlet in WEB-INF/web.xml, tailoring the servlet
+  for the locations of most of the above files;
+- add dbforms.jar to the WEB-INF/lib directory
+- add dbforms.tld to WEB-INF (do not modify);
+- add log4j.jar, log4j.properties, commons-utils.jar, commons-logging.jar
+  to WEB-INF/lib;
+
+Of course, if you are starting afresh, you would probably
+begin one of the provided demos, which has all these pieces in place.
