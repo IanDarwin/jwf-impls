@@ -34,6 +34,7 @@ public class InsertAction extends Action {
 		person.setPostcode((String)f.get("postcode"));
 		person.setCountry((String)f.get("country"));
 
+		// If inputs not valid, process as error.
 		if (!person.isValid()) {
 			List errs = person.getErrors();
 			StringBuffer fields = new StringBuffer();
@@ -43,16 +44,19 @@ public class InsertAction extends Action {
 				fields.append(errs.get(i));
 			}
 			errors.add(ActionErrors.GLOBAL_ERROR,
+				// XXX get this string from the global resources...
 				new ActionError("Fields need attention: " + fields));
+			saveErrors(request, errors);
 			return new ActionForward(mapping.getInput());
 		}
 
-		// OK, so store it in the database.
+		// Data is OK, so try to store it in the database.
 		try {
 			new PersonDAO().insert(person);
 		} catch (Exception ex) {
 			errors.add(ActionErrors.GLOBAL_ERROR,
                 new ActionError("Database problem: " + ex));
+			saveErrors(request, errors);
             return new ActionForward(mapping.getInput());
 		}
 

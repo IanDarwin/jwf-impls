@@ -27,11 +27,11 @@
 	</form-beans>
 
 	<global-forwards type="org.apache.struts.action.ActionForward">
-		<forward name="success" path="/thankyou.jsp" redirect="false"/>
+		<forward name="success" path="/struts/thankyou.jsp" redirect="false"/>
 	</global-forwards>
 
 	<action-mappings>
-		<action path="/struts/thankyou.do"
+		<action path="/process"
 			input="/struts/index.jsp"
 			name="insertDynaForm"
 			type="struts.InsertAction"

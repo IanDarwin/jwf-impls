@@ -16,13 +16,13 @@
 </head>
 
 <body>
-<!-- START ORIGINAL HTML FRAGMENT basicform.html -->
 
 <h1><bean:message key="insert.title"/></h1>
 <p>
 <html:errors/>
-<hr />
-<html:form action="/struts/thankyou.do" focus="firstName">
+
+<!-- START ORIGINAL HTML FRAGMENT basicform.html -->
+<html:form action="/process" focus="firstName">
 	<table>
 	<tr><td><bean:message key="insert.label.names"/>:*</td>
 		<td><bean:message key="insert.label.firstName"/><html:text name="insertDynaForm" property="firstName" size="10"/>
