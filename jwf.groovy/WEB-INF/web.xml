@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE web-app PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<!-- Ian's handy summary (courtesy of the XML parser :-) )
+ The content of element type "web-app" must match "(icon?,
+ display-name?, description?, distributable?, context-param*,
+ filter*, filter-mapping*, listener*, servlet*, servlet-mapping*,
+ session-config?, mime-mapping*, welcome-file-list?, error-page*,
+ taglib*, resource-env-ref*, resource-ref*, security-constraint*,
+ login-config?, security-role*, env-entry*, ejb-ref*, ejb-local-ref*)".
+ -->
+
+<web-app>
+
+    <display-name>JavaWebFrameworks Groovy Implementation</display-name>
+    <description>JavaWebFrameworks Groovy Implementation</description>
+
+	<servlet>
+	<servlet-name>Groovy</servlet-name>
+	<servlet-class>groovy.servlet.GroovyServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+	<servlet-name>Groovy</servlet-name>
+	<url-pattern>*.groovy</url-pattern>
+	</servlet-mapping>
+	
+	    <!-- The JDBC datasource for the database -->
+    <resource-ref>
+        <res-ref-name>jdbc/javawebframeworks</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+	
+
+</web-app>
