@@ -18,7 +18,7 @@ public class ServletOnly extends HttpServlet
 
 	private PreparedStatement st;
 
-	/** Called in response to a GET request (data encoded in the URL) */
+	/** Servlet initialization */
 	public void init() throws ServletException {
 		try {
 			Context ctx = new InitialContext();

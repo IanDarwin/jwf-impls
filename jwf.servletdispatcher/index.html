@@ -1,0 +1,39 @@
+<title>Servlet Only</title>
+
+<h1>Servlet Only</h1>
+
+<p>This version represents largely "best practice" as of around 2002.
+It uses a Servlet to process the data (including using the DAO from
+the previous Implementation), then attaches a result indicator 
+(in this case the Person JavaBean) to the Request objecct, and
+passes control the a JSP for formatting the results.
+
+<!-- START HTML FRAGMENT basicform.html -->
+
+<h1>Sign Up With Us</h1>
+<p>
+<hr />
+<form method="post" action="Servlet">
+	<table>
+	<tr><td>Name:&nbsp;</td>
+		<td><input type="text" name="firstName" size="10">
+		<input type="text" name="lastName" size="18">
+		</td></tr>
+	<tr><td>Email:</td><td><input type="text" name="email" size="30"></td></tr>
+	<tr><td>Address:</td><td><input type="text" name="address1" size="30"></td></tr>
+	<tr><td>Line 2:</td><td><input type="text" name="address2" size="30"></td></tr>
+	<tr><td>City:</td><td><input type="text" name="city" size="30"></td></tr>
+	<tr><td>Province:</td><td><input type="text" name="province" size="30"></td></tr>
+	<tr><td>Post Code:</td><td><input type="text" name="postcode" size="30"></td></tr>
+	<tr><td>Country:</td><td><select name="country">
+			<option selected="true" value="--">--Choose your country--
+			<option value="ca">Canada
+			<option value="us">U.S.A.
+			<option value="uk">U.K.
+		</select></td>
+	<tr><td colspan="2" align="center"><input type="submit" value="Register!">
+		</input></td></tr>
+	</table>
+</form>
+
+<!-- END HTML FRAGMENT basicform.html -->

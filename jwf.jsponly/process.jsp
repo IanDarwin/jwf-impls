@@ -1,4 +1,4 @@
-<%@page import="java.io.*,javax.servlet.*,javax.servlet.http.*,java.sql.*,javax.sql.*,javax.naming.*" %>
+<%@page import="java.io.*,java.sql.*,javax.sql.*,javax.naming.*" %>
 
 <!--
  *** JSP-only implementation for the JavaWebFramework project
