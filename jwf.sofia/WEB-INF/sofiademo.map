@@ -2,24 +2,24 @@
 <!DOCTYPE sitemap PUBLIC "SOFIA Site Map" "http://www.salmonllc.com/sofiaExamples/sitemap.dtd">
 <siteMap>
 	<entry>
-     <name>SiteEmail</name>
-     <uri>mailto:jwf@darwinsys.com</uri>
-     <useForward>false</useForward>
-     <secure>false</secure>
+	     <name>SiteEmail</name>
+	     <uri>mailto:jwf@darwinsys.com</uri>
+	     <useForward>false</useForward>
+	     <secure>false</secure>
 	</entry>
 	
   	<entry>
 		<name>index</name>
-		<uri>/javawebframeworks/sofia/index.jsp</uri>
+		<uri>/index.jsp</uri>
 		<useForward>false</useForward>
 		<secure>false</secure>
 	</entry>
 	
 	<entry>
 		<name>details</name>
-		<uri>/javawebframeworks/sofia/details.jsp</uri>
+		<uri>/details.jsp</uri>
 		<useForward>true</useForward>
 		<secure>false</secure>
 	</entry>
 
-</sitemap>
+</siteMap>

@@ -60,7 +60,6 @@
   <salmon:input type="hidden" name="id" value="-1" datasource="jwf:people.id"></salmon:input>
 </salmon:form>
 
-<br>
-<salmon:a name="viewSourceCode" href="%SourceCodeList.jsp?ID=8"><salmon:text name="sourceList" text="View Source Code" font="LinkFont"/></salmon:a>
+<br/>
 <salmon:endbody/>
 <salmon:endpage/>
