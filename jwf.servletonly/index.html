@@ -4,14 +4,15 @@
 
 <p>This version is very crude; it is all written as a Servlet, as we'd have
 done it in 1998 when Servlets were new and there was nothing better.
-<p>This version also lacks any error checking.
+<p>This version also lacks any error checking, so that, for example,
+omitting required parameters throws a NullPointerException.
 
 <!-- START HTML FRAGMENT basicform.html -->
 
 <h1>Sign Up With Us</h1>
 <p>
 <hr />
-<form method="post" action="Servlet">
+<form method="post" action="servlet/ServletOnlyDemo">
 	<input type="hidden" name="impl" value="servletonly">
 	<table>
 	<tr><td>Name: *</td>
@@ -38,4 +39,4 @@ done it in 1998 when Servlets were new and there was nothing better.
 <!-- END HTML FRAGMENT basicform.html -->
 
 <hr/>
-View <a href="ServletOnly.java">Servlet Source Code</a>.
+View <a href="src/servletonly/ServletOnly.java">Servlet Source Code</a>.
