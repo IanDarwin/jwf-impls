@@ -8,7 +8,8 @@ you must perform the following steps:
 - add dbforms_config.xml to WEB-INF, and tailor it for your web app;
 - add dbforms_errors.xml to WEB-INF, (may not need tailoring initially);
 - add validation.xml to WEB-INF: note that this conflicts with Struts'
-  validation.xml, so either merge them and hope for the best :-) or
+  validation.xml, so if you are using both frameworks in the same
+  Web Application you'd need either to merge them and hope for the best :-) or
   pick a new name, like dbforms-validation.jar;
 - add the dbforms servlet in WEB-INF/web.xml, tailoring the servlet
   for the locations of most of the above files;
