@@ -19,6 +19,8 @@ public class ServletOnly extends HttpServlet
 	private DataSource ds;
 
 	private PreparedStatement st;
+	
+	private Throwable initError;
 
 	/** Servlet initialization */
 	public void init() throws ServletException {
@@ -26,7 +28,6 @@ public class ServletOnly extends HttpServlet
 			Context ctx = new InitialContext();
 
 			String enc = "java:comp/env";
-			System.out.println("Looking up " + enc);
 			Context encContext = (Context)ctx.lookup(enc);
 			
 			String dsn = "jdbc/javawebframeworks";
@@ -39,16 +40,19 @@ public class ServletOnly extends HttpServlet
 			System.out.println("Got it!");
 
 			st = con.prepareStatement(
-				"insert into people (firstName, lastName, email, address1, address2," +
+				"insert into people (firstName, lastName, email, address1, address2, " +
 				"city, province, postcode, country)" +
 				"values(?,?,?,?,?,?,?,?,?)");
 
-			// con.close();	// put back into connection pool
+			con.close();	// put back into connection pool
+			
 		} catch (NamingException ex) {
-			ex.printStackTrace();
+			initError = ex;
+			System.out.println("ServletOnly.init(): caught " + ex);
 			return;
 		} catch (SQLException ex) {
-			ex.printStackTrace();
+			initError = ex;
+			System.out.println("ServletOnly.init(): caught " + ex);
 			return;
 		}
 	}
@@ -73,6 +77,15 @@ public class ServletOnly extends HttpServlet
 		out.println("<body>");
 
 		// Servlet logic code and main HTML goes here.
+		if (st == null) {
+			out.println("<h1>Error</h1>");
+			out.println("Couldn't do that because, alas, this servlet's");
+			out.println("initialization failed to load the 'DataSource' that we need.");
+			if (initError != null)
+				out.println("<p>The problem was: " + initError + ".</p>");
+			out.println("Your valuable signup information was <b>not saved</b>.");
+			return;
+		}
 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -84,13 +97,6 @@ public class ServletOnly extends HttpServlet
 		String postcode = request.getParameter("postcode");
 		String country = request.getParameter("country");
 
-		if (st == null) {
-			out.println("<h1>Error</h1>");
-			out.println("Couldn't do that because, alas, this servlet's");
-			out.println("initialization failed to load the 'DataSource' that we need.");
-			out.println("Your valuable signup information was <b>not saved</b>.");
-			return;
-		}
 		int ret = 0;
 		try {
 
@@ -111,9 +117,7 @@ public class ServletOnly extends HttpServlet
 
 		} catch (SQLException ex) {
 			out.println("<h1>Error</h1>");
-			out.println("<pre>");
-			ex.printStackTrace(out);
-			out.println("</pre>");
+			out.println("Caught this: " + ex);
 			return;
 		}
 
@@ -129,7 +133,7 @@ public class ServletOnly extends HttpServlet
 		out.println("receiving a confirming email with more instructions.");
 
 		out.println("<hr/>");
-		out.println("<a href='http://localhost/javawebframeworks/list/'>List of People who've registered</a>");
+		out.println("<a href='/jwf/listframeworks.do'>List of People who've registered</a>");
 
 		// BOILERPLATE ending
 		out.println("</body>");
