@@ -13,7 +13,7 @@
 	    		<param-name>salmon.props.path</param-name>
 	    		<param-value>/WEB-INF</param-value>
 	    	</init-param>
-	    	<load-on-startup/>
+	    	<load-on-startup>0</load-on-startup>
 	 </servlet>
 		
   <servlet>
