@@ -29,7 +29,7 @@
 	</global-forwards>
 
 	<action-mappings>
-		<action path="process"
+		<action path="process.do"
 			input="index.jsp"
 			name="insertDynaForm"
 			type="struts.InsertAction"
