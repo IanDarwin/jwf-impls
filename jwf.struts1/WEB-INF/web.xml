@@ -31,6 +31,16 @@
 		<servlet-class>javawebframeworks.ServletDispatcher</servlet-class>
 	</servlet>
 
+	<!-- Struts -->
+	<servlet>
+		<servlet-name>StrutsActionServlet</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>WEB-INF/struts-config.xml</param-value>
+		</init-param>
+	</servlet>
+
 	<!-- SERVLET MAPPINGS -->
 
 	<servlet-mapping>
@@ -40,6 +50,12 @@
 	<servlet-mapping>
 		<servlet-name>ServletDispatcher</servlet-name>
 		<url-pattern>/servletdispatcher/Servlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- Struts -->
+	<servlet-mapping>
+		<servlet-name>StrutsActionServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 	<!-- The JDBC datasource -->
