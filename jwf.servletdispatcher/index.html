@@ -6,7 +6,8 @@
 It uses a Servlet to process the data (including using the DAO from
 the previous Implementation), attaches a result indicator 
 (in this case the Person JavaBean) to the Request objecct, and
-finally passes control to a JSP for formatting the results.
+finally passes control to "thankyou.jsp" for formatting the results.
+In case of error, control passes to "badinput.jsp" instead.
 This is Sun's initial recommendation on how to implement
 "Model View Controller" using Servlets and JSP.
 

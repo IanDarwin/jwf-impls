@@ -34,12 +34,6 @@ public class ServletDispatcher extends HttpServlet
 
 		ServletContext application = getServletContext();
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-
-
-		// Servlet logic code and main HTML goes here.
-
 		Person person = new Person();
 
 		person.setFirstName(request.getParameter("firstName"));
@@ -52,26 +46,22 @@ public class ServletDispatcher extends HttpServlet
 		person.setPostcode(request.getParameter("postcode"));
 		person.setCountry(request.getParameter("country"));
 
+		RequestDispatcher rd;
+
 		if (!person.isValid()) {
-			out.println("<html>");
-			out.println("<head><title>Error</title></head>");
-			out.println("<body>");
-			out.println("<p>The following fields have errors:");
-			List list = person.getErrors();
-			for (int i = 0; i < list.size(); i++) {
-				if (i > 0)
-					out.print(", ");
-				out.print(list.get(i));
-			}
-			out.println("<p>Please hit the back button and try again.");
-			out.println("</body></html>");
-			return;
+			request.setAttribute("errors", person.getErrors());
+			rd = application.getRequestDispatcher(
+				"/servletdispatcher/badinput.jsp");
+		} else {
+
+			dao.insert(person);
+
+			request.setAttribute("NEWLY_REGISTERED_PERSON", person);
+			rd = application.getRequestDispatcher(
+				"/servletdispatcher/thankyou.jsp");
 		}
 
-		dao.insert(person);
-
-		request.setAttribute("NEWLY_REGISTERED_PERSON", person);
-		RequestDispatcher rd = application.getRequestDispatcher("/servletdispatcher/thankyou.jsp");
+		// Forward either to the thanks page or to the erro page.
 		rd.forward(request, response);
 	}
 }
