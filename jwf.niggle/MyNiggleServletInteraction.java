@@ -39,14 +39,16 @@ public class MyNiggleServletInteraction extends ServletInteraction {
 		people.insert(person);
 
 		// Acknowledge addition to DB back to the user.
-		page = getPage("thanks.nhtml");
-		page.expose("inserted_ok", true);
-		page.expose("person", person);
+		page = getPage("niggle/thanks.nhtml");
+		page.expose("title", "Thank you for registering");
+		page.expose("firstname", person.get("firstname"));
+		page.expose("lastname", person.get("lastname"));
+		page.expose("email", person.get("email"));
 	}
 
     /** Default action handler, in case user invokes us w/ no "action" param. */
     public void execDefault() throws IOException {
-        this.page = getPage("error.nhtml");
+        this.page = getPage("niggle/error.nhtml");
         page.expose("title", "Incorrect usage");
         page.expose("message", 
 		"You invoked this servlet without specifying what action to perform!");
