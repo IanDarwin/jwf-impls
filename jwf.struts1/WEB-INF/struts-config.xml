@@ -11,18 +11,20 @@
 
 <struts-config>
 
-	<form-bean name="insertDynaForm"
-		type="org.apache.struts.action.DynaActionForm">
-		<form-property name="firstName" type="java.lang.String"/>
-		<form-property name="lastName" type="java.lang.String"/>
-		<form-property name="address1" type="java.lang.String"/>
-		<form-property name="address2" type="java.lang.String"/>
-		<form-property name="city" type="java.lang.String"/>
-		<form-property name="province" type="java.lang.String"/>
-		<form-property name="postcode" type="java.lang.String"/>
-		<form-property name="country" type="java.lang.String"/>
-		<form-property name="email" type="java.lang.String"/>
-	</form-bean>
+	<form-beans>
+		<form-bean name="insertDynaForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="firstName" type="java.lang.String"/>
+			<form-property name="lastName" type="java.lang.String"/>
+			<form-property name="address1" type="java.lang.String"/>
+			<form-property name="address2" type="java.lang.String"/>
+			<form-property name="city" type="java.lang.String"/>
+			<form-property name="province" type="java.lang.String"/>
+			<form-property name="postcode" type="java.lang.String"/>
+			<form-property name="country" type="java.lang.String"/>
+			<form-property name="email" type="java.lang.String"/>
+		</form-bean>
+	</form-beans>
 
 	<global-forwards type="org.apache.struts.action.ActionForward">
 		<forward name="success" path="/thankyou.jsp" redirect="false"/>
