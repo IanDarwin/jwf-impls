@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<!-- ========== Data Source Configuration =============================== -->
+	<!--
+  <data-sources>
+    <data-source
+       autoCommit="false"
+      description="Example Data Source Configuration"
+      driverClass="org.postgresql.Driver"
+         maxCount="4"
+         minCount="2"
+         password="mypassword"
+              url="jdbc:postgresql://localhost/mydatabase"
+             user="myusername"
+    />
+  </data-sources>
+-->
+	<!-- ========== Form Bean Definitions =================================== -->
+	<form-beans>
+		<!-- Default "generic" form bean -->
+		<form-bean name="default" type="com.jcorporate.expresso.core.controller.DefaultForm"/>
+		<form-bean name="createWizard" type="com.jcorporate.expresso.services.controller.configuration.CreateSettingsBean"/>
+	</form-beans>
+	<!-- ========== Global Forward Definitions ============================== -->
+	<global-forwards>
+		<!-- logon is the redirection target when a user who isn't logged tries
+             to access a secured page -->
+		<forward name="logon" path="/Login.do"/>
+		<forward name="register" path="/Register.do"/>
+		<!-- after successful login, the user is usually redirected to their (saved)
+             original destination, but in the case where someone has gone directly
+             to the login page, their destination is defined as "home";
+             this "home" forward, like all global forwards, should be
+             either a controller URL or a jsp which does not require a controller  -->
+		<forward name="home" path="/expresso/main.jsp"/>
+		<forward name="default" path="/servlet/DefaultViewHandler"/>
+		<forward name="error" path="/expresso/jsp/showerror.jsp"/>
+		<forward name="xml" path="/servlet/XMLViewHandler"/>
+		<forward name="excel" path="/servlet/ExcelViewHandler"/>
+	</global-forwards>
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+		<action path="/Login" type="com.jcorporate.expresso.services.controller.SimpleLoginController" name="default" scope="request" validate="false">
+			<forward name="promptLogin" path="/expresso/jsp/register/login.jsp"/>
+			<forward name="processLogin" path="/expresso/jsp/register/redirect.jsp"/>
+			<forward name="processLogout" path="/expresso/jsp/register/logout.jsp"/>
+			<forward name="promptChangePassword" path="/expresso/jsp/register/change.jsp"/>
+			<forward name="processChangePassword" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="emailValidate" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="promptSendPassword" path="/expresso/jsp/register/sendPassword.jsp"/>
+			<forward name="processSendPassword" path="/expresso/jsp/register/status.jsp"/>
+		</action>
+		<action path="/EditUserPreference" type="com.jcorporate.expresso.services.controller.EditUserPreference" name="default" scope="request" validate="false"/>
+		<action path="/RunSQL" type="com.jcorporate.expresso.ext.controller.RunSQL" name="default" scope="request" validate="false"/>
+		<action path="/Log" type="com.jcorporate.expresso.services.controller.Log"/>
+		<!-- Extended Registration -->
+		<action path="/Register" type="com.jcorporate.expresso.services.controller.SimpleRegistration" name="default" scope="request" validate="false">
+			<forward name="showDBMenu" path="/expresso/jsp/register/dbmenu.jsp"/>
+			<forward name="promptAddRecord" path="/expresso/jsp/register/regAdd.jsp"/>
+			<forward name="promptUpdateRecord" path="/expresso/jsp/register/regAdd.jsp"/>
+			<forward name="processAddRecord" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="promptSelfRegister" path="/expresso/jsp/register/register.jsp"/>
+			<forward name="processSelfRegister" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="emailValidate" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="promptApproval" path="/expresso/jsp/register/approve.jsp"/>
+			<forward name="processApproval" path="/expresso/jsp/register/status.jsp"/>
+			<forward name="sendPasswordValidate" path="/expresso/jsp/register/status.jsp"/>
+		</action>
+		<!-- Database Maintenance -->
+		<!-- There are two ways to customize DBMaint for your applications: change the mappings -->
+		<!-- for the states as listed below to change *all* DBMaint views, or create a new mapping -->
+		<!-- (e.g. DBMaintCustomer) for your particular DB objects and specify custom views for just -->
+		<!-- that one object. -->
+		<action path="/DBMaint" type="com.jcorporate.expresso.services.controller.DBMaint" name="default" scope="request" validate="false">
+			<forward name="Update" path="/expresso/jsp/dbmaint/update.jsp"/>
+			<forward name="UpdateUpdate" path="/expresso/jsp/dbmaint/confirm.jsp"/>
+			<forward name="Search" path="/expresso/jsp/dbmaint/search.jsp"/>
+			<forward name="SearchList" path="/expresso/jsp/dbmaint/list.jsp"/>
+			<forward name="List" path="/expresso/jsp/dbmaint/list.jsp"/>
+			<forward name="Add" path="/expresso/jsp/dbmaint/add.jsp"/>
+			<forward name="AddUpdate" path="/expresso/jsp/dbmaint/confirm.jsp"/>
+			<forward name="UpdateDelete" path="/expresso/jsp/dbmaint/confirm.jsp"/>
+		</action>
+		<!-- Queue any Job -->
+		<action path="/QueueJob" type="com.jcorporate.expresso.services.controller.QueueJob" scope="request" validate="false"/>
+		<!-- Administer Database Object Security -->
+		<action path="/DBSecurityMatrix" type="com.jcorporate.expresso.services.controller.DBSecurityMatrix" scope="request" validate="false"/>
+		<!-- Import and Export DBObjects to XML -->
+		<action path="/XMLController" type="com.jcorporate.expresso.ext.xml.controller.XMLController" scope="request" validate="false"/>
+		<!-- Navigate an Application -->
+		<action path="/Navigation" type="com.jcorporate.expresso.services.controller.Navigation" scope="request" validate="false"/>
+		<!-- Run Unit Tests -->
+		<action path="/TestController" type="com.jcorporate.expresso.ext.controller.TestController" name="default" scope="request" validate="false"/>
+		<!-- Administer Cache Manager -->
+		<action path="/CacheControl" type="com.jcorporate.expresso.services.controller.CacheControl" scope="request" validate="false"/>
+		<!-- Data Transfer -->
+		<action path="/DataTransfer" type="com.jcorporate.expresso.ext.controller.DataTransfer" scope="request" validate="false"/>
+		<!-- Run Performance Tests -->
+		<action path="/RunTests" type="com.jcorporate.expresso.ext.controller.RunTests" scope="request" validate="false"/>
+		<!-- HealthCheck -->
+		<action path="/HealthCheck" type="com.jcorporate.expresso.ext.controller.HealthCheck" scope="request" validate="false"/>
+		<!-- Controller Security Matrix -->
+		<action path="/ControllerSecurityMatrix" type="com.jcorporate.expresso.services.controller.ControllerSecurityMatrix" scope="request" validate="false"/>
+		<!-- Job Security Matrix -->
+		<action path="/JobSecurityMatrix" type="com.jcorporate.expresso.services.controller.JobSecurityMatrix" scope="request" validate="false"/>
+		<!-- Status display -->
+		<action path="/Status" type="com.jcorporate.expresso.services.controller.Status" scope="request" validate="false">
+			<forward name="show" path="/expresso/jsp/status.jsp"/>
+			<forward name="showPackages" path="/expresso/jsp/packages.jsp"/>
+		</action>
+		<!-- Download -->
+		<action path="/Download" type="com.jcorporate.expresso.ext.controller.Download" name="default" scope="request" validate="false">
+			<forward name="list" path="/expresso/jsp/download.jsp"/>
+			<forward name="begin" path="/expresso/jsp/downloadBegin.jsp"/>
+			<forward name="restricted" path="/expresso/jsp/downloadRestricted.jsp"/>
+			<forward name="viewNotes" path="/expresso/jsp/downloadNotes.jsp"/>
+		</action>
+		<action path="/Validate" type="com.jcorporate.expresso.services.controller.ValidationController" name="default" scope="request" validate="false"/>
+		<action path="/Upload" type="com.jcorporate.expresso.ext.controller.Upload" name="default" scope="request" validate="false"/>
+		<action path="/ServeText" type="com.jcorporate.expresso.ext.controller.ServeTextFile" name="default" scope="request" validate="false"/>
+		<action path="/ComponentManager" type="com.jcorporate.expresso.ext.controller.ComponentManager" name="default" scope="request" validate="false">
+			<forward name="list" path="/expresso/jsp/componentManager/list.jsp"/>
+			<forward name="promptAdd" path="/expresso/jsp/componentManager/promptAdd.jsp"/>
+			<forward name="processAdd" path="/expresso/jsp/componentManager/processAdd.jsp"/>
+			<forward name="componentDetails" path="/expresso/jsp/componentManager/componentDetails.jsp"/>
+			<forward name="promptDelete" path="/expresso/jsp/componentManager/promptDelete.jsp"/>
+			<forward name="processDelete" path="/expresso/jsp/componentManager/processDelete.jsp"/>
+		</action>
+		<action path="/ExpressoReport" type="com.jcorporate.expresso.ext.controller.ReportServer" name="default" scope="request" validate="false"/>
+		<action path="/CreateWizard" type="com.jcorporate.expresso.services.controller.configuration.CreateSettingsWizard" name="createWizard" scope="session" validate="false">
+			<forward name="start" path="/expresso/jsp/configuration/createsettings/start.jsp"/>
+			<forward name="runtimeName" path="/expresso/jsp/configuration/createsettings/runtimeName.jsp"/>
+			<forward name="promptDBSettings" path="/expresso/jsp/configuration/createsettings/dbSettings.jsp"/>
+			<forward name="promptJNDISettings" path="/expresso/jsp/configuration/createsettings/jndiSettings.jsp"/>
+			<forward name="promptTestSettings" path="/expresso/jsp/configuration/createsettings/testSettings.jsp"/>
+			<forward name="promptInstallExpresso" path="/expresso/jsp/configuration/createsettings/installExpresso.jsp"/>
+			<forward name="promptFinished" path="/expresso/jsp/configuration/createsettings/deliveryMethod.jsp"/>
+		</action>
+		<action path="/ConfigManager" type="com.jcorporate.expresso.services.controller.Configuration" name="default" scope="request" validate="false"/>
+		<action path="/UpgradeWizard" type="com.jcorporate.expresso.services.controller.configuration.UpgradeSettingsWizard" name="default" scope="request" validate="false"/>
+		<action path="/CronManager" type="com.jcorporate.expresso.services.controller.CronController" name="default" scope="request" validate="false">
+		<forward name="list" path="/expresso/jsp/cronManager/list.jsp"/>
+		<forward name="delete" path="/expresso/jsp/cronManager/delete.jsp"/>
+		<forward name="edit" path="/expresso/jsp/cronManager/edit.jsp"/>
+		<forward name="editUpdate" path="/expresso/jsp/cronManager/editUpdate.jsp"/>
+</action>
+	</action-mappings>
+	<!-- Need to force to Expresso Request Processor -->
+	<controller contentType="text/html;charset=UTF-8" debug="3" locale="true" nocache="true" processorClass="com.jcorporate.expresso.core.controller.ExpressoRequestProcessor"/>
+	<!-- Application message resources -->
+	<message-resources null="false" parameter="com.jcorporate.expresso.core.MessagesBundle"/>
+	<!-- Need to force to Expresso Plug-in -->
+	<plug-in className="com.jcorporate.expresso.core.controller.ExpressoPlugin"/>
+</struts-config>

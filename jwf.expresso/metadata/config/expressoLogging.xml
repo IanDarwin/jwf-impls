@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!--The program overrides these inputs and sets ExpressoLog to do the following:
+		class="org.apache.log4j.FileAppender
+		log location: specified in the default.properties file
+		
+		You CAN specify the layout here 
+	-->
+	<appender name="expressoLog" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${expresso.logDir}/expresso.log"/>
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%l) - %m\n"/>
+			<!-- <param name="ConversionPattern"
+		          value="%d %-5p %C{2} (%l) - %m\n"/> -->
+		</layout>
+	</appender>
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.Out"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m\n"/>
+		</layout>
+	</appender>
+	<appender name="dbLog" class="com.jcorporate.expresso.core.logging.DBAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%t] %C{3} (%F:%L) - %m"/>
+		</layout>
+	</appender>
+	<!-- TODO: This will be the Expresso Session Appender -->
+	<appender name="httpSessionLog" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${expresso.logDir}/session.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m\n"/>
+		</layout>
+	</appender>
+	<!--
+        The root configuration for all expresso errors.  Disable this category
+        to remove ALL expresso logging information -->
+	<category name="com.jcorporate.expresso" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="expressoLog"/>
+		<appender-ref ref="console"/>
+	</category>
+	<!--
+        The configuration category for all messages coming out of the expresso
+        core packages.  -->
+	<category name="com.jcorporate.expresso.core" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="expressoLog"/>
+		<appender-ref ref="console"/>
+	</category>
+	<!-- Security Related Log Categories.  To keep security as high as possible,
+        the priority shouldn't be set to anything lower than info -->
+	<category name="com.jcorporate.expresso.core.security">
+		<priority value="info"/>
+	</category>
+	<category name="com.jcorporate.expresso.core.security.Administrative">
+		<priority value="info"/>
+		<appender-ref ref="expressoLog"/>
+	</category>
+	<!-- Database related log information -->
+	<category name="com.jcorporate.expresso.core.db"/>
+	<category name="com.jcorporate.expresso.core.db.SQL">
+		<!-- turn value="debug" will trace each and every SQL statement
+            issued to the database -->
+	</category>
+	<category name="com.jcorporate.expresso.core.dbobj"/>
+	<category name="com.jcorporate.expresso.core.dbobj.DBObject">
+		<priority value="warn"/>
+	</category>
+	<!-- Cache Information -->
+	<category name="com.jcorporate.expresso.core.cache"/>
+	<category name="com.jcorporate.expresso.core.job"/>
+	<category name="com.jcorporate.expresso.core.jsdkapi"/>
+	<!-- EMailSender/EMailAuthenticator Information -->
+	<category name="com.jcorporate.expresso.core.misc.EMailSender">
+		<priority value="info"/>
+	</category>
+	<!-- Servlet Debugging -->
+	<category name="com.jcorporate.expresso.core.servlet.ControllerServlet"/>
+	<category name="com.jcorporate.expresso.core.servlet"/>
+	<!-- The configuration category for all messages coming out of the expresso
+        core packages.  -->
+	<category name="com.jcorporate.expresso.services" additivity="false">
+		<appender-ref ref="console"/>
+		<appender-ref ref="expressoLog"/>
+	</category>
+	<category name="com.jcorporate.expresso.services.validation" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="console"/>
+		<appender-ref ref="expressoLog"/>
+	</category>
+	<category name="com.jcorporate.expresso.services.job.ValidationJob" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="console"/>
+		<appender-ref ref="expressoLog"/>
+	</category>
+	<category name="com.jcorporate.expresso.services.controller.Validate" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="console"/>
+		<appender-ref ref="expressoLog"/>
+	</category>
+	<category name="com.jcorporate.expresso.services.controller"/>
+	<category name="com.jcorporate.expresso.core.controller"/>
+	<category name="com.jcorporate.expresso.core.i18n"/>
+	<category name="com.jcorporate.expresso.ext"/>
+	<category name="com.jcorporate.expresso.ext.taglib"/>
+	<category name="com.jcorporate.expresso.ext.controller"/>
+	<category name="com.jcorporate.expresso.ext.xml"/>
+	<category name="com.jcorporate.expresso.ext.servlet"/>
+	<category name="com.jcorporate.expresso.core.utility">
+		<priority value="warn"/>
+	</category>
+	<!-- the one and only root category -->
+	<root>
+		<priority value="warn"/>
+		<appender-ref ref="console"/>
+	</root>
+</log4j:configuration>

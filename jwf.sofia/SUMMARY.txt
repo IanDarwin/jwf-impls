@@ -1,0 +1,27 @@
+SOFIA is one of the best of the frameworks I have examined in detail.
+
+Many good points...
+
+	...
+
+A few minor problems:
+
+	error handling uneven.
+
+	Caches View in session, and Tomcat has persistent sessions,
+	so must quit browser to recompile JSP.
+
+	not completely self-contained; requires a 'salmonprops' directory
+	(typically outside the web-app) that MUST be specified by abs location
+	in -D when starting the app server.
+
+		Should be better to have a per-WEB-INF properties file.
+		The files exist but currently MUST be coded in 
+		SALMONPROPS dir, NOT in WEB-INF, leading to nuisance
+		of hard-coding paths.
+
+		Similarly, must put salmon.jar file into server, e.g.,
+		TOMCAT_HOME/common/lib instead of per-webapp.
+
+	Uses these properties to hard-code fonts & colors rather than
+	using them to generate a CSS.

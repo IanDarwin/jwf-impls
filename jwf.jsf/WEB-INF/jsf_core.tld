@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!--
+ Copyright 2003 Sun Microsystems, Inc. All rights reserved.
+ SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+-->
+
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+
+<taglib>
+
+  <!-- ============== Tag Library Description Elements ============= -->
+
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>JavaServerFaces Framework Tag Library</short-name>
+  <uri>http://java.sun.com/jsf/core</uri>
+  <description>All JSF implementations must provide a tag library containing
+  core actions that are independent of a particular RenderKit.</description>
+
+
+  <!-- ============== Tag Library Validator ============= -->
+
+  <!-- This TLV verifies that a Faces tag has an ID if it is a 
+       child or sibling of a JSTL conditional or iterator tag  -->
+  <validator>
+    <validator-class>
+      com.sun.faces.taglib.jsf_core.CoreValidator
+    </validator-class>
+  </validator>
+
+  <!-- ============== Configuration Listener ============== -->
+
+  <!-- This ServletContextListener causes Faces configuration parsing
+       to occur.                                                     -->
+  <listener>
+    <listener-class>com.sun.faces.config.ConfigListener</listener-class>
+  </listener>
+
+   <tag>
+      <name>attribute</name>
+      <tag-class>javax.faces.webapp.AttributeTag</tag-class>
+      <body-content>JSP</body-content>
+      <attribute>
+	<name>name</name>
+	<required>true</required>
+	<rtexprvalue>false</rtexprvalue>
+      </attribute>
+      <attribute>
+	<name>value</name>
+	<required>true</required>
+	<rtexprvalue>false</rtexprvalue>
+      </attribute>
+   </tag>
+
+  <tag>
+      <name>parameter</name>
+      <tag-class>com.sun.faces.taglib.jsf_core.ParameterTag</tag-class>
+      <body-content>JSP</body-content>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>valueRef</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>use_faces</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.UseFacesTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+
+  <tag>
+    <name>validate_doublerange</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.ValidateDoubleRangeTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>maximum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>minimum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>validate_length</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.ValidateLengthTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>maximum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>minimum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>validate_longrange</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.ValidateLongRangeTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>maximum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>minimum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>validate_required</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.ValidateRequiredTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+
+  <tag>
+    <name>validate_stringrange</name>
+    <tag-class>com.sun.faces.taglib.jsf_core.ValidateStringRangeTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>maximum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>minimum</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>validator</name>
+    <tag-class>javax.faces.webapp.ValidatorTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>facet</name>
+    <tag-class>javax.faces.webapp.FacetTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+      <name>valuechanged_listener</name>
+      <tag-class>com.sun.faces.taglib.jsf_core.ValueChangedListenerTag</tag-class>
+      <body-content>JSP</body-content>
+      <attribute>
+          <name>type</name>
+          <required>true</required>
+          <rtexprvalue>false</rtexprvalue>
+      </attribute>
+  </tag>
+
+  <tag>
+      <name>action_listener</name>
+      <tag-class>com.sun.faces.taglib.jsf_core.ActionListenerTag</tag-class>
+      <body-content>JSP</body-content>
+      <attribute>
+          <name>type</name>
+          <required>true</required>
+          <rtexprvalue>false</rtexprvalue>
+      </attribute>
+  </tag>
+
+
+</taglib>

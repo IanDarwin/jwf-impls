@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE faces-config PUBLIC
+	"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+	"http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+<faces-config>
+
+	<navigation-rule>
+		<from-tree-id>/form.jsp</from-tree-id>
+		<navigation-case>
+			<from-outcome>signup</from-outcome>
+			<to-tree-id>/thankyou.jsp</to-tree-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean> 
+		<managed-bean-name>PersonBean</managed-bean-name> 
+		<managed-bean-class>beans.Person</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope> 
+	</managed-bean> 
+</faces-config>

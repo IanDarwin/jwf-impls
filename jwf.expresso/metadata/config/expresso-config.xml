@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE expresso-config PUBLIC "-//Jcorporate Ltd//DTD Expresso Configuration 4.0//EN"
+          "http://www.jcorporate.com/dtds/expresso-config_4_0.dtd">
+<expresso-config>
+	<logDirectory>%web-app%WEB-INF/log</logDirectory>
+	<strongCrypto>n</strongCrypto>
+	<servletAPI>2_3</servletAPI>
+	<cryptoKey>Sample Test Key - Change for serious deployment</cryptoKey>
+	<encryptMode>AES</encryptMode>
+	<class-handlers>
+		<class-handler name="userInfo" classHandler="com.jcorporate.expresso.services.dbobj.DefaultUserInfo"/>
+		<class-handler name="orderedCache" classHandler="com.jcorporate.expresso.core.cache.OrderedCache"/>
+		<class-handler name="unorderedCache" classHandler="com.jcorporate.expresso.core.cache.UnOrderedCache"/>
+		<class-handler name="registration" classHandler="com.jcorporate.expresso.services.controller.SimpleRegistration"/>
+		<class-handler name="login" classHandler="com.jcorporate.expresso.services.controller.SimpleLoginController"/>
+		<!-- Others are:
+		<class-handler name="nextNumber" classHandler="com.centercomp.clustering.ClusterNextNumber"/>
+		<class-handler name="cacheSynchronizer" classHandler="com.centercomp.clustering.ClusteredCacheSync"/>
+		-->
+	</class-handlers>
+	<context name="default">
+		<description>Hypersonic Database</description>
+		<jdbc driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:%web-app%WEB-INF/db/default/default" connectFormat="3" login="sa" password="" cache="y" createTableIndicies="true" limitationPosition="" escapeHandler="com.jcorporate.expresso.core.db.DoubleQuoteEscapeHandler"/>
+		<type-mapping>
+			<java-type>LONGVARCHAR</java-type>
+			<db-type>LONGVARCHAR</db-type>
+		</type-mapping>
+		<images>%context%/%expresso-dir%/images</images>
+		<startJobHandler>y</startJobHandler>
+		<showStackTrace>y</showStackTrace>
+		<mailDebug>n</mailDebug>
+	</context>
+</expresso-config>
