@@ -39,7 +39,6 @@
             <param-name>PAGE_FACTORY_CLASS</param-name>
             <param-value>freemarker</param-value>
         </init-param>
-	<!--
         <init-param>
             <param-name>RECORD_METADATA</param-name>
             <param-value>recorddefs.xml</param-value>
@@ -48,7 +47,6 @@
             <param-name>DATA_SOURCES</param-name>
             <param-value>datasources.xml</param-value>
         </init-param>
-	-->
     </servlet>
 
 	<!-- Struts -->
