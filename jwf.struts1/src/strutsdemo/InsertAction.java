@@ -48,8 +48,7 @@ public class InsertAction extends Action {
 				fields.append(errs.get(i));
 			}
 			errors.add(ActionErrors.GLOBAL_ERROR,
-				// XXX get this string from the global resources...
-				new ActionError("Fields need attention: " + fields));
+				new ActionError("error.fields.attention", fields));
 			saveErrors(request, errors);
 			return new ActionForward(mapping.getInput());
 		}
@@ -59,7 +58,7 @@ public class InsertAction extends Action {
 			new PersonDAO().insert(person);
 		} catch (Exception ex) {
 			errors.add(ActionErrors.GLOBAL_ERROR,
-                new ActionError("Database problem: " + ex));
+                new ActionError("error.database.problem", ex.toString()));
 			saveErrors(request, errors);
             return new ActionForward(mapping.getInput());
 		}
