@@ -1,0 +1,23 @@
+<form-validation>
+	<global/>
+	<formset>
+		<form name="addPersonDynaForm">
+			<field  property="firstName" depends="required">
+				<arg0 key='field.firstname'/>
+			</field>
+			<field  property="lastName" depends="required">
+				<arg0 key='field.lastname'/>
+			</field>
+			<field  property="email" depends="required,email">
+				<arg0 key='field.email'/>
+			</field>
+			<field  property="country" depends="required,mask">
+				<arg0 key='field.country'/>
+				<var><var-name>mask</var-name>
+					<var-value>^[^-]</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+</form-validation>
+

@@ -1,0 +1,52 @@
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+	"http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"> 
+
+<!-- Struts Config for the JavaWebFrameworks catalog. -->
+
+<!--
+ *** The top-level ordering imposed by the DTD.
+<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, 
+	global-forwards?, action-mappings?, controller?, 
+	message-resources*, plug-in*)>
+ -->
+
+<struts-config>
+
+	<form-beans>
+		<!-- For entering a new Framework into the Catalog -->
+		<form-bean name="addFrameworkDynaForm"
+			type="beans.Framework">
+		</form-bean>
+	</form-beans>
+
+	<global-forwards type="org.apache.struts.action.ActionForward">
+		<forward name="success" path="/struts/thankyou.jsp" redirect="false"/>
+		<forward name="insert.success" path="/thankyou.jsp" redirect="false"/>
+	</global-forwards>
+
+	<action-mappings>
+
+		<!-- the mapping for inserting a new Framework in the catalog -->
+		<action path="/editing/insert"
+			input="/editing/addframework.jsp"
+			name="addFrameworkDynaForm"
+			type="actions.InsertFrameworkAction"
+			scope="request"
+			validate="false">	<!-- until you hook in DynaValidator -->
+			<forward name="next" path="/listframeworks.do" redirect="false"/>
+		</action>
+		<!-- the mapping for listing the Frameworks in the catalog -->
+		<action path="/listframeworks"
+			name="addFrameworkDynaForm"
+			type="actions.ListFrameworksAction"
+			scope="request"
+			>
+			<forward name="next" path="/listframeworks.jsp" redirect="false"/>
+		</action>
+
+	</action-mappings>
+
+	<message-resources parameter="metadata.ApplicationResources"/>
+
+</struts-config>
