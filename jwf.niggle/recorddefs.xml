@@ -1,20 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE RECORDDEFS SYSTEM "classpath:/org/oreodata/metadata/recorddefs.dtd">
 <RECORDDEFS>
-	<RECORD TYPE="person" PRIMARY_KEY="id">
+	<RECORD TYPE="people" PRIMARY_KEY="id">
 		<FIELD NAME="id" CLASS="&NUMBER;">
 			<!-- Don't specify required here; database will provide -->
 			<PROPERTY KEY="TYPE" VALUE="INTEGER" />
 			<PROPERTY KEY="MINIMUM" VALUE="0" />
 		</FIELD>
-		<FIELD NAME="firstName" CLASS="&STRING;" REQUIRED="Y">
+		<FIELD NAME="firstname" CLASS="&STRING;" REQUIRED="Y">
 			<NORMALIZE TYPE="TRIM" />
 		</FIELD>
-		<FIELD NAME="lastName" CLASS="&STRING;" REQUIRED="Y">
+		<FIELD NAME="lastname" CLASS="&STRING;" REQUIRED="Y">
 			<NORMALIZE TYPE="TRIM" />
 		</FIELD>
 		<FIELD NAME="email" CLASS="&EMAIL;" REQUIRED="Y" />
-		<FIELD NAME="phone" CLASS="&STRING;" />
 		<FIELD NAME="address1" CLASS="&STRING;" />
 		<FIELD NAME="address2" CLASS="&STRING;" />
 		<FIELD NAME="city" CLASS="&STRING;" />
