@@ -9,7 +9,7 @@
 
 	<!-- Jars needed for compilation -->
 	<property name="salmon.jar" value="lib/salmon.jar"/>
-	<property name="servlet.jar" value="${user.home}/lib/servletapi.jar"/>
+	<property name="servlet.jar" value="${user.home}/lib/servlet-api.jar"/>
 
 	<!-- Settings for Ant-Tomcat Deployment -->
 	<property name="managerappURL" value="http://127.0.0.1/manager/"/>
