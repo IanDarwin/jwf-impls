@@ -11,14 +11,18 @@ import com.salmonllc.util.MessageLog;
 /**
  * This class is the SOFIA controller for the People list page.
  */
+/**
+ * name - purpose
+ * @version $Id$
+ */
 public class PersonListController extends JspController implements SubmitListener, PageListener {
 
     //Visual Components
     public com.salmonllc.html.HtmlSubmitButton _add;
     public com.salmonllc.html.HtmlSubmitButton _search;
     public com.salmonllc.html.HtmlTextEdit _eMail;
-    public com.salmonllc.html.HtmlTextEdit _firstname;
-    public com.salmonllc.html.HtmlTextEdit _lastname;
+    public com.salmonllc.html.HtmlTextEdit _firstName;
+    public com.salmonllc.html.HtmlTextEdit _lastName;
 	public com.salmonllc.html.HtmlTextEdit _address1;
 	public com.salmonllc.html.HtmlTextEdit _address2;
 	public com.salmonllc.html.HtmlTextEdit _city;
@@ -54,14 +58,13 @@ public class PersonListController extends JspController implements SubmitListene
 
     /**
      * This method seaches the database with whatever criteria were specified.
-     * If no criteria are specified it will try to retrieve all the contacts.
+     * If no criteria are specified it will try to retrieve all the entries.
      */
     private void search() {
         StringBuffer criteria = new StringBuffer();
         try {
-
-            addSearchCriteria(criteria, _firstname, PersonModel.PERSON_FIRSTNAME);
-			addSearchCriteria(criteria, _lastname, PersonModel.PERSON_LASTNAME);
+        		addSearchCriteria(criteria, _firstName, PersonModel.PERSON_FIRSTNAME);
+			addSearchCriteria(criteria, _lastName, PersonModel.PERSON_LASTNAME);
 			addSearchCriteria(criteria, _eMail, PersonModel.PERSON_EMAIL);
 			addSearchCriteria(criteria, _address1, PersonModel.PERSON_ADDRESS1);
 			addSearchCriteria(criteria, _address2, PersonModel.PERSON_ADDRESS2);
@@ -70,9 +73,10 @@ public class PersonListController extends JspController implements SubmitListene
 			addSearchCriteria(criteria, _postcode, PersonModel.PERSON_POSTCODE);
 			addSearchCriteria(criteria, _country, PersonModel.PERSON_COUNTRY);
  
-			// If nothing has been entered, pass null, else "retrieve" 
-			// generates incorrect SQL like
+			// If nothing has been entered, pass null criteria, else "retrieve" 
+			// will generate incorrect SQL like
 			// "SELECT bleah  FROM people  WHERE  ORDER BY people.lastname ASC"
+			System.out.println("Criteria = " + criteria);
             _jwf.retrieve(criteria.length() != 0 ? criteria.toString() : null);
             
         } catch (Exception e) {
@@ -80,18 +84,34 @@ public class PersonListController extends JspController implements SubmitListene
         }
     }
 
-    private void addSearchCriteria(StringBuffer criteria, 
-										   HtmlTextEdit field,
-										   String fieldName) {
-    	if (field == null) {
-    		return;
-    	}
+    /** Convenience routine for building up "criteria"
+     * @param criteria A constructed but possibly empty StringBuffer
+     * @param field  The HTML Text Field whose value is to be looked for.
+     * @param fieldName The class field for the corresponding db table.column.
+     */
+    void addSearchCriteria(StringBuffer criteria, 
+			   HtmlTextEdit field,
+			   String fieldName) {
+    	
+    		// This is a fatal error
+    		assert criteria != null : "BaseController.addSearchCriteria(): null StringBuffer";
+
+    		// This is a warning, since the search may not all be right, but can continue...
+    		if (field == null) {
+	    		System.err.println(
+	    			"BaseController.addSearchCriteria(): warning: null HtmlTextEdit for " +
+					fieldName);
+	    		return;
+	    	}
+    		
+    		// OK, get the user value.
+    		// XXX Do we need to sanitize this input, or does SOFIA use a PreparedStatment?
 		String test = field.getValue();
 		if (test != null && test.trim().length() != 0) {
-		    test = test.toUpperCase();
+		    test = test.trim().toLowerCase();
 			if (criteria.length() != 0)
 				 criteria.append(" or ");
-		    criteria.append("upper(").append(fieldName).append(") like '%" + test + "%'");
+		    criteria.append("lower(").append(fieldName).append(") like '%" + test + "%'");
 		}
 		return;
 	}
@@ -100,8 +120,8 @@ public class PersonListController extends JspController implements SubmitListene
      * This event will get fired each time a page is requested by the browser before any HTML is generated.
      */
     public void pageRequested(PageEvent p) throws Exception {
-        //check for a parameter, reload. If it is there, we want to reload all the rows in the list,
-        //but only if the request didn't come from this page.
+        // check for a parameter, reload. If it is there, we want to reload all the rows in the list,
+        // but only if the request didn't come from this page.
         if (!isReferredByCurrentPage()) {
             if (getParameter("reload") != null)
                 search();
