@@ -20,7 +20,7 @@
 
 <%
 		if (person.isValid()) {
-			new PersonDAO.insert(person);
+			new PersonDAO().insert(person);
  %>
 
 <h1>Thank you!</h1>
