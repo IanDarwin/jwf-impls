@@ -25,10 +25,13 @@ public class ServletOnly extends HttpServlet
 		try {
 			Context ctx = new InitialContext();
 
-			String dsn = "java:comp/env/jdbc/javawebframeworks";
+			String enc = "java:comp/env";
+			System.out.println("Looking up " + enc);
+			Context encContext = (Context)ctx.lookup(enc);
+			
+			String dsn = "jdbc/javawebframeworks";
 			System.out.println("Looking up " + dsn);
-			Object o = ctx.lookup(dsn);
-			ds = (javax.sql.DataSource)o;
+			ds = (javax.sql.DataSource)encContext.lookup(dsn);
 			System.out.println("DataSource is " + ds);
 
 			System.out.println("Getting connection ");
@@ -81,6 +84,13 @@ public class ServletOnly extends HttpServlet
 		String postcode = request.getParameter("postcode");
 		String country = request.getParameter("country");
 
+		if (st == null) {
+			out.println("<h1>Error</h1>");
+			out.println("Couldn't do that because, alas, this servlet's");
+			out.println("initialization failed to load the 'DataSource' that we need.");
+			out.println("Your valuable signup information was <b>not saved</b>.");
+			return;
+		}
 		int ret = 0;
 		try {
 
