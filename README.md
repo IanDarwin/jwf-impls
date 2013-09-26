@@ -14,7 +14,13 @@ that the coverage is very sporadic at best.
 Each jwf.* subdirectory is an Eclipse Project with one of the impls;
 the name should make it clear which framework is demonstrated.
 
+Do not expect consistency about the batch build system; some use Ant,
+some use Maven, maybe by the time you use this, some will use Gradle.
+Some probably have no build file.
+
 The jwf-datamodel is common code that some of the impls use, or should.
+Its Person class provides the quasi-canonical list of fields for
+the impls that don't use this standard Entity object.
 
 No claim is made that these are "best practices" versions;
 some are very old and could be updated!
