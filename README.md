@@ -21,6 +21,7 @@ Some probably have no build file.
 The jwf-datamodel is common code that some of the impls use, or should.
 Its Person class provides the quasi-canonical list of fields for
 the impls that don't use this standard Entity object.
+You should do "mvn install" in this subdirectory before anything else!
 
 No claim is made that these are "best practices" versions;
 some are very old and could be updated!
