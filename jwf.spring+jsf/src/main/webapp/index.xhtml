@@ -21,9 +21,17 @@
 					<h:inputText required="true" id="firstName" value="#{person.firstName}" />
 					<h:message for="firstName" errorStyle="color:red"/>
 
-					<h:outputText value="Last Name}"/>
+					<h:outputText value="Last Name"/>
 					<h:inputText required="true" id="lastName" value="#{person.lastName}" />
 					<h:message for="lastName"  errorStyle="color:red"/>
+
+					<h:outputText value="Address"/>
+					<h:inputText required="true" id="address" value="#{person.address}" />
+					<h:message for="address"  errorStyle="color:red"/>
+
+					<h:outputText value="City"/>
+					<h:inputText required="true" id="city" value="#{person.city}" />
+					<h:message for="city"  errorStyle="color:red"/>
 					
 					<h:outputText value=""/>
 					<h:commandButton id="submit"
