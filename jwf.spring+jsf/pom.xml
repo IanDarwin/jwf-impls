@@ -9,13 +9,20 @@
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>JSF-Spring Web Site</name>
-	<url>http://maven.apache.org</url>
+	<url>http://darwinsys.com/jwf/</url>
 
 	<properties>
 		<spring-version>3.2.4.RELEASE</spring-version>
 	</properties>
  
 	<dependencies>
+	
+		<!-- Our little data model -->
+		<dependency>
+			<groupId>com.darwinsys</groupId>
+			<artifactId>jwf-datamodel</artifactId>
+			<version>1.0.1</version>
+		</dependency>
  
 		<!-- Spring framework -->
 		<dependency>

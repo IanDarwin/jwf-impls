@@ -8,6 +8,13 @@
  
 	<context:component-scan base-package="com.darwinsys" />
 
+	<!-- We do this one with XML since we don't want Spring-specific
+	 *** annotations in the datamodel classes.
+	 -->
+	<bean id="person" class="com.darwinsys.jwf.model.Person"/>
+	
+	<!-- These could be marked with @Component instead -->
 	<bean id="springBean" class="com.darwinsys.springjsf.SpringBean"/>
  
+ 	<bean id="personHandler" class="com.darwinsys.springjsf.PersonHandler"/>
 </beans>

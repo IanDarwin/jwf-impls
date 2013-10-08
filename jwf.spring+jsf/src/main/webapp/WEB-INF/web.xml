@@ -27,7 +27,7 @@
  
   <!-- Welcome page -->
   <welcome-file-list>
-    <welcome-file>default.jsf</welcome-file>
+    <welcome-file>index.jsf</welcome-file>
   </welcome-file-list>
  
   <!-- JSF Mapping -->

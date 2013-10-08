@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      >
- 
-    <h:body>
- 
-    	<h1>Spring/JSF Demo</h1>
- 
- 	#{springBean.getMessage()}
- 
-    </h:body>
- 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+	<body>
+
+   		<ui:composition template="/templates/standard.xhtml">
+
+			<ui:define name="pageTitle">Spring/JSF Demo</ui:define>
+  
+			<ui:define name="pageHeader">#{springBean.getMessage()}</ui:define>
+
+			<ui:define name="body">
+				<h:messages globalOnly='true' showSummary="true" showDetail="false" style="color: red; font-weight: bold;"/>
+				<h:form id="signupForm">
+					<h:panelGrid columns='3'>
+
+					<h:outputText value="First Name"/>
+					<h:inputText required="true" id="firstName" value="#{person.firstName}" />
+					<h:message for="firstName" errorStyle="color:red"/>
+
+					<h:outputText value="Last Name}"/>
+					<h:inputText required="true" id="lastName" value="#{person.lastName}" />
+					<h:message for="lastName"  errorStyle="color:red"/>
+					
+					<h:outputText value=""/>
+					<h:commandButton id="submit"
+						action="#{personHandler.savePerson}" 
+						value="Save" />
+					</h:panelGrid>
+				</h:form>
+				
+			</ui:define>
+		</ui:composition>
+	</body>
 </html>
