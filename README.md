@@ -27,6 +27,10 @@ No claim is made that these are "best practices" versions;
 some are very old and could be updated! Caveat hactor: beware
 of bit rot, defunct frameworks, etc.
 
+Some of the projects that are still useful should be re-organized
+to not have everything in the root folder; proper Maven/Gradle build
+structure, dependencies, etc.
+
 Please contribute fixes, improvements, your own implementations, etc.
 As with any public GitHub project, clone it, hack, send a pull request.
 
