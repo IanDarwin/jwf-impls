@@ -5,10 +5,10 @@
  
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.darwinsys</groupId>
-	<artifactId>spring-jsf</artifactId>
+	<artifactId>springmvc</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>JSF-Spring Web Site</name>
+	<name>SpringMVC Web Site</name>
 	<url>http://darwinsys.com/jwf/</url>
 
 	<properties>
@@ -48,12 +48,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>
- 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
 		</dependency>
  
 	</dependencies>
