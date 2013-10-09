@@ -16,7 +16,7 @@ import com.darwinsys.jwf.model.Person;
  * $Id: PersonDAO.java,v 1.3 2003/07/07 01:32:45 ian Exp $
  */
 
-public class PersonDAO {
+public class PersonDaoJdbc implements PersonDao {
 
 	private DataSource ds;
 	
