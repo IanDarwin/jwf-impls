@@ -1,26 +1,14 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE web-app PUBLIC
-  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-  "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	id="WebApp_ID" version="2.5">
 
-<!-- Ian's handy summary (courtesy of the XML parser :-) )
- The content of element type "web-app" must match "(icon?,
- display-name?, description?, distributable?, context-param*,
- filter*, filter-mapping*, listener*, servlet*, servlet-mapping*,
- session-config?, mime-mapping*, welcome-file-list?, error-page*,
- taglib*, resource-env-ref*, resource-ref*, security-constraint*,
- login-config?, security-role*, env-entry*, ejb-ref*, ejb-local-ref*)".
- -->
-
-<web-app>
     <display-name>JavaWebFrameworks JSF Implementation</display-name>
     <description>JavaWebFrameworks JSF Implementation</description>
-
-    <context-param>
-        <param-name>com.sun.faces.validateXml</param-name>
-        <param-value>false</param-value>
-    </context-param>
 
     <!-- Faces Servlet -->
     <servlet>
@@ -32,18 +20,7 @@
     <!-- Faces Servlet Mapping -->
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.face</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
-
-  <taglib>
-    <taglib-uri>http://java.sun.com/jsf/core</taglib-uri>
-    <taglib-location>jsf_core.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>http://java.sun.com/jsf/html</taglib-uri>
-    <taglib-location>html_basic.tld</taglib-location>
-  </taglib>
-
 
 </web-app>
