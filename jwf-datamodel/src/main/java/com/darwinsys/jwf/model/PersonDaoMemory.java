@@ -11,7 +11,7 @@ public class PersonDaoMemory implements PersonDao {
     
     List<Person> frontingStore = new ArrayList<Person>(100);
     
-    public PersonDao() {
+    public PersonDaoMemory() {
         // empty
     }
     
