@@ -2,26 +2,19 @@ package jwfdemo;
 
 import javax.naming.NamingException;
 
-import beans.Person;
-import beans.PersonDAO;
+import com.darwinsys.jwf.model.*;
 
 /**
  * JSFDemoActionHandler - copy the beans' data into the database
- * @version $Id$
  */
 public class SaveHandler {
 
 	private Person thePerson;
 	
-	private PersonDAO dao;
+	private PersonDao dao;
 	
 	public SaveHandler() {
-		try {
-			dao = new PersonDAO();
-		} catch (NamingException e) {
-			System.out.println("SaveHandler.SaveHandler(): caught " + e);
-			throw new RuntimeException(e.toString());
-		}
+		dao = new PersonDaoMemory();
 	}
 	
 	public void setPerson(Person p) {
@@ -31,7 +24,7 @@ public class SaveHandler {
 	
 	public String doSave() {
 		System.out.println("SaveHandler.doSave()");
-		//write it using PersonDAO
+		//write it using PersonDao
 		dao.insert(thePerson);
 		return "signup";
 	}
