@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.darwinsys.jwf.model.Person;
+import com.darwinsys.jwf.model.PersonDao;
 
 /* Data Accessor for "Person" in the JavaWebFraemwork.
  * @author Ian F. Darwin
@@ -25,7 +26,7 @@ public class PersonDaoJdbc implements PersonDao {
 			"city, province, postcode, country";
 
 	/** Constructor - just lookup DataSource */
-	public PersonDAO() throws NamingException {
+	public PersonDaoJdbc() throws NamingException {
 		Context ctx = new InitialContext();
 
 		String dsn = "java:comp/env/jdbc/javawebframeworks";
@@ -36,6 +37,7 @@ public class PersonDaoJdbc implements PersonDao {
 	}
 
 	/** insert - insert a Person object into the database. */
+	@Override
 	public boolean insert(Person person) {
 		try {
 			Connection con = ds.getConnection();
@@ -46,10 +48,6 @@ public class PersonDaoJdbc implements PersonDao {
 				"insert into people (" + fields + ")" +
 				"values(?,?,?,?,?,?,?,?,?)");
 
-			if (!person.isValid()) {
-				throw new IllegalArgumentException(
-					person.getErrors().toString());
-			}
 
 			int ret = 0, i = 1;
 
@@ -60,7 +58,7 @@ public class PersonDaoJdbc implements PersonDao {
 			st.setString(i++, person.getAddress2());
 			st.setString(i++, person.getCity());
 			st.setString(i++, person.getProvince());
-			st.setString(i++, person.getPostcode());
+			st.setString(i++, person.getPostCode());
 			st.setString(i++, person.getCountry());
 
 			ret = st.executeUpdate();
@@ -76,6 +74,7 @@ public class PersonDaoJdbc implements PersonDao {
 		}
 	}
 
+	@Override
 	public List findAll() {
 		List all = new ArrayList();
 		try {
@@ -101,7 +100,7 @@ public class PersonDaoJdbc implements PersonDao {
 		p.setAddress2(rs.getString("Address2"));
 		p.setCity(rs.getString("city"));
 		p.setProvince(rs.getString("province"));
-		p.setPostcode(rs.getString("postcode"));
+		p.setPostCode(rs.getString("postcode"));
 		p.setCountry(rs.getString("Country"));
 		return p;
 	}
