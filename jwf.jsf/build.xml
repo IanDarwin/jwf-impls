@@ -5,10 +5,11 @@
   </target>
 
   <property file="build.properties"/>               <!-- Component local   -->
-  <property name="build"   value="${basedir}/build" />
+
+  <property name="build" value="build" />
+  <property name="src"   value="src/main/java" />
 
   <!-- Required jars for making this self-contained -->
-  <property name="servletapi.jar" value="../lib/servletapi.jar"/>
   <property name="jsf-api.jar" value="lib/jsf-api.jar"/>
   <property name="jsf-ri.jar" value="lib/jsf-ri.jar"/>
   <property name="jstl.jar" value="lib/jstl.jar"/>
@@ -18,7 +19,6 @@
     <pathelement location="${jsf-ri.jar}"/>
     <pathelement location="${jstl.jar}"/>
     <pathelement location="${build}/WEB-INF/classes"/>
-    <pathelement location="${servletapi.jar}"/>
   </path>
 
   <target name="clean" >
@@ -40,7 +40,7 @@
   </target>
  
   <target name="build" depends="copyJars">
-    <javac srcdir="src" destdir="${build}/${example}/WEB-INF/classes">
+    <javac srcdir="${src}" destdir="${build}/${example}/WEB-INF/classes">
     	<include name="**/*.java" />
      <classpath refid="project.classpath"/>
     </javac>
