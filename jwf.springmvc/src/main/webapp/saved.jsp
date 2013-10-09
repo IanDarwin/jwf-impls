@@ -9,6 +9,6 @@
 <html>
 
 	<body>
-		Welcome aboard #{person.name}!
+		Welcome aboard ${person.name}!
 	</body>
 </html>

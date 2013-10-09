@@ -19,30 +19,25 @@
 	</listener-class>
   </listener>
  
-  <!-- Change to "Production" when you are ready to deploy -->
-  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-  </context-param>
- 
   <!-- Welcome page -->
   <welcome-file-list>
-    <welcome-file>index.jsf</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
  
-  <!-- JSF Mapping -->
   <servlet>
-    <servlet-name>facesServlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>
+        org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </init-param>
   </servlet>
+
   <servlet-mapping>
-    <servlet-name>facesServlet</servlet-name>
-    <url-pattern>*.jsf</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>facesServlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
  
 </web-app>

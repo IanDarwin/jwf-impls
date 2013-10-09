@@ -12,13 +12,13 @@ import com.darwinsys.jwf.model.Person;
 import com.darwinsys.jwf.model.PersonDao;
 
 @Controller
-@RequestMapping(value="/person")
+@RequestMapping(value="signup")
 public class PersonHandler {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String setupForm(Model m) {
-			m.addAttribute("person", new Person());
-		return "form";
+		m.addAttribute("person", new Person());
+		return "form.jsp";
 	}
 	
 	@Resource
@@ -28,9 +28,9 @@ public class PersonHandler {
 	public String savePerson(@ModelAttribute Person person, Model m) {
 		System.out.println("PersonHandler.savePerson()");
 		
-		m.addAttribute("message", "Successfully saved person: " + person);
+		m.addAttribute("message", "Signup successful");
 		dao.insert(person);
 		
-		return "saved";
+		return "saved.jsp";
 	}
 }
