@@ -1,13 +1,17 @@
 package com.darwinsys.jwf.jdbc;
 
-import java.io.*;
-import java.sql.*;
-import javax.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import java.util.List;
-import java.util.ArrayList;
+import javax.sql.DataSource;
 
 import com.darwinsys.jwf.model.Person;
 import com.darwinsys.jwf.model.PersonDao;
@@ -19,28 +23,44 @@ import com.darwinsys.jwf.model.PersonDao;
 
 public class PersonDaoJdbc implements PersonDao {
 
-	private DataSource ds;
+	private DataSource dataSource;
 	
 	private static final String fields =
 		"firstName, lastName, email, address1, address2," +
 			"city, province, postcode, country";
+	public static final String JWF_DATASOURCE = "java:comp/env/jdbc/javawebframeworks";
+	
+	public PersonDaoJdbc() {
+		// empty
+	}
 
-	/** Constructor - just lookup DataSource */
-	public PersonDaoJdbc() throws NamingException {
-		Context ctx = new InitialContext();
+	public DataSource getDataSource() {
+		return dataSource;
+	}
 
-		String dsn = "java:comp/env/jdbc/javawebframeworks";
-		System.out.println("Looking up " + dsn);
-		Object o = ctx.lookup(dsn);
-		ds = (javax.sql.DataSource)o;
-		System.out.println("DataSource is " + ds);
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	public void setDataSource(String dsn) {
+		try {
+			Context ctx = new InitialContext();
+			System.out.println("Looking up " + dsn);
+			Object o = ctx.lookup(dsn);
+			setDataSource((javax.sql.DataSource)o);
+		} catch (NamingException e) {
+			throw new RuntimeException("Failed to lookup " + dsn, e);
+		}
 	}
 
 	/** insert - insert a Person object into the database. */
 	@Override
 	public boolean insert(Person person) {
+		if (dataSource == null) {
+			throw new NullPointerException("setDataSource() before insert()!");
+		}
 		try {
-			Connection con = ds.getConnection();
+			Connection con = dataSource.getConnection();
 
 			// Use a "throw-away" PreparedStatement - best practice - to
 			// avoid SQL insertion attacks common when string-concat used.
@@ -76,9 +96,12 @@ public class PersonDaoJdbc implements PersonDao {
 
 	@Override
 	public List findAll() {
+		if (dataSource == null) {
+			throw new NullPointerException("setDataSource() before findAll()!");
+		}
 		List all = new ArrayList();
 		try {
-			Connection c = ds.getConnection();
+			Connection c = dataSource.getConnection();
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(
 				"select " + fields + " from people");
