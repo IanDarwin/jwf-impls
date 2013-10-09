@@ -1,47 +1,18 @@
-<!DOCTYPE faces-config PUBLIC 
-	"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
-	"http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
-
-<faces-config>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+ 
 	<application>
-		<locale-config>
-		  <default-locale>en</default-locale>
-		</locale-config>
+		
 	</application>
-
-	<navigation-rule>
-		<from-view-id>/form.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>signup</from-outcome>
-			<to-view-id>/thankyou.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/thankyou.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/form.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 
 	<managed-bean> 
 		<managed-bean-name>PersonBean</managed-bean-name> 
-		<managed-bean-class>beans.Person</managed-bean-class>
+		<managed-bean-class>com.darwinsys.jwf.model.Person</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope> 
-		<managed-property>
-		  <property-name>firstName</property-name>
-		  <property-class>java.lang.String</property-class>
-		<value></value></managed-property>
-		<managed-property><property-name>lastName</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>email</property-name><property-class>java.lang.String</property-class><value>@</value></managed-property>
-		<managed-property><property-name>address1</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>address2</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>city</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>province</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>country</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
-		<managed-property><property-name>postcode</property-name><property-class>java.lang.String</property-class><value></value></managed-property>
 	</managed-bean> 
 	
 	<managed-bean> 
@@ -50,7 +21,7 @@
 		<managed-bean-scope>request</managed-bean-scope> 
 		<managed-property>
 		  <property-name>person</property-name>
-		  <property-class>beans.Person</property-class>
+		  <property-class>com.darwinsys.jwf.model.Person</property-class>
 		<value>#{PersonBean}</value>
 		</managed-property>
 	</managed-bean>

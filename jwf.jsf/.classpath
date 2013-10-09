@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jsf-api.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/beans.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jwf-datamodel"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

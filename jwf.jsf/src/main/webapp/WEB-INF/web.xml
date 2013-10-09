@@ -10,6 +10,17 @@
     <display-name>JavaWebFrameworks JSF Implementation</display-name>
     <description>JavaWebFrameworks JSF Implementation</description>
 
+  <!-- Change to "Production" when you are ready to deploy -->
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+ 
+  <!-- Welcome page -->
+  <welcome-file-list>
+    <welcome-file>index.jsf</welcome-file>
+  </welcome-file-list>
+
     <!-- Faces Servlet -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
