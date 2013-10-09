@@ -1,5 +1,8 @@
-package com.darwinsys.springjsf;
+package com.darwinsys.springmvc;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SpringBean {
 
 	public String getMessage() {
