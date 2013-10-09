@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 
 	<body>
 
-   		<head><title">Spring/JSF Demo</title>
-			<ui:define name="pageHeader">#{springBean.getMessage()}</ui:define>
+   		<head>
+			<title>${springBean.message}</title>
 		</head>
 		
 		<body>
