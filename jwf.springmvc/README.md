@@ -1,7 +1,7 @@
 SpringMVC
 =========
 
-This is a straightforward implementation using SpringMVC.
+This is a straightforward "hello form" sample implementation using SpringMVC.
 
 Builds with Eclipse (due to imbedded Spring Jars) and with Maven.
 
