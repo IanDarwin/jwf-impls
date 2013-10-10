@@ -6,8 +6,6 @@
       xmlns:pf="http://primefaces.org/ui"
       ui:template="/templates/standard.xhtml">
 
-	<body>
-
    		<ui:composition template="/templates/standard.xhtml">
 
 			<ui:define name="pageTitle">JSF/PrimeFaces/Validation Demo</ui:define>
@@ -51,7 +49,7 @@
 					
 					<h:outputText value="Country"/>
 					<h:selectOneMenu required="true" id="country" value="#{person.country}" >
-					<f:selectItem selected="true" itemLabel="--Choose your country--"/>
+					<f:selectItem selected="true" itemValue="" itemLabel="--Choose your country--"/>
 					<f:selectItem itemLabel="Canada" itemValue="ca"/>
 					<f:selectItem itemLabel="U.S.A." itemValue="us"/>
 					<f:selectItem itemLabel="U.K." itemValue="uk"/>
@@ -60,11 +58,11 @@
 					<h:outputText value=""/>
 					<pf:commandButton id="submit"
 						action="#{personHandler.savePerson}" 
-						value="Save" validateClient="true" ajax="false"/>
+						value="Save" validateClient="true" ajax="true"/>
 					</pf:panelGrid>
 				</h:form>
 				
 			</ui:define>
 		</ui:composition>
-	</body>
+
 </html>
