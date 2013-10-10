@@ -50,12 +50,12 @@
 					<h:message for="postCode"  errorStyle="color:red"/>
 					
 					<h:outputText value="Country"/>
-					<h:selectOneItem required="true" id="country" value="#{person.country}" >
-					<h:selectItem selected="true" value="Choose your country--"/>
-					<h:selectItem value="ca" value="Canada"/>
-					<h:selectItem value="us" value="U.S.A."/>
-					<h:selectItem value="uk" value="U.K."/>
-					</h:selectOneItem>
+					<h:selectOneMenu required="true" id="country" value="#{person.country}" >
+					<f:selectItem selected="true" itemLabel="--Choose your country--"/>
+					<f:selectItem itemLabel="Canada" itemValue="ca"/>
+					<f:selectItem itemLabel="U.S.A." itemValue="us"/>
+					<f:selectItem itemLabel="U.K." itemValue="uk"/>
+					</h:selectOneMenu>
 					
 					<h:outputText value=""/>
 					<h:commandButton id="submit"
