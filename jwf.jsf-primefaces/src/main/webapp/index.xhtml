@@ -18,39 +18,39 @@
 				<h:form id="signupForm">
 					<pf:panelGrid columns='3'>
 
-					<pf:outputText value="First Name"/>
+					<h:outputText value="First Name"/>
 					<pf:inputText required="true" id="firstName" value="#{person.firstName}" />
 					<h:message for="firstName" errorStyle="color:red"/>
 
-					<pf:outputText value="Last Name"/>
+					<h:outputText value="Last Name"/>
 					<pf:inputText required="true" id="lastName" value="#{person.lastName}" />
 					<h:message for="lastName"  errorStyle="color:red"/>
 
-					<pf:outputText value="Email"/>
+					<h:outputText value="Email"/>
 					<pf:inputText required="true" id="email" value="#{person.email}" />
 					<h:message for="email" errorStyle="color:red"/>
 					
-					<pf:outputText value="Address"/>
+					<h:outputText value="Address"/>
 					<pf:inputText required="true" id="address1" value="#{person.address1}" />
 					<h:message for="address1"  errorStyle="color:red"/>
 					
-					<pf:outputText value="Address line 2"/>
+					<h:outputText value="Address line 2"/>
 					<pf:inputText required="false" id="address2" value="#{person.address2}" />
 					<h:message for="address2"  errorStyle="color:red"/>
 
-					<pf:outputText value="City"/>
+					<h:outputText value="City"/>
 					<pf:inputText required="true" id="city" value="#{person.city}" />
 					<h:message for="city"  errorStyle="color:red"/>
 					
-					<pf:outputText value="Province"/>
+					<h:outputText value="Province"/>
 					<pf:inputText required="true" id="province" value="#{person.province}" />
 					<h:message for="province"  errorStyle="color:red"/>
 					
-					<pf:outputText value="Post Code"/>
+					<h:outputText value="Post Code"/>
 					<pf:inputText required="true" id="postCode" value="#{person.postCode}" />
 					<h:message for="postCode"  errorStyle="color:red"/>
 					
-					<pf:outputText value="Country"/>
+					<h:outputText value="Country"/>
 					<h:selectOneMenu required="true" id="country" value="#{person.country}" >
 					<f:selectItem selected="true" itemLabel="--Choose your country--"/>
 					<f:selectItem itemLabel="Canada" itemValue="ca"/>
@@ -58,8 +58,8 @@
 					<f:selectItem itemLabel="U.K." itemValue="uk"/>
 					</h:selectOneMenu>
 					
-					<pf:outputText value=""/>
-					<h:commandButton id="submit"
+					<h:outputText value=""/>
+					<pf:commandButton id="submit"
 						action="#{personHandler.savePerson}" 
 						value="Save" />
 					</pf:panelGrid>
