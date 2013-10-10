@@ -17,35 +17,35 @@
 
 					<h:outputText value="First Name"/>
 					<pf:inputText required="true" id="firstName" value="#{person.firstName}" />
-					<h:message for="firstName" errorStyle="color:red"/>
+					<pf:message for="firstName" errorStyle="color:red"/>
 
 					<h:outputText value="Last Name"/>
 					<pf:inputText required="true" id="lastName" value="#{person.lastName}" />
-					<h:message for="lastName"  errorStyle="color:red"/>
+					<pf:message for="lastName"  errorStyle="color:red"/>
 
 					<h:outputText value="Email"/>
 					<pf:inputText required="true" id="email" value="#{person.email}" />
-					<h:message for="email" errorStyle="color:red"/>
+					<pf:message for="email" errorStyle="color:red"/>
 					
 					<h:outputText value="Address"/>
 					<pf:inputText required="true" id="address1" value="#{person.address1}" />
-					<h:message for="address1"  errorStyle="color:red"/>
+					<pf:message for="address1"  errorStyle="color:red"/>
 					
 					<h:outputText value="Address line 2"/>
 					<pf:inputText required="false" id="address2" value="#{person.address2}" />
-					<h:message for="address2"  errorStyle="color:red"/>
+					<pf:message for="address2"  errorStyle="color:red"/>
 
 					<h:outputText value="City"/>
 					<pf:inputText required="true" id="city" value="#{person.city}" />
-					<h:message for="city"  errorStyle="color:red"/>
+					<pf:message for="city"  errorStyle="color:red"/>
 					
 					<h:outputText value="Province"/>
 					<pf:inputText required="true" id="province" value="#{person.province}" />
-					<h:message for="province"  errorStyle="color:red"/>
+					<pf:message for="province"  errorStyle="color:red"/>
 					
 					<h:outputText value="Post Code"/>
 					<pf:inputText required="true" id="postCode" value="#{person.postCode}" />
-					<h:message for="postCode"  errorStyle="color:red"/>
+					<pf:message for="postCode"  errorStyle="color:red"/>
 					
 					<h:outputText value="Country"/>
 					<h:selectOneMenu required="true" id="country" value="#{person.country}" >
@@ -54,6 +54,7 @@
 					<f:selectItem itemLabel="U.S.A." itemValue="us"/>
 					<f:selectItem itemLabel="U.K." itemValue="uk"/>
 					</h:selectOneMenu>
+					<pf:message for="country"  errorStyle="color:red"/>
 					
 					<h:outputText value=""/>
 					<pf:commandButton id="submit"
