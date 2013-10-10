@@ -5,46 +5,21 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pf="http://primefaces.org/ui">
       
-	<head>
+<head>
 	<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
-	<link rel="stylesheet" type="text/css" href="/stylesheet.css"
-	title="style" />
-	</head>
+</head>
 
 <body bgcolor="#ffffff">
-<table style="border:1px solid #33ff66"  align="center" cellpadding="0" cellspacing="0" border="0" width="100%">
-<tbody>
 
-	<tr>
-		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#33ff66">
-			<ui:insert name="pageHeader">Page Header</ui:insert>
-		</td>
-	</tr>
-	<tr>
-		<td height="1" width="100%" bgcolor="#33ff66"></td>
-	</tr>	
-
-	<tr>
-		<td width="100%"  colspan="2">
-			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="0">
-			<tbody>
-				<tr>
-					<td align="center" width="100%" valign="middle">
-					
-					<ui:insert name="body">Page Body</ui:insert>
-					
-					</td>
-				</tr>
-			</tbody>
-			</table>
-		</td>
-	</tr>	
+<pf:panel header="Signup" id="main" width="100%" valign="middle">
+	<f:facet name="header">
+		<ui:insert name="pageTitle">Page Title</ui:insert>
+	</f:facet>
 	
-	<tr>
-		<td colspan="2"  valign="bottom" height="1" width="100%" bgcolor="#336699"></td>
-	</tr>
-</tbody>
-</table>
+	<ui:insert name="body">Page Body</ui:insert>
+					
+</pf:panel>
+
 </body>
 		
 </html>
