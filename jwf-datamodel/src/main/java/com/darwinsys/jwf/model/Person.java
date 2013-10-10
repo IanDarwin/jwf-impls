@@ -49,7 +49,9 @@ public class Person implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	@NotNull @Pattern(regexp=".*@.*\\..*")
+	@NotNull
+	// Still no email validator!? Try "chars, @, chars, '.', chars"
+	@Pattern(regexp=".+@.+\\..+", message="Must be a valid email address")
 	public String getEmail() {
 		return email;
 	}
