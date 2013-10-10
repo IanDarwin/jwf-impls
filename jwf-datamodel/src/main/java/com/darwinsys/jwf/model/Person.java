@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Transient;
 
+import javax.validation.NotNull;
+
 /**
  * First version of a reusable Person entity
  * for frameworks that can use POJO entities
@@ -31,18 +33,21 @@ public class Person {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@NotNull
 	public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	@NotNull
 	public String getLastName() {
 		return lastName;
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	@NotNull
 	public String getEmail() {
 		return email;
 	}
