@@ -1,8 +1,8 @@
 package jwfdemo;
 
-import javax.naming.NamingException;
-
-import com.darwinsys.jwf.model.*;
+import com.darwinsys.jwf.model.Person;
+import com.darwinsys.jwf.model.PersonDao;
+import com.darwinsys.jwf.model.PersonDaoMemory;
 
 /**
  * JSFDemoActionHandler - copy the beans' data into the database
@@ -22,11 +22,11 @@ public class SaveHandler {
 		thePerson = p;
 	}
 	
-	public String doSave() {
-		System.out.println("SaveHandler.doSave()");
+	public String savePerson() {
+		System.out.println("SaveHandler.savePerson()");
 		//write it using PersonDao
 		dao.insert(thePerson);
-		return "signup";
+		return "saved";
 	}
 
 }

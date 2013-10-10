@@ -9,20 +9,24 @@
 		
 	</application>
 
+	<!-- Configure the beans here since we don't want to put
+	 *** view-specific annotations on the Model code.
+	 -->
 	<managed-bean> 
-		<managed-bean-name>PersonBean</managed-bean-name> 
+		<managed-bean-name>person</managed-bean-name> 
 		<managed-bean-class>com.darwinsys.jwf.model.Person</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope> 
 	</managed-bean> 
 	
 	<managed-bean> 
-		<managed-bean-name>SaveHandlerBean</managed-bean-name> 
+		<managed-bean-name>personHandler</managed-bean-name> 
 		<managed-bean-class>jwfdemo.SaveHandler</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope> 
+		<!-- Should be application scope but won't inject session into application-scoped -->
+		<managed-bean-scope>session</managed-bean-scope> 
 		<managed-property>
 		  <property-name>person</property-name>
 		  <property-class>com.darwinsys.jwf.model.Person</property-class>
-		<value>#{PersonBean}</value>
+		  <value>#{person}</value>
 		</managed-property>
 	</managed-bean>
 
