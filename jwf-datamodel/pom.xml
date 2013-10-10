@@ -47,62 +47,67 @@
 				</configuration>
 			</plugin>
 			<plugin>
-	   			<groupId>org.apache.maven.plugins</groupId>
-	    		<artifactId>maven-surefire-plugin</artifactId>
-	    		<version>2.12</version>
-	    		<configuration>
-	    		</configuration>
-	   		</plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<excludes>
+						<exclude>**/PersonValidationTest.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
-    <dependencies>
-      <!-- JPA -->
-      <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-      </dependency>
-      
-      <!-- javax.validation -->
-      <dependency>
-	    <groupId>javax.validation</groupId>
-	    <artifactId>validation-api</artifactId>
-	    <version>1.0.0.GA</version>
-      </dependency>
-      
-      <!-- JUnit -->
-      <dependency>
-	    <groupId>junit</groupId>
-	    <artifactId>junit</artifactId>
-	    <version>4.8.2</version>
-	    <scope>test</scope>
-	  </dependency>
-	  
-	  <dependency>
-    	<groupId>org.hibernate</groupId>
-    	<artifactId>hibernate-validator</artifactId>
-    	<version>5.0.1.Final</version>
-    	
-	  </dependency>
-	  <dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-validator-cdi</artifactId>
-    <version>5.0.1.Final</version>
-    
-	</dependency>
-	  <dependency>
-    <groupId>javax.el</groupId>
-    <artifactId>javax.el-api</artifactId>
-    <version>2.2.4</version>
-    
-	</dependency>
-	<dependency>
-    <groupId>org.glassfish.web</groupId>
-    <artifactId>javax.el</artifactId>
-    <version>2.2.4</version>
-    
-	</dependency>
+	<dependencies>
+
+		<!-- JPA -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- javax.validation -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
+		</dependency>
+
+		<!-- Hibernate validator "test"-time dependencies: -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-cdi</artifactId>
+			<version>5.0.1.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>2.2.4</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 </project>
