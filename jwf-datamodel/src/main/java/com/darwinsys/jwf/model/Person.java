@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Transient;
-
-import javax.validation.NotNull;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * First version of a reusable Person entity
@@ -47,13 +47,14 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	@NotNull
+	@NotNull @Pattern(regexp=".*@.*\\..*")
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@NotNull
 	public String getAddress1() {
 		return address1;
 	}
@@ -66,12 +67,14 @@ public class Person {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+	@NotNull
 	public String getCity() {
 		return city;
 	}
 	public void setCity(String city) {
 		this.city = city;
 	}
+	@NotNull
 	public String getProvince() {
 		return province;
 	}
@@ -84,6 +87,7 @@ public class Person {
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
+	@Pattern(regexp="[A-Z][a-z]+")
 	public String getCountry() {
 		return country;
 	}
