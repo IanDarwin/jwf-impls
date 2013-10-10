@@ -15,6 +15,12 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+  
+  <!-- Enable PrimeFaces client side validation -->
+  <context-param>
+    <param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
+    <param-value>true</param-value>
+  </context-param>
  
   <!-- Welcome page -->
   <welcome-file-list>
