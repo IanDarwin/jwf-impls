@@ -1,5 +1,7 @@
 package com.darwinsys.jwf.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +15,7 @@ import javax.validation.constraints.Pattern;
  * and/or JPA entities.
  */
 @Entity
-public class Person {
+public class Person implements Serializable {
 
     public Long id;
     public String firstName;
