@@ -19,6 +19,9 @@ You should do "mvn install" in this subdirectory before anything else!
 Each jwf.* subdirectory is an Eclipse Project containing one of the implementations;
 the name should make it clear which framework(s) is/are demonstrated.
 
+The jwf. at the front of the names are preserved in the Eclipse .project files so that
+if you add these to an existing Eclipse workspace, they will all cluster together.
+
 Do not expect consistency about the batch build system; some use Ant,
 some use Maven, maybe by the time you use this, some will use Gradle.
 Some probably have no build file.
