@@ -93,7 +93,7 @@ public class Person implements Serializable {
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
-	@Pattern(regexp="[A-Z][a-z]+")
+	@NotNull
 	public String getCountry() {
 		return country;
 	}
