@@ -51,7 +51,7 @@ public class Person implements Serializable {
 	}
 	@NotNull
 	// Still no email validator!? Try "chars, @, chars, '.', chars"
-	@Pattern(regexp=".+@.+\\..+", message="com.darwinsys.jwf.valid_email_address")
+	@Pattern(regexp="[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}", flags={Pattern.Flag.CASE_INSENSITIVE})
 	public String getEmail() {
 		return email;
 	}
