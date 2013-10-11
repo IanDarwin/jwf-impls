@@ -1,7 +1,8 @@
 package strutsdemo;
 
-import beans.Person;
-import beans.PersonDAO;
+import com.darwinsys.jwf.model.Person;
+import com.darwinsys.jwf.model.PersonDao;
+import com.darwinsys.jwf.model.PersonDaoMemory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -35,32 +36,34 @@ public class InsertAction extends Action {
 		person.setAddress2((String)f.get("address2"));
 		person.setCity((String)f.get("city"));
 		person.setProvince((String)f.get("province"));
-		person.setPostcode((String)f.get("postcode"));
+		person.setPostCode((String)f.get("postcode"));
 		person.setCountry((String)f.get("country"));
 
+		// Must be a better way to do validation!
+
 		// If inputs not valid, process as error.
-		if (!person.isValid()) {
-			List errs = person.getErrors();
-			StringBuffer fields = new StringBuffer();
-			for (int i = 0; i < errs.size(); i++) {
-				if (i > 0)
-					fields.append(", ");
-				fields.append(errs.get(i));
-			}
-			errors.add(ActionErrors.GLOBAL_ERROR,
-				new ActionError("error.fields.attention", fields));
-			saveErrors(request, errors);
-			return new ActionForward(mapping.getInput());
-		}
+		// if (!person.isValid()) {
+		//	List errs = person.getErrors();
+		//	StringBuffer fields = new StringBuffer();
+		//	for (int i = 0; i < errs.size(); i++) {
+		//		if (i > 0)
+		//			fields.append(", ");
+		//		fields.append(errs.get(i));
+		//	}
+		//	errors.add(ActionErrors.GLOBAL_ERROR,
+		//		new ActionError("error.fields.attention", fields));
+		//	saveErrors(request, errors);
+		//	return new ActionForward(mapping.getInput());
+		//}
 
 		// Data is OK, so try to store it in the database.
 		try {
-			new PersonDAO().insert(person);
+			new PersonDaoMemory().insert(person);
 		} catch (Exception ex) {
 			errors.add(ActionErrors.GLOBAL_ERROR,
-                new ActionError("error.database.problem", ex.toString()));
+				new ActionError("error.database.problem", ex.toString()));
 			saveErrors(request, errors);
-            return new ActionForward(mapping.getInput());
+			return new ActionForward(mapping.getInput());
 		}
 
 		return mapping.findForward("success");
