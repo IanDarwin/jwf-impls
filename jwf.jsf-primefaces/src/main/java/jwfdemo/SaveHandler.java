@@ -1,5 +1,7 @@
 package jwfdemo;
 
+import java.io.Serializable;
+
 import com.darwinsys.jwf.model.Person;
 import com.darwinsys.jwf.model.PersonDao;
 import com.darwinsys.jwf.model.PersonDaoMemory;
@@ -7,7 +9,7 @@ import com.darwinsys.jwf.model.PersonDaoMemory;
 /**
  * JSFDemoActionHandler - copy the beans' data into the database
  */
-public class SaveHandler {
+public class SaveHandler implements Serializable {
 
 	private Person thePerson;
 	
