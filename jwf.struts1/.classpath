@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src/main/java" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jwf-datamodel"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/struts.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/beans.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/servlet-api-2.5.jar"/>
-	<classpathentry kind="output" path="WEB-INF/classes"/>
+	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>
