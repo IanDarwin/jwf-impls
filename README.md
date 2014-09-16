@@ -1,5 +1,4 @@
-Java Web Framework (JWF) Implementations
-========================================
+== Comparing Java Web Framework (JWF) Implementations
 
 This is a set of Java Web Framework "hello form" (sign-up)
 demonstration implementations. Each shows a simple webapp that
@@ -39,10 +38,9 @@ As with any public GitHub project, clone it, hack, send a pull request.
 
 Impls I'd like to see, or do:
 
-	Seam2
-	Grails (replacing the "Groovy" one)
-	
-	Or actually anything else you'd like to send!
+* Grails
+* Or actually anything else you'd like to send!
 	
 Regards,
+
 Ian Darwin
