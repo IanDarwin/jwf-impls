@@ -1,10 +1,9 @@
-SOFIA is one of the best of the frameworks I have examined in detail.
+SOFIA was once among the better of the frameworks I have examined in detail.
 
-Many good points...
+It is now considered defunct, since the maintainers abandoned it.
 
-	...
-
-A few minor problems:
+While Sofia took over many duties from the developer, providing
+generated "data model" code, it certainly had problems:
 
 	error handling uneven.
 
