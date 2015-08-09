@@ -1,0 +1,24 @@
+		<!-- JDBC DataSource for the FrameWorks directory -->
+		<Resource name="jdbc/javawebframeworks" type='javax.sql.DataSource'
+			auth='Container'/>
+
+		<ResourceParams name="jdbc/javawebframeworks">
+			<parameter>
+				<name>username</name><value>jwfsurvey</value>
+			</parameter>
+			<parameter>
+				<name>password</name><value>itsasecret</value>
+			</parameter>
+			<parameter><name>driverClassName</name>
+				<value>org.hsqldb.jdbcDriver</value>
+			</parameter>
+			<parameter><name>url</name>
+				<value>jdbc:hsqldb:mem:</value>
+			</parameter>
+			<parameter>
+				<name>maxActive</name><value>8</value>
+			</parameter>
+			<parameter>
+				<name>maxIdle</name><value>4</value>
+			</parameter>
+		</ResourceParams>

@@ -1,0 +1,6 @@
+insert into people (
+	firstName, lastName, email, address1, address2,
+	city, province, postcode, country)
+values ('Luke', 'Skywalker', 'luke@jedi.domain', '123 Main St', 'R R # 7',
+	'Someplace', 'Ontario', 'H0H 0H0', 'Canada'
+);
