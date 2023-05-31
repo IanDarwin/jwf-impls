@@ -2,11 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!--
+	 * This does NOT use the parent pom as it is a dependency of the other modules.
+	 * You might have to do 'mvn install' here first.
+	 -->
 	<groupId>com.darwinsys</groupId>
 	<artifactId>jwf-datamodel</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1-SNAPSHOT</version>
+
 	<packaging>jar</packaging>
-	<inceptionYear>2007</inceptionYear>
 
 	<name>Person POJO and friends</name>
 	<url>http://darwinsys.com</url>
@@ -30,22 +34,17 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<javase.version>17</javase.version>
+		<maven.compiler.source>${javase.version}</maven.compiler.source>
+		<maven.compiler.target>${javase.version}</maven.compiler.target>
+		<maven.compiler.testSource>${javase.version}</maven.compiler.testSource>
+		<maven.compiler.testTarget>${javase.version}</maven.compiler.testTarget>
 	</properties>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<excludes>
-						<exclude>com/darwinsys/ant/MakeTask.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -65,28 +64,28 @@
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
+			<version>1.0.2</version>
 		</dependency>
 
 		<!-- javax.validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
+			<version>2.0.1.Final</version>
 		</dependency>
 
-		<!-- JUnit -->
+		<!-- This does require JUnit 4 as it doesn't use the parent pom. -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
-			<version>2.2.4</version>
+			<version>3.0.1-b06</version>
 			<scope>test</scope>
 		</dependency>
 

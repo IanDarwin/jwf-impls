@@ -2,14 +2,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
   	http://maven.apache.org/maven-v4_0_0.xsd">
- 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.darwinsys</groupId>
+ 
+	<parent>
+		<groupId>com.darwinsys</groupId>
+		<artifactId>java-web-impls</artifactId>
+		<version>1.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
 	<artifactId>jwf.struts1</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
 	<name>Struts1 "Hello Form" sample web app</name>
-	<url>http://darwinsys.com/jwf/</url>
 
 	<properties>
 		<struts-version>1.2.8</struts-version>
@@ -17,13 +21,6 @@
  
 	<dependencies>
 	
-		<!-- Our little data model -->
-		<dependency>
-			<groupId>com.darwinsys</groupId>
-			<artifactId>jwf-datamodel</artifactId>
-			<version>1.0.1</version>
-		</dependency>
- 
 		<!-- Struts1 framework -->
 		<dependency>
 			<groupId>struts</groupId>
@@ -35,22 +32,8 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>3.0-alpha-1</version>
 		</dependency>
  
 	</dependencies>
- 
-	<build>
-	<plugins>
-	   <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-compiler-plugin</artifactId>
-		<version>2.3.1</version>
-		<configuration>
-			<source>1.6</source>
-			<target>1.6</target>
-		</configuration>
-	   </plugin>
-	</plugins>
-	</build>
 </project>
