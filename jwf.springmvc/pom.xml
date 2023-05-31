@@ -15,10 +15,6 @@
 	<packaging>war</packaging>
 	<name>SpringMVC Web Site</name>
 
-	<properties>
-		<spring-version>3.2.4.RELEASE</spring-version>
-	</properties>
- 
 	<dependencies>
 	
 		<!-- Spring framework -->
