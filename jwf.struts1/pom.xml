@@ -15,17 +15,13 @@
 	<packaging>war</packaging>
 	<name>Struts1 "Hello Form" sample web app</name>
 
-	<properties>
-		<struts-version>1.2.9</struts-version>
-	</properties>
- 
 	<dependencies>
 	
 		<!-- Struts1 framework -->
 		<dependency>
 			<groupId>struts</groupId>
 			<artifactId>struts</artifactId>
-			<version>${struts-version}</version>
+			<version>${struts1-version}</version>
 		</dependency>
  
 		<!-- Servlet API (should be a dependency of Struts1, I'dda thought :-) -->
