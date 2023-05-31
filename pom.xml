@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+  	http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+ 
+	<!-- parent pom for all the subdirs that are mavenized -->
+	<groupId>com.darwinsys</groupId>
+	<artifactId>java-web-impls</artifactId>
+	<packaging>pom</packaging>
+	<version>1.1-SNAPSHOT</version>
+	<name>Web Comparison Site: Parent POm</name>
+	<url>http://darwinsys.com/jwf/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<javase.version>17</javase.version>
+		<maven.compiler.source>${javase.version}</maven.compiler.source>
+		<maven.compiler.target>${javase.version}</maven.compiler.target>
+		<maven.compiler.testSource>${javase.version}</maven.compiler.testSource>
+		<maven.compiler.testTarget>${javase.version}</maven.compiler.testTarget>
+		<javaee.version>8.0</javaee.version>
+		<darwinsys-api.version>1.7.6</darwinsys-api.version>
+		<!-- Only used in some modules, worth defining here anyway -->
+		<darwinsys-ee.version>0.3.9</darwinsys-ee.version>
+		<junit4.version>[4.13.1,)</junit4.version>
+		<junit5.version>5.8.1</junit5.version>
+		<mockito.version>3.12.4</mockito.version>
+		<spring-version>3.2.4.RELEASE</spring-version>
+	</properties>
+
+	<modules>
+		<!-- Not a module but a dependency, handle manually for now (cd jwf-datamodel;mvn install) -->
+		<module>jwf-datamodel</module>
+		<module>jwf.jsf-facelets</module>
+		<module>jwf.jsf-primefaces</module>
+		<module>jwf.spring+jsf</module>
+		<module>jwf.springmvc</module>
+		<module>jwf.struts1</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<!-- Ensure that JUnit5 test runner is used -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit-platform</artifactId>
+						<version>3.0.0-M5</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+ 
+	<dependencies>
+		<!-- Our little data model -->
+		<dependency>
+			<groupId>com.darwinsys</groupId>
+			<artifactId>jwf-datamodel</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>8.0.1</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+ 
+		<!-- JSF -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.20</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.20</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>3.0-alpha-1</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2.1-b03</version>
+		</dependency>
+ 
+		<!-- EL -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2.1-b05</version>
+		</dependency>
+ 
+		<!-- Tomcat 6 need this -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
