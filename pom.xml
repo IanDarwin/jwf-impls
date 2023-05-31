@@ -29,6 +29,7 @@
 		<junit5.version>5.8.1</junit5.version>
 		<mockito.version>3.12.4</mockito.version>
 		<spring-version>5.3.18</spring-version>
+		<primefaces.version>6.0</primefaces.version>
 	</properties>
 
 	<modules>
